@@ -160,4 +160,5 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .notice{
   background-color: red;
+  text-align: center;
 }

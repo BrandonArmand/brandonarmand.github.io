@@ -53,6 +53,7 @@ html, body, .ng-scope, .container-fluid, .row {
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .row{
@@ -91,63 +92,80 @@ html, body, .ng-scope, .container-fluid, .row {
   height: 250px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   border: solid 1px;
   background-position: center;
   background-repeat: no-repeat;
+  text-align: center;
 }
 
-.project img{
-  width: 100%;
-  /*height: 250px;*/
+.project h1{
+  color: whitesmoke;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  font-size: 5rem;
 }
 
-.project:first-of-type img{
-  /*height: 250px;*/
+.project p{
+  color: white;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    font-size: 1.2rem;
+}
+
+.project:first-of-type{
+  height: 300px;
 }
 
 .description{
-  visibility: hidden;
-  background-color: rgba(181, 184, 188, .5);
+  z-index: -1;
+  background-color: rgba(131, 134, 138, .8);
   width: 100%;
   height: 100%;
+  margin: 0;
+}
+
+.project:hover .description{
+  z-index: 0;
 }
 
 #jams{
   background-image: url('../images/blocjams.png');
 }
-
-#jams:hover .description{
-  visibility: visible;
-}
-
 #pixl{
   background-image: url('../images/pixl.png');
   background-color: rgb(238,238,238);
-}
-#pixl:hover .description{
-  visibility: visible;
 }
 #bloccit{
   background-image: url('../images/bloccit.png');
   background-color: white;
 }
-#bloccit:hover .description{
-  visibility: visible;
-}
 #wiki{
   background-image: url('../images/wiki.png');
   background-color: white;
-}
-#wiki:hover .description{
-  visibility: visible;
 }
 #peer{
   background-image: url('../images/peer.png');
   background-color: white;
   background-position: top;
 }
-#peer:hover .description{
-  visibility: visible;
+#steamBot, #Keleapi{
+  height: 50px;
+}
+#steamBot{
+  background-color: black;
+}
+#steamBot h2{
+  color: white;
+}
+#Keleapi{
+  background-color: rgb(132, 237, 179);
 }
 
 .line{

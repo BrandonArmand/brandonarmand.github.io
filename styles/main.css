@@ -6,15 +6,15 @@ html, body, .ng-scope, .container-fluid, .row {
 #header{
   width: 100%;
   padding: 2rem;
-  background-color: whitesmoke;
+  background-color: white;
   height: 100%;
 }
 
 #body{
-  background-color: #eaffeb;
+  background-color: white;
   height: 100%;
   width: 100%;
-  box-shadow: -5px -5px 25px 2px lightgrey;
+  /*box-shadow: -5px -5px 25px 2px lightgrey;*/
   padding: 0;
 }
 
@@ -56,6 +56,10 @@ html, body, .ng-scope, .container-fluid, .row {
   scroll-behavior: smooth;
 }
 
+#about{
+  height: 100%;
+}
+
 .row{
   margin: 0;
 }
@@ -67,13 +71,16 @@ html, body, .ng-scope, .container-fluid, .row {
 .box{
   margin: .4rem;
   padding: .8rem;
-  box-shadow: 5px 5px 25px 2px lightgrey;
   background-color: white;
-  /*box-shadow: inset 1px -1px 1px 1px black, 5px 5px 25px 2px lightgrey;*/
+  box-shadow: inset 1px -1px 1px 1px black, 5px 5px 25px 2px whitesmoke;
 }
 
 .skill{
   display: inline-block;
+}
+
+.wrap{
+  float: left;
 }
 
 .navbar{
@@ -81,6 +88,7 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .navbar-nav{
   flex-direction: row;
+
 }
 
 .navbar-nav li{
@@ -175,8 +183,29 @@ html, body, .ng-scope, .container-fluid, .row {
   border-top: solid 1px;
 }
 
+#about{
+  display: flex;
+  flex-direction: column;
+}
+#about .pic{
+  margin-top: auto;
+}
+#about img{
+  margin-top: auto;
+  border-radius: 300px;
+  width: 25%;
+}
+
+.my-info{
+  margin-top: auto;
+  margin-bottom: auto;
+}
 
 .notice{
   background-color: red;
   text-align: center;
+}
+
+.thin-line{
+  border-left: solid 1px;
 }

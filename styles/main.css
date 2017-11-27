@@ -131,7 +131,6 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .description{
   z-index: -1;
-  /*background-color: rgba(131, 134, 138, .8);*/
   width: 100%;
   height: 100%;
   margin: 0;

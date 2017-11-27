@@ -7,7 +7,7 @@ html, body, .ng-scope, .container-fluid, .row {
   width: 100%;
   padding: 2rem;
   background-color: white;
-  height: 100%;
+  min-height: 100%;
 }
 
 #body{
@@ -56,10 +56,6 @@ html, body, .ng-scope, .container-fluid, .row {
   scroll-behavior: smooth;
 }
 
-#about{
-  height: 100%;
-}
-
 .row{
   margin: 0;
 }
@@ -105,6 +101,7 @@ html, body, .ng-scope, .container-fluid, .row {
   background-position: center;
   background-repeat: no-repeat;
   text-align: center;
+  padding: 0;
 }
 
 .project h1{
@@ -113,11 +110,14 @@ html, body, .ng-scope, .container-fluid, .row {
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000;
+    1px 1px 0 #000,
+    1px 1px 1px black,
+    2px 2px 1px black;
   font-size: 5rem;
 }
 
 .project p{
+  background-color: rgba(0, 0, 0, .7);;
   color: white;
   text-shadow:
     -1px -1px 0 #000,
@@ -125,15 +125,13 @@ html, body, .ng-scope, .container-fluid, .row {
     -1px 1px 0 #000,
     1px 1px 0 #000;
     font-size: 1.2rem;
+  white-space: normal;
 }
 
-.project:first-of-type{
-  height: 300px;
-}
 
 .description{
   z-index: -1;
-  background-color: rgba(131, 134, 138, .8);
+  /*background-color: rgba(131, 134, 138, .8);*/
   width: 100%;
   height: 100%;
   margin: 0;
@@ -167,13 +165,12 @@ html, body, .ng-scope, .container-fluid, .row {
   height: 50px;
 }
 #steamBot{
-  background-color: black;
-}
-#steamBot h2{
+  background-color: orange;
   color: white;
 }
 #Keleapi{
   background-color: rgb(132, 237, 179);
+  color: white;
 }
 
 .line{
@@ -184,16 +181,79 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 #about{
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 #about .pic{
   margin-top: auto;
+  width: auto;
 }
 #about img{
   margin-top: auto;
+  padding: 1rem;
+  border-left: solid 3px black;
+  border-right: solid 3px black;
+  border-top: solid 3px white;
+  border-bottom: solid 3px white;
   border-radius: 300px;
   width: 25%;
+  -webkit-animation: borders 5s infinite; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: borders 5s infinite; /* Firefox < 16 */
+    -ms-animation: borders 5s infinite; /* Internet Explorer */
+     -o-animation: borders 5s infinite; /* Opera < 12.1 */
+        animation: borders 5s infinite;
+}
+
+@keyframes borders {
+    0%{
+      border-left: solid 3px white;
+      border-right: solid 3px black;
+      border-top: solid 3px white;
+      border-bottom: solid 3px white;
+    }
+    3%{
+      border-left: solid 3px white;
+      border-right: solid 3px white;
+      border-top: solid 3px black;
+      border-bottom: solid 3px white;
+    }
+    5%{
+      border-left: solid 3px black;
+      border-right: solid 3px white;
+      border-top: solid 3px white;
+      border-bottom: solid 3px white;
+    }
+    7%{
+      border-left: solid 3px white;
+      border-right: solid 3px white;
+      border-top: solid 3px white;
+      border-bottom: solid 3px black;
+    }
+    9%{
+      border-left: solid 3px white;
+      border-right: solid 3px black;
+      border-top: solid 3px white;
+      border-bottom: solid 3px white;
+    }
+    13%{
+      border-left: solid 3px black;
+      border-right: solid 3px black;
+      border-top: solid 3px white;
+      border-bottom: solid 3px white;
+    }
+    90%{
+      border-left: solid 3px black;
+      border-right: solid 3px black;
+      border-top: solid 3px white;
+      border-bottom: solid 3px white;
+    }
+    100%{
+      border-left: solid 3px white;
+      border-right: solid 3px black;
+      border-top: solid 3px white;
+      border-bottom: solid 3px white;
+    }
 }
 
 .my-info{

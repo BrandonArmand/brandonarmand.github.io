@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
@@ -17,7 +18,7 @@
           <h5 class="display-4">Frontend & Backend</h5>
       </div>
       <div class="box notice">
-        <h4>Work in Progress (11/25/17)</h4>
+        <h4>Work in Progress (11/27/17)</h4>
       </div>
       <div class="box">
         <h4 class="text-center">Full-stack web-application developer well-versed
@@ -47,11 +48,15 @@
             <li class="nav-item active">
               <a class="nav-link" href="#projects">Projects</a>
             </li>
-            <li class="nav-item disabled">
+            <!-- <li class="nav-item disabled">
               <a class="nav-link">Blog</a>
-            </li>
+            </li> -->
           </ul>
-          <a class="navbar-brand disabled">Contact@brandonarmand.com</a>
+          <div>
+            <a class="navbar-brand" href="https://www.linkedin.com/in/brandon-welsh-92355a103/" target="_blank"><i class="fa fa-linkedin-square" style="font-size:24px"></i></a>
+            <a class="navbar-brand" href="https://github.com/BrandonArmand" target="_blank"><i class="fa fa-github " style="font-size:24px"></i></a>
+            <a class="navbar-brand disabled">Contact@brandonarmand.com</a>
+          </div>
       </nav>
 
       <div class="container-fluid" id="home">
@@ -64,8 +69,9 @@
             <h3><span style="color:red"><strong>Welcome to my world!</strong></span> I am a dedicated developer located
             in the <span style="color: red">Greater Los Angeles area</span>. Although i'm currently focused on
             web-development using <span style="color: red">Ruby on Rails</span> and <span style="color: red">Angular</span>, I initially took my start in <span style="color: red">C++</span> making simple desktop
-            applications, and small games using <span style="color: red">GML</span>. If you would like to learn more, check out some of my
-            <a style="color: red; text-decoration: underline;" href="#projects">projects</a>, or you can get ahold of me with <span style="color: red; text-decoration: underline;">contact@brandonarmand.com</span></h3>
+            applications, and small games using <span style="color: red">GML</span>. If you would like to learn more, check out my
+            <a style="color: red; text-decoration: underline;" href="#projects">projects</a>, <a style="color: red; text-decoration: underline;" href="https://www.linkedin.com/in/brandon-welsh-92355a103/" target="_blank">Linkedin</a>,
+            or <a style="color: red; text-decoration: underline;" href="https://github.com/BrandonArmand" target="_blank">Github</a>. You can also get ahold of me with <span style="color: red; text-decoration: ;">contact@brandonarmand.com</span></h3>
           </div>
         </div>
         <h1 class="display-2" id="projects">Recent Projects</h1>
@@ -79,48 +85,48 @@
         </div>
         <div class="line"></div>
         <h1 class="display-3">Frontend</h1>
-        <div class="project" id="jams">
+        <a class="project btn" id="jams" href="https://angular-bloc.herokuapp.com/" target="_blank">
           <h1 class="description">Bloc Jams</h1>
           <p class="description">Bloc Jams is a music streaming clone made so I
           can get a confident feel for Angular. This project was a great learning
           experince for myself, originally created with just vanilla HTML and
           CSS, eventually refractored with JQuery, then lastly refractored with
           Angular.</p>
-        </div>
-        <div class="project" id="pixl">
+        </a>
+        <a class="project btn" id="pixl" href="https://angular-pixlchat.herokuapp.com/" target="_blank">
           <h1 class="description">Pix'l Chat</h1>
           <p class="description">Pix'l Chat is a basic chatting service that
           generates an avatar seeded by a user's nickname. Users are able to create
           their own public chatrooms, and send/recieve messages. This project was
           extremely fun to create using both Angular and Firebase. I plan to hopefully
           find some time to revisit it and polish it up some more.</p>
-        </div>
+        </a>
         <div class="line"></div>
         <h1 class="display-3">Backend</h1>
-        <div class="project" id="wiki">
+        <a class="project btn" id="wiki" href="https://protected-inlet-64402.herokuapp.com/" target="_blank">
           <h1 class="description">Rupypedia</h1>
           <p class="description">Rupypedia(as the name suggests, was made with Ruby on Rails)
           is currently my favorite project that i've completed. It is a Wikipedia
           clone in which users can create their own public Wiki pages, and others can
           collaborate on. Users can also pay to become a premium user. Premium users
           can create private wikis which nobody can collaborate on, unless the user is
-          on the creators exclusive collaborator list. </p>
-        </div>
-        <div class="project" id="bloccit">
+          on the creators exclusive collaborator list.</p>
+        </a>
+        <a class="project btn" id="bloccit" href="https://eddit.herokuapp.com/" target="_blank">
           <h1 class="description">Bloccit</h1>
           <p class="description">Bloccit is a reddit clone made with Ruby on Rails. It allows
           users to create topics, posts within the topics, and also create comments
           within the posts. Users can also upvote and downvote posts, so that only the top-rated and more
           recent posts are displayed approriatly on top of the topic's show page.</p>
-        </div>
+        </a>
         <div class="line"></div>
         <h1 class="display-3">Other</h1>
-        <div class="project" id="steamBot">
+        <a class="project btn" id="steamBot" href="https://github.com/BrandonArmand/SteamBot#steambot" target="_blank">
           <h2 class="">Steam Group-Chat Bot</h1>
-        </div>
-        <div class="project" id="Keleapi">
+        </a>
+        <a class="project btn" id="Keleapi" href="https://github.com/BrandonArmand/keleapi" target="_blank">
           <h2 class="">Kele API</h1>
-        </div>
+        </a>
       </div>
     </div>
   </div>

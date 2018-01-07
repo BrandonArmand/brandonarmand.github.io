@@ -1,6 +1,7 @@
 html, body, .ng-scope, .container-fluid, .row {
   height: 100%;
   width: 100%;
+  color: #333;
 }
 
 #header{
@@ -95,6 +96,9 @@ html, body, .ng-scope, .container-fluid, .row {
 
 }
 
+.blue{
+  box-shadow: inset 1px -1px 1px 1px black, 5px 5px 25px 2px whitesmoke, 5px 5px 25px 2px lightblue;
+}
 .navbar-nav li{
   margin-left: 1rem;
 }
@@ -111,6 +115,7 @@ html, body, .ng-scope, .container-fluid, .row {
   text-align: center;
   padding: 0;
   box-shadow: 5px 5px 25px 2px #ececec;
+  box-shadow: 5px 5px 25px 2px lightblue;
 }
 
 .project h1{
@@ -178,6 +183,13 @@ html, body, .ng-scope, .container-fluid, .row {
   background-position: top;
   color: white;
 }
+#markit{
+  background-image: url('../images/blocitoff1.png');
+  background-color: white;
+  background-position: top;
+  background-size: 100%;
+  color: white;
+}
 #steamBot, #Keleapi{
   height: 50px;
 }
@@ -209,68 +221,8 @@ html, body, .ng-scope, .container-fluid, .row {
 #about img{
   margin-top: auto;
   padding: 1rem;
-  border-left: solid 3px black;
-  border-right: solid 3px black;
-  border-top: solid 3px white;
-  border-bottom: solid 3px white;
   border-radius: 300px;
   width: 25%;
-  -webkit-animation: borders 5s infinite; /* Safari, Chrome and Opera > 12.1 */
-   -moz-animation: borders 5s infinite; /* Firefox < 16 */
-    -ms-animation: borders 5s infinite; /* Internet Explorer */
-     -o-animation: borders 5s infinite; /* Opera < 12.1 */
-        animation: borders 5s infinite;
-}
-
-@keyframes borders {
-    0%{
-      border-left: solid 3px white;
-      border-right: solid 3px black;
-      border-top: solid 3px white;
-      border-bottom: solid 3px white;
-    }
-    3%{
-      border-left: solid 3px white;
-      border-right: solid 3px white;
-      border-top: solid 3px black;
-      border-bottom: solid 3px white;
-    }
-    5%{
-      border-left: solid 3px black;
-      border-right: solid 3px white;
-      border-top: solid 3px white;
-      border-bottom: solid 3px white;
-    }
-    7%{
-      border-left: solid 3px white;
-      border-right: solid 3px white;
-      border-top: solid 3px white;
-      border-bottom: solid 3px black;
-    }
-    9%{
-      border-left: solid 3px white;
-      border-right: solid 3px black;
-      border-top: solid 3px white;
-      border-bottom: solid 3px white;
-    }
-    13%{
-      border-left: solid 3px black;
-      border-right: solid 3px black;
-      border-top: solid 3px white;
-      border-bottom: solid 3px white;
-    }
-    90%{
-      border-left: solid 3px black;
-      border-right: solid 3px black;
-      border-top: solid 3px white;
-      border-bottom: solid 3px white;
-    }
-    100%{
-      border-left: solid 3px white;
-      border-right: solid 3px black;
-      border-top: solid 3px white;
-      border-bottom: solid 3px white;
-    }
 }
 
 .display-2{
@@ -294,7 +246,7 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .font{
-  font-size: 250%;
+  font-size: 40px;
 }
 
 .bg{
@@ -305,7 +257,6 @@ html, body, .ng-scope, .container-fluid, .row {
   height: 200%;
   background-image: url('../images/pexels-photo-247791.png');
 }
-
 
 .sk-cube-grid {
   width: 100px;

@@ -190,6 +190,13 @@ html, body, .ng-scope, .container-fluid, .row {
   background-size: 100%;
   color: white;
 }
+#port{
+  background-image: url('../images/port.png');
+  background-color: white;
+  background-position: left;
+  /* background-size: 100%; */
+  color: white;
+}
 #steamBot, #Keleapi{
   height: 50px;
 }
@@ -215,7 +222,7 @@ html, body, .ng-scope, .container-fluid, .row {
   flex-direction: column;
 }
 #about .pic{
-  margin-top: auto;
+  margin-bottom: auto;
   width: auto;
 }
 #about img{
@@ -230,8 +237,8 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .my-info{
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 0;
+  margin-bottom: 1rem;
   padding: 0;
   background-color: white;
 }
@@ -246,7 +253,12 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .font{
-  font-size: 40px;
+  margin-bottom: auto;
+  text-align: start;
+  font-size: 22px;
+  letter-spacing: .15em;
+  -webkit-animation: output 3.7s steps(1, end);
+  animation: output 3.7s steps(1, end);
 }
 
 .bg{
@@ -318,4 +330,56 @@ html, body, .ng-scope, .container-fluid, .row {
     -webkit-transform: scale3D(0, 0, 1);
             transform: scale3D(0, 0, 1);
   }
+}
+
+#intro{
+    margin: auto auto;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.helloWorld{
+  font-size: 22px;
+  overflow: hidden;
+  border-right: .15em solid white;
+  white-space: nowrap;
+  letter-spacing: .15em;
+  animation:
+    typing 3s steps(21, end),
+    blink-caret .75s step-end 5;
+}
+
+.blink{
+  color: white;
+  margin: 0 auto;
+  margin-left: 0;
+  margin-bottom: auto;
+  font-size: 22px;
+  letter-spacing: .15em;
+  border-right: .15em solid white;
+  animation:
+    blink2 0.2s steps(1, end) forwards,
+    blink-caret .75s step-end infinite;
+    -webkit-animation-delay: 3.5s;
+            animation-delay: 3.5s;
+}
+
+@keyframes blink2 {
+  from {color: white}
+  to {color: black}
+}
+
+@keyframes output {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: black; }
 }

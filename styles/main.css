@@ -69,7 +69,8 @@ html, body, .ng-scope, .container-fluid, .row {
   margin: .4rem;
   padding: .8rem;
   background-color: white;
-  box-shadow: inset 1px -1px 1px 1px black, 5px 5px 25px 2px whitesmoke;
+  box-shadow: -5px 5px 1px 1px #f6f6f6;
+  border-bottom: solid 2px black;
 }
 
 .skill{
@@ -77,11 +78,11 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .strong{
-  box-shadow: inset 1px -1px 1px 1px lime, inset 1px -1px 1px 2px black;
+  border-bottom: solid 2px lime;
 }
 
 .weak{
-  box-shadow: inset 1px -1px 1px 1px orange, inset 1px -1px 1px 2px black;
+  border-bottom: solid 2px orange;
 }
 
 .wrap{
@@ -97,7 +98,7 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .blue{
-  box-shadow: inset 1px -1px 1px 1px black, 5px 5px 25px 2px whitesmoke, 5px 5px 25px 2px lightblue;
+  /* box-shadow: inset 1px -1px 1px 1px black, 5px 5px 25px 2px whitesmoke, 5px 5px 25px 2px lightblue; */
 }
 .navbar-nav li{
   margin-left: 1rem;
@@ -114,8 +115,7 @@ html, body, .ng-scope, .container-fluid, .row {
   background-repeat: no-repeat;
   text-align: center;
   padding: 0;
-  box-shadow: 5px 5px 25px 2px #ececec;
-  box-shadow: 5px 5px 25px 2px lightblue;
+  box-shadow: 7px 5px 1px 0px #333;
 }
 
 .project h1{
@@ -210,10 +210,15 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .line{
-  margin: 1rem;
-  margin-left: 10rem;
-  margin-right: 10rem;
-  border-top: solid 1px;
+  height: 90px;
+  margin-right: 50%;
+  border-right: solid 1px;
+}
+
+.line2{
+  height: 20px;
+  margin-right: 50%;
+  border-right: solid 1px;
 }
 
 #about{

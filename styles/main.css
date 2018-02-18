@@ -85,6 +85,10 @@ html, body, .ng-scope, .container-fluid, .row {
   border-bottom: solid 2px orange;
 }
 
+.great{
+  border-bottom: solid 2px #4286f4;
+}
+
 .wrap{
   float: left;
 }

@@ -114,7 +114,7 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .project{
   width: 100%;
-  height: 200px;
+  height: 125px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -123,7 +123,7 @@ html, body, .ng-scope, .container-fluid, .row {
   background-repeat: no-repeat;
   text-align: center;
   padding: 0;
-  box-shadow: 7px 5px 1px 0px #333;
+  /* box-shadow: 7px 5px 1px 0px #333; */
 }
 
 .project h1{
@@ -154,17 +154,14 @@ html, body, .ng-scope, .container-fluid, .row {
 
 
 .description{
-  z-index: -1;
   width: 100%;
-  height: 100px;
-  margin: 0;
+  height: 120px;
+  margin: auto;
+  padding: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.project:hover .description{
-  z-index: 0;
-}
 
 #jams{
   background-image: url('../images/blocjams.png');
@@ -206,7 +203,8 @@ html, body, .ng-scope, .container-fluid, .row {
   color: white;
 }
 #steamBot, #Keleapi{
-  height: 50px;
+  height: 125px;
+  background-image: url('../images/code.png');
 }
 #steamBot{
   background-color: orange;
@@ -270,8 +268,8 @@ html, body, .ng-scope, .container-fluid, .row {
   text-align: start;
   font-size: 22px;
   letter-spacing: .15em;
-  -webkit-animation: output 3.7s steps(1, end);
-  animation: output 3.7s steps(1, end);
+  -webkit-animation: output 2.7s steps(1, end);
+  animation: output 2.7s steps(1, end);
 }
 
 .bg{
@@ -358,8 +356,8 @@ html, body, .ng-scope, .container-fluid, .row {
   white-space: nowrap;
   letter-spacing: .15em;
   animation:
-    typing 3s steps(21, end),
-    blink-caret .75s step-end 5;
+    typing 2s steps(21, end),
+    blink-caret .75s step-end 3;
 }
 
 .blink{
@@ -373,8 +371,8 @@ html, body, .ng-scope, .container-fluid, .row {
   animation:
     blink2 0.2s steps(1, end) forwards,
     blink-caret .75s step-end infinite;
-    -webkit-animation-delay: 3.5s;
-            animation-delay: 3.5s;
+    -webkit-animation-delay: 2.5s;
+            animation-delay: 2.5s;
 }
 
 @keyframes blink2 {

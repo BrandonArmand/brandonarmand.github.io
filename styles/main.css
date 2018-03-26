@@ -112,6 +112,10 @@ html, body, .ng-scope, .container-fluid, .row {
   margin-left: 1rem;
 }
 
+.projects{
+  box-shadow: -5px 5px 5px 0px lightgrey;
+}
+
 .project{
   width: 100%;
   height: 125px;
@@ -128,7 +132,6 @@ html, body, .ng-scope, .container-fluid, .row {
   background-size: 100%;
   text-align: center;
   padding: 0;
-  box-shadow: -7px 5px 1px 0px #333;
 }
 .project:hover{
   background-size: 120%;
@@ -140,6 +143,16 @@ html, body, .ng-scope, .container-fluid, .row {
   color: whitesmoke;
   box-shadow: -7px 5px 4px 0px #333;
   font-size: 3rem;
+  padding-left: 9px;
+  padding-right: 9px;
+  margin: 0;
+}
+.project h2{
+  background-color: black;
+  color: whitesmoke;
+  box-shadow: -7px 8px 4px 0px #333;
+  font-size: 1.3rem;
+  padding: 2px;
   padding-left: 9px;
   padding-right: 9px;
   margin: 0;
@@ -191,7 +204,7 @@ html, body, .ng-scope, .container-fluid, .row {
   /* background-size: 100%; */
   color: white;
 }
-#steamBot, #Keleapi{
+#steamBot, #Keleapi, #Text-to-Speech-to-Text, #taskapi{
   background-image: url('../images/code.png');
 }
 #steamBot{

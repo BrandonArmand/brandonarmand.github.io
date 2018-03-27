@@ -123,7 +123,7 @@ html, body, .ng-scope, .container-fluid, .row {
   justify-content: flex-end;
   flex-direction: column;
   align-items: flex-end;
-  border: solid 1px #333;
+  border: solid 1px black;
   border-bottom: 0;
   border-radius: 1px;
   background-position: center;
@@ -138,7 +138,7 @@ html, body, .ng-scope, .container-fluid, .row {
   background-position: relative;
 }
 
-.project h1{
+.project h1, .project h2{
   background-color: black;
   color: whitesmoke;
   box-shadow: -7px 5px 4px 0px #333;
@@ -148,14 +148,8 @@ html, body, .ng-scope, .container-fluid, .row {
   margin: 0;
 }
 .project h2{
-  background-color: black;
-  color: whitesmoke;
   box-shadow: -7px 8px 4px 0px #333;
   font-size: 1.3rem;
-  padding: 2px;
-  padding-left: 9px;
-  padding-right: 9px;
-  margin: 0;
 }
 
 
@@ -205,15 +199,20 @@ html, body, .ng-scope, .container-fluid, .row {
   color: white;
 }
 #steamBot, #Keleapi, #Text-to-Speech-to-Text, #taskapi{
-  background-image: url('../images/code.png');
+  background-image: url('../images/code4.jpeg');
 }
 #steamBot{
+  background-image: url('../images/code2.jpg');
   background-color: orange;
   color: white;
 }
 #Keleapi{
+  background-image: url('../images/code.png');
   background-color: rgb(132, 237, 179);
   color: white;
+}
+#taskapi{
+  background-image: url('../images/code3.jpeg');
 }
 
 .line{
@@ -365,7 +364,7 @@ html, body, .ng-scope, .container-fluid, .row {
   color: white;
   margin: 0 auto;
   margin-left: 0;
-  margin-bottom: auto;
+  margin-bottom: 200px;
   font-size: 22px;
   letter-spacing: .15em;
   border-right: .15em solid white;

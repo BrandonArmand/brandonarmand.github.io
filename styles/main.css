@@ -19,6 +19,15 @@ html, body, .ng-scope, .container-fluid, .row {
   padding: 0;
 }
 
+#me{
+  border-radius: 100%;
+  height: 150px;
+  width: 150px;
+  margin: 0 auto 0 auto;
+  box-shadow: -5px 5px 1px 1px #f6f6f6;
+
+}
+
 #pic{
   display: flex;
   flex-direction: column;
@@ -78,18 +87,22 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .strong{
+  border: 0;
   border-bottom: solid 2px lime;
 }
 
 .weak{
+  border: 0;
   border-bottom: solid 2px orange;
 }
 
 .weakest{
+  border: 0;
   border-bottom: solid 2px red;
 }
 
 .great{
+  border: 0;
   border-bottom: solid 2px #4286f4;
 }
 
@@ -285,12 +298,18 @@ html, body, .ng-scope, .container-fluid, .row {
   width: 100px;
   height: 100px;
   margin: 20px auto;
+  padding-right: -11%;
+  padding-bottom: -11%;
+  background-position: center;
+  background-size: 120%;
+  /* background-image: url('https://media.licdn.com/dms/image/C5603AQFyRO31hI9aUQ/profile-displayphoto-shrink_200_200/0?e=1527472800&v=alpha&t=UfYy2nvk29KtQplOn7S1uCv_W-KQw8SjPM5j6ayNZ4U'); */
 }
 
 .sk-cube-grid .sk-cube {
   width: 33%;
   height: 33%;
   background-color: #333;
+  /* background-color: white; */
   float: left;
   -webkit-animation: sk-cubeGridScaleDelay 1.2s infinite ease-in-out;
           animation: sk-cubeGridScaleDelay 1.2s infinite ease-in-out;
@@ -366,7 +385,7 @@ html, body, .ng-scope, .container-fluid, .row {
   margin-left: 0;
   margin-bottom: 200px;
   font-size: 22px;
-  letter-spacing: .15em;
+  letter-spacing: .40em;
   border-right: .15em solid white;
   animation:
     blink2 0.2s steps(1, end) forwards,
@@ -393,4 +412,72 @@ html, body, .ng-scope, .container-fluid, .row {
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: black; }
+}
+
+@media (max-height: 673px) {
+ .sk-cube-grid {
+    display: none;
+  }
+}
+
+/******/
+/* Contact Form Page */
+/******/
+
+input[type=text], input[type=email], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  padding-bottom: 5px;
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+textarea{
+  min-height: 54vh;
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit]{
+  background-color: white;
+  color: #8d8d8d;
+  padding: 6px 20px;
+  cursor: pointer;
+  float: right;
+  border: 0;
+  border-bottom: solid 2px lime;
+}
+
+input[type=submit]:hover {
+  border-bottom: solid 3px lime;
+}
+
+input[type=file]{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+label{
+  cursor: pointer;
+  background-color: white;
+  padding: 6px 20px;
+  border: 0;
+  border-bottom: solid 2px red;
+  max-width: 300px;
+}
+
+label:hover{
+  border-bottom: solid 3px red;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+  border-radius: 5px;
+  /* background-color: #f2f2f2; */
+  padding: 20px;
 }

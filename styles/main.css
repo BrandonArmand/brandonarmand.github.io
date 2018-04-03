@@ -28,6 +28,11 @@ html, body, .ng-scope, .container-fluid, .row {
 
 }
 
+.title{
+  width: 100%;
+  text-align: right;
+}
+
 #pic{
   display: flex;
   flex-direction: column;

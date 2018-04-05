@@ -292,6 +292,8 @@ html, body, .ng-scope, .container-fluid, .row {
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 0;
+  text-align: left;
+  width: 100%;
   background-color: white;
 }
 

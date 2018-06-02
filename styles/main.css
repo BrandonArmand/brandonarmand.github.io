@@ -51,8 +51,8 @@ html, body, .ng-scope, .container-fluid, .row {
 .toolbar{
   height: 26px;
   background-color: #172327;
-  width: 95%;
   max-width: 750px;
+  width: 100%;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   margin-top: 10px;
@@ -91,13 +91,16 @@ html, body, .ng-scope, .container-fluid, .row {
   align-items: flex-start;
   background-color: #263a41;
   color: white;
-  width: 95%;
+  width: 100%;
   max-width: 750px;
+  min-height: 450px;
   padding: 1rem;
   border: solid 5px #172327;
   border-top: 0;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  resize: vertical;
+  overflow: auto;
 }
 
 #skills{

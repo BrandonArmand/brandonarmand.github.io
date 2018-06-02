@@ -26,17 +26,6 @@
   <div class="row">
     <div class="col-xl-4 col-lg-12 d-flex flex-column justify-content-center" id="header">
       <!-- <img id="me" src="https://media.licdn.com/dms/image/C5603AQFyRO31hI9aUQ/profile-displayphoto-shrink_200_200/0?e=1527472800&v=alpha&t=UfYy2nvk29KtQplOn7S1uCv_W-KQw8SjPM5j6ayNZ4U"></img> -->
-      <div class="sk-cube-grid">
-        <div class="sk-cube sk-cube1"></div>
-        <div class="sk-cube sk-cube2"></div>
-        <div class="sk-cube sk-cube3"></div>
-        <div class="sk-cube sk-cube4"></div>
-        <div class="sk-cube sk-cube5"></div>
-        <div class="sk-cube sk-cube6"></div>
-        <div class="sk-cube sk-cube7"></div>
-        <div class="sk-cube sk-cube8"></div>
-        <div class="sk-cube sk-cube9"></div>
-      </div>
       <h2 class="display-4" id="name">Brandon Armand Welsh</h2>
       <div id="pic">
           <h4 class="display-4">Full-Stack Ruby Engineer</h4>
@@ -47,7 +36,7 @@
       <!-- <div class="box blue">
         <h5 class="text-center">Ruby developer with a passion for writing clean code on complex applications.</h5>
       </div> -->
-      <div>
+      <div id="skills">
         <h5 class="box skill great">Ruby on Rails</h5>
         <h5 class="box skill great">AngularJS</h5>
         <h5 class="box skill great">SQL / PostgreSQL</h5>
@@ -96,22 +85,26 @@
         <!--[if IE]>
         <![endif]-->
         <div id="about" class="">
-          <h1 class="display-2 title">About Me</h1>
-            <div id="intro">
-              <p class="helloWorld display-4">$ helloWorld();</p>
+            <div class="toolbar"><div class="red"></div><div class="yellow"></div><div class="green"></div></div>
+            <div class="console">
+              <div id="intro">
+                <p class="helloWorld display-4">$ hello_world.rb</p>
+              </div>
+              <div class="my-info">
+                <h3 class="display-4 font"> "<span class="great"><strong>Hello world!</strong></span> I am a highly passionate software engineer located
+                within the <span class="great">Greater Los Angeles area</span>." <br/><br/>
+
+                 "I utilize <span class="strong">Ruby on Rails</span> and <span class="strong">AngularJS</span> to build applications as a Full-Stack Developer, and
+                 love all things web and software related!" <br /><br />
+
+                 "If you would like to learn more, you can check out my
+                <a class="buttonProject" style="color: red; text-decoration: underline;" href="#projects">Projects</a>, <a style="color: red; text-decoration: underline;" href="https://www.linkedin.com/in/brandonarmand/" target="_blank">LinkedIn</a>,
+                or <a style="color: red; text-decoration: underline;" href="https://github.com/BrandonArmand" target="_blank">Github</a>. You can also <a style="color: red; text-decoration: underline;" href="/contact.html">email me here!</a>"<br /><br />
+
+                "Feel free to close or minimize the console! (yes, I am serious)"</h3>
             </div>
-            <div class="my-info">
-              <h3 class="display-4 font"> "<span class="great"><strong>Hello world!</strong></span> I am a highly passionate software engineer located
-              within the <span class="great">Greater Los Angeles area</span>." <br/><br/>
-
-               "I develop complex web-applications with <span class="strong">Ruby on Rails</span> and <span class="strong">AngularJS</span>,
-               love all things web and software related, and build projects on a near daily basis." <br /><br />
-
-               "If you would like to learn more, you can check out my
-              <a class="buttonProject" style="color: red; text-decoration: underline;" href="#projects">Projects</a>, <a style="color: red; text-decoration: underline;" href="https://www.linkedin.com/in/brandonarmand/" target="_blank">LinkedIn</a>,
-              or <a style="color: red; text-decoration: underline;" href="https://github.com/BrandonArmand" target="_blank">Github</a>. You can also <a style="color: red; text-decoration: underline;" href="/contact.html">email me here!</a>"</h3>
+            <p class="blink display-4">$</p>
           </div>
-          <p class="blink display-4">$</p>
         </div>
         <div class="projects" id="projects">
 

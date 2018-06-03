@@ -10,7 +10,7 @@ html, body, .ng-scope, .container-fluid, .row {
   width: 100%;
   padding: 2rem;
   background-color: #342e3d;
-  background-image: url(https://media2.giphy.com/media/goZKhPlc2oV68/giphy.gif);
+  background-image: url("../images/space.gif");
   background-position: top;
   background-size: contain;
   background-repeat: no-repeat;

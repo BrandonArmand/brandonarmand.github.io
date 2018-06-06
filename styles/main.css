@@ -11,7 +11,6 @@ html, body, .ng-scope, .container-fluid, .row {
   padding: 2rem;
   background-color: #342e3d;
   background-image: url("../images/space.gif");
-  background-position: top;
   background-size: contain;
   background-repeat: no-repeat;
   min-height: 100%;
@@ -529,9 +528,9 @@ html, body, .ng-scope, .container-fluid, .row {
   50% { border-color: white; }
 }
 
-@media (max-height: 673px) {
- .sk-cube-grid {
-    display: none;
+@media (max-height: 800px) {
+ #header {
+   background-position: 0% -18%;
   }
 }
 

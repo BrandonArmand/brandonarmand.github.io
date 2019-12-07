@@ -158,11 +158,16 @@ $(document).ready(function(){
         break;
       case 13:
         $('.stack').append('<h3 class="commands display-4">$ ' + $('.input').html() + '</h3>')
-        if($('.input').html() == 'hello_world.rb'){
+        var response = $('<h5 class="my-info"></h5>')
+        if($('.input').html().includes('node welcome.js')){
           $('.stack').append(info);
         }
         else if($('.input').html() == 'clear' || $('.input').html() == 'cls' ){
           $('.stack').html('')
+        }
+        else if($('.input').html().includes('ls')){
+          response.text(window.location.href)
+          $('.stack').append(response)
         }
         $('.input').html('')
         $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);

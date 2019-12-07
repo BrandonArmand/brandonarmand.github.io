@@ -10,7 +10,7 @@ html, body, .ng-scope, .container-fluid, .row {
   width: 100%;
   padding: 2rem;
   background-color: #342e3d;
-  background-image: url("../images/space.gif");
+  /* background-image: url("../images/space.gif"); */
   background-size: contain;
   background-repeat: no-repeat;
   min-height: 100%;
@@ -22,6 +22,20 @@ html, body, .ng-scope, .container-fluid, .row {
       border-bottom: dashed 10px white;
       border-right: 0;
   }
+}
+
+.google{
+  letter-spacing: -.5px;
+  font-weight: 500;
+}
+
+.space-2{
+  width: 100%;
+  height: 100px;
+  background-size: 125%;
+  background-repeat: no-repeat;
+  background-image: url("../images/space.gif");
+  background-position: center center;
 }
 
 #body{
@@ -102,6 +116,10 @@ html, body, .ng-scope, .container-fluid, .row {
 
 #skills{
   background-color: #342e3d;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 #pic{
@@ -183,6 +201,8 @@ html, body, .ng-scope, .container-fluid, .row {
 .skill{
   display: inline-block;
   background-color: white;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .wrap{

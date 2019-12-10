@@ -122,6 +122,11 @@ html, body, .ng-scope, .container-fluid, .row {
   justify-content: space-between;
 }
 
+#skills a{
+  flex-grow: 1;
+  margin: .4rem;
+}
+
 #pic{
   display: flex;
   flex-direction: column;
@@ -164,23 +169,48 @@ html, body, .ng-scope, .container-fluid, .row {
   margin: 0;
 }
 
-.ion-social-github{
-
-}
-
 .box{
   color: #333;
   text-shadow: none;
-  margin: .4rem;
-  padding: .8rem;
+  margin: 0;
+  padding: .7rem;
   background-color: white;
   box-shadow: -5px 5px 1px 1px black;
   border-bottom: solid 2px black;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.red, .green, .yellow{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.toolbar i{
+  font-size: 10px;
+  display: none;
+}
+
+.toolbar:hover i{
+  display: initial;
+}
+
+#skills a:active .box{
+  box-shadow: none;
+}
+#skills a:active{
+  box-shadow: none;
 }
 
 .strong{
   border: 0;
-  border-bottom: solid 2px lime;
+  border-bottom: solid 2px #b0e6b8;
+}
+
+.box.strong,.box.weak,.box.great,.box.weakest{
+  border-bottom-width: 4px;
 }
 
 .weak{
@@ -190,18 +220,17 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .weakest{
   border: 0;
-  border-bottom: solid 2px red;
+  border-bottom: solid 2px #f2918d;
 }
 
 .great{
   border: 0;
-  border-bottom: solid 2px #4286f4;
+  border-bottom: solid 2px #bedbf3;
 }
 
 .skill{
   display: inline-block;
   background-color: white;
-  flex-grow: 1;
   text-align: center;
 }
 
@@ -225,7 +254,6 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .projects{
-  box-shadow: -5px 5px 5px 0px lightgrey;
 }
 
 .project{
@@ -247,6 +275,7 @@ html, body, .ng-scope, .container-fluid, .row {
   overflow-x: hidden;
   overflow-y: hidden;
   /* text-overflow: ellipsis; */
+  box-shadow: -5px 5px 5px 0px lightgrey;
 }
 .project:hover{
   background-size: 120%;

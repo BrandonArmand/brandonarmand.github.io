@@ -166,8 +166,31 @@ $(document).ready(function(){
           $('.stack').html('')
         }
         else if($('.input').html().includes('ls')){
-          response.text(window.location.href)
-          $('.stack').append(response)
+          $('.stack').append($('<h5 class="my-info">projects</h5>'))
+          $('.stack').append($('<h5 class="my-info">about</h5>'))
+          $('.stack').append($('<h5 class="my-info">resume</h5>'))
+          $('.stack').append($('<h5 class="my-info">contact</h5>'))
+        }
+        else if($('.input').html().includes('cd projects')){
+          $(".buttonProject").trigger('click')
+        }
+        else if($('.input').html().includes('cd resume')){
+          window.location.href = 'resume.pdf'
+        }
+        else if($('.input').html().includes('cd contact')){
+          window.location.href = 'contact.html'
+        }
+        else if($('.input').html().includes('cd')){
+          var loc = $('.input').html().replace('cd ','')
+          $('.stack').append($(`<h5 class="my-info">${loc} not found</h5>`))
+        }
+        else if($('.input').html().includes('help')){
+          $('.stack').append($('<h5 class="my-info">ls            <br/><span style="margin-left:25%; white-space: nowrap;">- Search nearby path locations.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info">cd            <br/><span style="margin-left:25%; white-space: nowrap;">- Move towards next path.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info">node          <br/><span style="margin-left:25%; white-space: nowrap;">- Run Node script.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info">cls / clear   <br/><span style="margin-left:25%; white-space: nowrap;">- Clear terminal.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info">help          <br/><span style="margin-left:25%; white-space: nowrap;">- Help.</span></h5>'))
+
         }
         $('.input').html('')
         $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);

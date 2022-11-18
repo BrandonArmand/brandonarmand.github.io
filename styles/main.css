@@ -31,25 +31,32 @@ html, body, .ng-scope, .container-fluid, .row {
   width: 100%;
 }
 
-.current-project .project-title{
+.current-project .project-corner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
   align-self: flex-end;
+  z-index: 1;
+  margin-bottom: -20px;
+}
+
+.current-project .project-title{
   background: white;
   border: 2px solid black;
   padding: 5px 10px;
-  margin-bottom: -20px;
-  z-index: 1;
+  margin-bottom: 0;
+  z-index: 2;
 }
 
 .current-project .project-github{
   color: black;
-  align-self: flex-end;
   background: white;
   border: 2px solid black;
   border-right: none;
   padding: 5px 10px;
-  margin-bottom: -38px;
-  margin-right: 194px;
-  z-index: 2;
+  margin-right: -2px;
+  z-index: 3;
+  height: min-content;
 }
 
 .current-project .banner {
@@ -60,6 +67,12 @@ html, body, .ng-scope, .container-fluid, .row {
   background-position: top center;
   border: 2px solid black;
   border-bottom: none;
+  transition: all .3s ease-in-out;
+}
+
+.current-project .banner:hover{
+  background-size: 110%;
+  /* background-position: center center; */
 }
 
 .current-project .banner#binari {
@@ -71,13 +84,14 @@ html, body, .ng-scope, .container-fluid, .row {
   flex-direction: row;
   justify-content: space-between;
   border: 2px solid black;
+  align-self: flex-start;
 }
 
 .current-project .info .stats {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border-right: 2px solid black;
+  border-right: 2px solid lightgrey;
 }
 
 .current-project .info .stats .stat{
@@ -91,8 +105,8 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .current-project .info .stats .stat:nth-child(even){
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+  border-left: 2px solid lightgrey;
+  border-right: 2px solid lightgrey;
 }
 
 .current-project .info .stats .stat i{
@@ -124,8 +138,13 @@ html, body, .ng-scope, .container-fluid, .row {
     display: none;
   }
 
-  .current-project .banner {
-    border-bottom: 2px solid black;
+  .current-project .info {
+    border: 2px solid black;
+    border-top: none;
+  }
+
+  .current-project .info .stats {
+    border-right: none;
   }
 }
 

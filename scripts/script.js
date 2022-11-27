@@ -168,14 +168,10 @@ $(document).ready(function(){
         else if($('.input').html().includes('ls')){
           $('.stack').append($('<h5 class="my-info">projects</h5>'))
           $('.stack').append($('<h5 class="my-info">about</h5>'))
-          $('.stack').append($('<h5 class="my-info">resume</h5>'))
           $('.stack').append($('<h5 class="my-info">contact</h5>'))
         }
         else if($('.input').html().includes('cd projects')){
           $(".buttonProject").trigger('click')
-        }
-        else if($('.input').html().includes('cd resume')){
-          window.location.href = 'resume.pdf'
         }
         else if($('.input').html().includes('cd contact')){
           window.location.href = 'contact.html'
@@ -185,12 +181,16 @@ $(document).ready(function(){
           $('.stack').append($(`<h5 class="my-info">${loc} not found</h5>`))
         }
         else if($('.input').html().includes('help')){
-          $('.stack').append($('<h5 class="my-info">ls            <br/><span style="margin-left:25%; white-space: nowrap;">- Search nearby path locations.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info">cd            <br/><span style="margin-left:25%; white-space: nowrap;">- Move towards next path.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info">node          <br/><span style="margin-left:25%; white-space: nowrap;">- Run Node script.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info">ls            <br/><span style="margin-left:25%; white-space: nowrap;">- Search nearby paths (pages).</span></h5>'))
+          $('.stack').append($('<h5 class="my-info">cd            <br/><span style="margin-left:25%; white-space: nowrap;">- Move towards next path (page).</span></h5>'))
+          $('.stack').append($('<h5 class="my-info">node          <br/><span style="margin-left:25%; white-space: nowrap;">- Run (fake) Node script.</span></h5>'))
           $('.stack').append($('<h5 class="my-info">cls / clear   <br/><span style="margin-left:25%; white-space: nowrap;">- Clear terminal.</span></h5>'))
           $('.stack').append($('<h5 class="my-info">help          <br/><span style="margin-left:25%; white-space: nowrap;">- Help.</span></h5>'))
 
+        }
+        else {
+          let command = $('.input').html();
+          $('.stack').append($(`<h5 class="my-info">${command} not found.</h5>`))
         }
         $('.input').html('')
         $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);

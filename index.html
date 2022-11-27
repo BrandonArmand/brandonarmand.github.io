@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Welcome | Brandon Armand</title>
 
-    <meta name="description" content="Software engineer with 4 years of experience writing desktop applications in C++, who recently transitioned into structured full-stack development by utilizing Ruby, and JavaScript to build complex web-applications.">
-    <meta name="keywords" content="Ruby, C++, Ruby on Rails, JavaScript, Brandon Welsh, Brandon Armand">
+    <meta name="description" content="Software Engineer @ Meta with 4+ years of professional experience writing code.">
+    <meta name="keywords" content="Ruby, C++, Ruby on Rails, JavaScript, Brandon Welsh, Brandon Armand, Brandon, Welsh, Armand, GraphQL, Binari, Typescript, Meta, ex-Meta, Facebook, ex-Facebook">
     <meta name="author" content="Brandon Armand Welsh">
     <meta property="og:site_name" content="Brandon Armand"/>
     <meta property="og:url" content="http://brandonarmand.com/">
@@ -234,6 +234,12 @@
       gtag('js', new Date());
 
       gtag('config', 'UA-111160129-1');
+
+      $(document).on("keydown", function (e) {
+          if (e.which === 8 && !$(e.target).is("input, textarea")) {
+              e.preventDefault();
+          }
+      });
     </script>
 </body>
 </html>

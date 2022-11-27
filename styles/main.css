@@ -2,25 +2,36 @@ html, body, .ng-scope, .container-fluid, .row {
   height: 100%;
   width: 100%;
   color: #333;
+  background-color: #e3e3e3;
 }
 
 #header{
+  aspect-ratio: 540/960;
   color: whitesmoke;
   text-shadow: 1px 1px 1px black;
   width: 100%;
   padding: 2rem;
-  background-color: #342e3d;
+  /* background-color: #342e3d; */
   /* background-image: url("../images/space.gif"); */
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   min-height: 100%;
-  border-right: dashed 10px white;
+  max-height: 100%;
+  background-image: url('../images/wave-haikei\(2\).svg');
+  /* border-right: dashed 10px white; */
 }
 
 @media (max-width: 1200px) {
   #header{
-      border-bottom: dashed 10px white;
-      border-right: 0;
+      background-image: url('../images/wave-haikei\(4\).svg');
+  }
+}
+
+@media (max-height: 762px) {
+  #header{
+      background-image: none;
+      background-color: #342e3d;
   }
 }
 
@@ -170,7 +181,7 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 #body{
-  background-color: white;
+  background-color: #e3e3e3;
   height: 100%;
   width: 100%;
   /*box-shadow: -5px -5px 25px 2px lightgrey;*/

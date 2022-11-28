@@ -55,7 +55,9 @@
       </div>
     </div>
     <div class="col-xl-8 col-lg-12" id="body">
-      <nav class="navbar navbar-light">
+      <div class="header-body-divider"></div>
+      <div class="body-container">
+        <nav class="navbar navbar-light">
           <ul class="navbar-nav">
             <li class="nav-item active">
               <a class="nav-link buttonAbout" href="/"><< Back</a>
@@ -69,14 +71,16 @@
       </nav>
       <div class="container" id="form">
         <form action="https://getsimpleform.com/messages?form_api_token=eaf3d3d9846768c341bbe79dd9d4d5e5" method="post" enctype="multipart/form-data">
-          <input type='hidden' name='redirect_to' value='http://brandonarmand.com/sent.html' />
+          <input type='hidden' name='redirect_to' value='http://brandonarmand.com/' />
           <input type="text" id="fname" name="firstname" placeholder="Name.." class="great" required>
           <input type="email" id="email" name="email" placeholder="Email.." class="strong" required>
-          <textarea id="subject" name="subject" placeholder="Message.." style="height:200px" class="weak" required></textarea>
+          <textarea id="subject" name="subject" placeholder="Message.. 
+* * * * * (This form may be broken, if you don't hear from me soon then email me directly via email @ 'Contact@brandonarmand.com') * * * * *" style="height:200px" class="weak" required></textarea>
           <input type="file" id="file" name="file" data-multiple-caption="{count} files selected" class="inputfile" />
           <label type="file" for="file" class="labelfile">Choose Attachment</label>
           <input type="submit" value="Submit" class="send">
         </form>
+      </div>
       </div>
     </div>
   </div>

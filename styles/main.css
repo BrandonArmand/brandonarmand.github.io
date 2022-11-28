@@ -2,7 +2,6 @@ html, body, .ng-scope, .container-fluid, .row {
   height: 100%;
   width: 100%;
   color: #333;
-  background-color: #e3e3e3;
 }
 
 #header{
@@ -106,6 +105,7 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .current-project .info {
+  background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -197,6 +197,10 @@ html, body, .ng-scope, .container-fluid, .row {
 
 #body{
   background-color: #e3e3e3;
+  background-size: 150%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../images/blob-haikei.svg");
   height: 100%;
   width: 100%;
   /*box-shadow: -5px -5px 25px 2px lightgrey;*/

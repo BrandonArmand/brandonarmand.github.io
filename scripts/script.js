@@ -154,7 +154,44 @@ $(document).ready(function(){
         $('.input').append('.')
         break;
       case 32:
-        $('.input').append(' ')
+        $('.input').append('&nbsp;')
+        break;
+      case 47:
+        $('.input').append('/')
+        break;
+      case 58:
+        $('.input').append(':')
+        break;
+      case 59:
+        $('.input').append(';')
+        break;
+      case 60:
+        $('.input').append('<')
+        break;
+      case 61:
+        $('.input').append('=')
+        break;
+      case 62:
+        $('.input').append('>')
+        break;
+      case 63:
+        $('.input').append('?')
+        break;
+      case 64:
+        $('.input').append('@')
+        break;
+      case 91:
+        $('.input').append('[')
+        break;
+      case 92:
+        $('.input').append('\\')
+        break;
+      case 93:
+        $('.input').append(']')
+        break;
+      // case backspace:
+      case 8:
+        $('.input').html($('.input').html().slice(0, -1))
         break;
       case 13:
         $('.stack').append('<h3 class="commands display-4">$ ' + $('.input').html() + '</h3>')
@@ -170,10 +207,10 @@ $(document).ready(function(){
           $('.stack').append($('<h5 class="my-info">about</h5>'))
           $('.stack').append($('<h5 class="my-info">contact</h5>'))
         }
-        else if($('.input').html().includes('cd projects')){
+        else if($('.input').html().includes('cd&nbsp;projects')){
           $(".buttonProject").trigger('click')
         }
-        else if($('.input').html().includes('cd contact')){
+        else if($('.input').html().includes('cd&nbsp;contact')){
           window.location.href = 'contact.html'
         }
         else if($('.input').html().includes('cd')){

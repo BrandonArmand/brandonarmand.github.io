@@ -182,9 +182,13 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 .google{
-  letter-spacing: -.5px;
   font-weight: 500;
   margin-right: 10px;
+}
+
+.text-highlight {
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .space-2{
@@ -392,7 +396,7 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .skill{
   display: inline-block;
-  background-color: white;
+  background-color: #e3e3e3;
   text-align: center;
 }
 
@@ -583,6 +587,10 @@ html, body, .ng-scope, .container-fluid, .row {
   text-align: left;
   width: 100%;
   color: #74b2c7;
+}
+
+.initial {
+  border-left: solid 1px;
 }
 
 .notice{

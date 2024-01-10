@@ -1,5 +1,7 @@
 $(document).ready(function(){
     var info = $('.my-info').clone()
+    // remove the class 'delay-init' from the child div of info
+    info.children().removeClass('delay-init')
     $(".projects").hide();
 
     $(".buttonProject").click(function(){
@@ -13,6 +15,7 @@ $(document).ready(function(){
     });
 
     $(".buttonAbout").click(function(){
+      $('.stack').html('')
         $(".projects").slideUp(1000, function(){
           $("#about").show(0, function(){
             $('html, body').animate({
@@ -189,7 +192,7 @@ $(document).ready(function(){
       case 93:
         $('.input').append(']')
         break;
-      // case backspace:
+      // case backspace, handled in the index.html 
       case 8:
         $('.input').html($('.input').html().slice(0, -1))
         break;
@@ -197,18 +200,23 @@ $(document).ready(function(){
         $('.stack').append('<h3 class="commands display-4">$ ' + $('.input').html() + '</h3>')
         var response = $('<h5 class="my-info"></h5>')
         if($('.input').html().includes('node&nbsp;welcome.js')){
-          $('.stack').append(info);
+          $('.stack').append(info.clone());
         }
         else if($('.input').html() == 'clear' || $('.input').html() == 'cls' ){
           $('.stack').html('')
         }
         else if($('.input').html().includes('ls')){
-          $('.stack').append($('<h5 class="my-info text-highlight" style="color: orange">projects</h5>'))
-          $('.stack').append($('<h5 class="my-info text-highlight" style="color: #bedbf3">about</h5>'))
-          $('.stack').append($('<h5 class="my-info text-highlight" style="color: #b0e6b8">contact</h5>'))
+          $('.stack').append($('<span class="code-snippet" style="margin-left: 20px; margin-bottom: 10px"><h5 class="text-highlight" style="color: orange; margin: 0;">projects</h5>/</span><br/>'))
+          $('.stack').append($('<span class="code-snippet" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: #bedbf3; margin: 0;">about</h5>/</span><br/>'))
+          $('.stack').append($('<span class="code-snippet" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: #b0e6b8; margin: 0;">contact</h5>/</span><br/>'))
+          $('.stack').append($('<span class="code-snippet" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: white; margin: 0;">welcome.js</h5></span><br/>'))
         }
         else if($('.input').html().includes('cd&nbsp;projects')){
           $(".buttonProject").trigger('click')
+          $('.stack').html('')
+        }
+        else if($('.input').html().includes('cd&nbsp;about')){
+          $('.stack').append($(`<h5 class="my-info">You're already here!</h5>`))
         }
         else if($('.input').html().includes('cd&nbsp;contact')){
           window.location.href = 'contact.html'
@@ -218,11 +226,11 @@ $(document).ready(function(){
           $('.stack').append($(`<h5 class="my-info">${loc} not found</h5>`))
         }
         else if($('.input').html().includes('help')){
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">ls</span>            <br/><span style="margin-left:25%; white-space: nowrap;">- Search nearby paths (pages).</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">cd</span>            <br/><span style="margin-left:25%; white-space: nowrap;">- Move towards next path (page).</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">node</span>          <br/><span style="margin-left:25%; white-space: nowrap;">- Run (fake) Node script.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">cls</span> / <span class="code-snippet">clear</span>   <br/><span style="margin-left:25%; white-space: nowrap;">- Clear terminal.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">help</span>          <br/><span style="margin-left:25%; white-space: nowrap;">- Help.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">ls</span>            <br/><span style="margin-left:25%; white-space: nowrap;">Search nearby paths (pages).</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">cd</span>            <br/><span style="margin-left:25%; white-space: nowrap;">Move towards next path (page).</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">node</span>          <br/><span style="margin-left:25%; white-space: nowrap;">Run (fake) Node script.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">cls</span> / <span class="code-snippet">clear</span>   <br/><span style="margin-left:25%; white-space: nowrap;">Clear terminal.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">help</span>          <br/><span style="margin-left:25%; white-space: nowrap;">This.</span></h5>'))
 
         }
         else {

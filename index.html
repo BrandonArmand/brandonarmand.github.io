@@ -141,7 +141,7 @@
                 <p class="helloWorld display-4">$ node welcome.js</p>
               </div>
               <div class="my-info initial">
-                <h3 class="display-4 font"> "<span class="text-highlight loud-text" style="color: whitesmoke"><strong>Hello world!</strong></span> I am a highly
+                <h3 class="display-4 font delay-init"> "<span class="text-highlight loud-text" style="color: whitesmoke"><strong>Hello world!</strong></span> I am a highly
                   experienced and passionate Software and Systems Engineer
                   residing in <span class="text-highlight" style="color: #bedbf3">New York City</span>." <br /><br />
 
@@ -286,8 +286,14 @@
     gtag('config', 'UA-111160129-1');
 
     $(document).on("keydown", function (e) {
+      console.log(e.which)
       if (e.which === 8 && !$(e.target).is("input, textarea")) {
         e.preventDefault();
+        $('.input').html($('.input').text().slice(0, -1))
+      }
+      if (e.which === 191) {
+        e.preventDefault();
+        $('.input').append('/')
       }
     });
   </script>

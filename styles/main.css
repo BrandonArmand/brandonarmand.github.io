@@ -309,6 +309,8 @@ html, body, .ng-scope, .container-fluid, .row {
   border: 1px solid #444; /* Add a border for distinction */
   border-radius: 4px; /* Add rounded corners for a softer look */
   font-size: 16px;
+  white-space: nowrap;
+  display: inline-flex;
 }
 
 #pic{
@@ -625,9 +627,13 @@ html, body, .ng-scope, .container-fluid, .row {
   text-align: start;
   font-size: 22px;
   letter-spacing: .15em;
+  text-align: justify;
+}
+
+
+.delay-init{
   -webkit-animation: output 2.7s steps(1, end);
   animation: output 2.7s steps(1, end);
-  text-align: justify;
 }
 
 .bg{

@@ -196,16 +196,16 @@ $(document).ready(function(){
       case 13:
         $('.stack').append('<h3 class="commands display-4">$ ' + $('.input').html() + '</h3>')
         var response = $('<h5 class="my-info"></h5>')
-        if($('.input').html().includes('node welcome.js')){
+        if($('.input').html().includes('node&nbsp;welcome.js')){
           $('.stack').append(info);
         }
         else if($('.input').html() == 'clear' || $('.input').html() == 'cls' ){
           $('.stack').html('')
         }
         else if($('.input').html().includes('ls')){
-          $('.stack').append($('<h5 class="my-info">projects</h5>'))
-          $('.stack').append($('<h5 class="my-info">about</h5>'))
-          $('.stack').append($('<h5 class="my-info">contact</h5>'))
+          $('.stack').append($('<h5 class="my-info text-highlight" style="color: orange">projects</h5>'))
+          $('.stack').append($('<h5 class="my-info text-highlight" style="color: #bedbf3">about</h5>'))
+          $('.stack').append($('<h5 class="my-info text-highlight" style="color: #b0e6b8">contact</h5>'))
         }
         else if($('.input').html().includes('cd&nbsp;projects')){
           $(".buttonProject").trigger('click')
@@ -218,11 +218,11 @@ $(document).ready(function(){
           $('.stack').append($(`<h5 class="my-info">${loc} not found</h5>`))
         }
         else if($('.input').html().includes('help')){
-          $('.stack').append($('<h5 class="my-info">ls            <br/><span style="margin-left:25%; white-space: nowrap;">- Search nearby paths (pages).</span></h5>'))
-          $('.stack').append($('<h5 class="my-info">cd            <br/><span style="margin-left:25%; white-space: nowrap;">- Move towards next path (page).</span></h5>'))
-          $('.stack').append($('<h5 class="my-info">node          <br/><span style="margin-left:25%; white-space: nowrap;">- Run (fake) Node script.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info">cls / clear   <br/><span style="margin-left:25%; white-space: nowrap;">- Clear terminal.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info">help          <br/><span style="margin-left:25%; white-space: nowrap;">- Help.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">ls</span>            <br/><span style="margin-left:25%; white-space: nowrap;">- Search nearby paths (pages).</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">cd</span>            <br/><span style="margin-left:25%; white-space: nowrap;">- Move towards next path (page).</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">node</span>          <br/><span style="margin-left:25%; white-space: nowrap;">- Run (fake) Node script.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">cls</span> / <span class="code-snippet">clear</span>   <br/><span style="margin-left:25%; white-space: nowrap;">- Clear terminal.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">help</span>          <br/><span style="margin-left:25%; white-space: nowrap;">- Help.</span></h5>'))
 
         }
         else {

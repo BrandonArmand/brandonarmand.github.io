@@ -293,6 +293,24 @@ html, body, .ng-scope, .container-fluid, .row {
   margin: .4rem;
 }
 
+.loud-text {
+  background: #bedbf399;
+  /* background: #172327; */
+  padding: 1px 5px;
+  text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333;
+  border-radius: 3px;
+}
+
+.code-snippet {
+  font-family: 'Courier New', monospace; /* Use a monospaced font for code */
+  background-color: #2e2e2e; /* Set a dark background color for the code snippet */
+  color: #ffffff; /* Set a light text color */
+  padding: 0.3em 0.5em; /* Add padding for better visual appearance */
+  border: 1px solid #444; /* Add a border for distinction */
+  border-radius: 4px; /* Add rounded corners for a softer look */
+  font-size: 16px;
+}
+
 #pic{
   display: flex;
   flex-direction: column;

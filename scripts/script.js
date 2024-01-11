@@ -1,10 +1,106 @@
 var cmdHistory = []
 var cmdHistoryIndex = 0
+
+function setCmdButtons() {
+  $('.help-btn').off('click')
+  $('.ls-btn').off('click')
+  $('.cd-btn').off('click')
+  $('.history-btn').off('click')
+  $('.why-btn').off('click')
+  $('.clear-btn').off('click')
+  $('.dynamic-history-btn').off('click')
+  $('.cd-projects-btn').off('click')
+  $('.cd-about-btn').off('click')
+  $('.cd-contact-btn').off('click')
+  $('.cd-welcome-btn').off('click')
+  $('.cd-beep-btn').off('click')
+
+  $('.help-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'help'
+    fillInput(cmd)
+  })
+  $('.ls-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'ls'
+    fillInput(cmd)
+  })
+  $('.cd-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'on mobile? use ls to navigate'
+    fillInput(cmd)
+  })
+  $('.history-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'history'
+    fillInput(cmd)
+  })
+  $('.why-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'why'
+    fillInput(cmd)
+  })
+  $('.clear-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'clear'
+    fillInput(cmd)
+  })
+  $('.dynamic-history-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = $(this).html()
+    fillInput(cmd)
+  })
+  $('.cd-projects-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'cd projects'
+    fillInput(cmd)
+  })
+  $('.cd-about-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'cd about'
+    fillInput(cmd)
+  })
+  $('.cd-contact-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'cd contact'
+    fillInput(cmd)
+  })
+  $('.cd-welcome-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'node welcome.js'
+    fillInput(cmd)
+  })
+  $('.cd-beep-btn').click(function(){
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
+    var cmd = 'node beep.boop.js'
+    fillInput(cmd)
+  })
+}
+
+function fillInput(command){
+  $('.input').html('')
+  var i = 0;
+  var interval = setInterval(function(){
+    $('.input').append(command[i])
+    i++
+    if(i == command.length){
+      clearInterval(interval)
+      setTimeout(function(){
+        $('.input').trigger($.Event('keypress', {which: 13}))
+      }, Math.min(command.length * 100, 1000))
+    }
+  }, 100)
+}
+
 $(document).ready(function(){
     var info = $('.my-info').clone()
     info.children().removeClass('delay-init')
 
-    cmdHistory = []
+    setCmdButtons()
+    setTimeout(function(){
+      $('#init-input').html('<span style="color:#74b2c7">\></span>')
+    }, 2700);
+
     $(".projects").hide();
 
     $(".buttonProject").click(function(){
@@ -203,33 +299,39 @@ $(document).ready(function(){
       case 13:
         cmdHistoryIndex = 0;
         cmdHistory.push($('.input').html())
-        $('.stack').append('<h3 class="commands display-4">$ ' + $('.input').html() + '</h3>')
+        var command = (($('.input').html()).replace('&nbsp;', '')).replace(' ', '');
+
+        $('.stack').append('<h3 class="commands display-4"><span style="color:#74b2c7">\></span> ' + $('.input').html() + '</h3>')
         var response = $('<h5 class="my-info"></h5>')
-        if($('.input').html().includes('node&nbsp;welcome.js')){
+        if(command.includes('nodewelcome.js')){
           $('.stack').append(info.clone());
         }
-        if($('.input').html().includes('history')){
+        else if (command.includes('nodebeep.boop.js')){
+          $('.stack').append($('<span class="my-info" style="whitespace: nowrap;"><span style="color: #bedbf3">└</span>[∵<span style="color: #bedbf3">┌</span>]<span style="color: #b0e6b8;">└</span>[ ∵ ]<span style="color: #b0e6b8;">┘</span>[<span style="color: orange">┐</span>∵]<span style="color: orange">┘</span></span>'))
+        }
+        else if(command.includes('history')){
           for(var i = 0; i < cmdHistory.length; i++){
-            $('.stack').append($(`<p class="code-snippet" style="margin-bottom: 10px; margin-left: 20px;">${cmdHistory[i]}</p><br/>`))
+            $('.stack').append($(`<p class="code-snippet dynamic-history-btn" style="margin-bottom: 10px; margin-left: 20px;">${cmdHistory[i]}</p><br/>`))
           }
         }
-        else if($('.input').html() == 'clear' || $('.input').html() == 'cls' ){
+        else if(command == 'clear' || command == 'cls' ){
           $('.stack').html('')
         }
-        else if($('.input').html().includes('ls')){
-          $('.stack').append($('<span class="code-snippet" style="margin-left: 20px; margin-bottom: 10px"><h5 class="text-highlight" style="color: orange; margin: 0;">projects</h5>/</span><br/>'))
-          $('.stack').append($('<span class="code-snippet" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: #bedbf3; margin: 0;">about</h5>/</span><br/>'))
-          $('.stack').append($('<span class="code-snippet" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: #b0e6b8; margin: 0;">contact</h5>/</span><br/>'))
-          $('.stack').append($('<span class="code-snippet" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: white; margin: 0;">welcome.js</h5></span><br/>'))
+        else if(command.includes('ls')){
+          $('.stack').append($('<span class="code-snippet cd-projects-btn" style="margin-left: 20px; margin-bottom: 10px"><h5 class="text-highlight" style="color: orange; margin: 0;">projects</h5>/</span><br/>'))
+          $('.stack').append($('<span class="code-snippet cd-about-btn" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: #bedbf3; margin: 0;">about</h5>/</span><br/>'))
+          $('.stack').append($('<span class="code-snippet cd-contact-btn" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: #b0e6b8; margin: 0;">contact</h5>/</span><br/>'))
+          $('.stack').append($('<span class="code-snippet cd-welcome-btn" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: white; margin: 0;">welcome.js</h5></span><br/>'))
+          $('.stack').append($('<span class="code-snippet cd-beep-btn" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: white; margin: 0;">beep.boop.js</h5></span><br/>'))
         }
-        else if($('.input').html().includes('cd&nbsp;projects')){
+        else if(command.includes('cdprojects')){
           $(".buttonProject").trigger('click')
           $('.stack').html('')
         }
-        else if($('.input').html().includes('cd&nbsp;about')){
+        else if(command.includes('cdabout')){
           $('.stack').append($(`<h5 class="my-info">You're already here!</h5>`))
         }
-        else if($('.input').html().includes('cd&nbsp;contact')){
+        else if(command.includes('cdcontact')){
           window.location.href = 'contact.html'
         }
         else if($('.input').html().includes('cd')){
@@ -237,23 +339,19 @@ $(document).ready(function(){
           $('.stack').append($(`<h5 class="my-info">${loc} not found</h5>`))
         }
         else if($('.input').html().includes('help')){
-          $('.stack').append($('<h5 class="code-snippet" style="display: inline-flex; margin-left: 20px;"><span class="fa-solid fa-caret-up" style="color: whitesmoke;"></span></h5> / <h5 class="code-snippet" style="display: inline-flex;"><span class="fa-solid fa-caret-down" style="color: whitesmoke;"></span></h5><br/><h5 class="my-info"><span style="margin-left:25%; white-space: nowrap;">Navigate up and down through the command history.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">ls</span>            <br/><span style="margin-left:25%; white-space: nowrap;">Search nearby paths (pages).</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">cd</span>            <br/><span style="margin-left:25%; white-space: nowrap;">Move towards next path (page).</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">node</span>          <br/><span style="margin-left:25%; white-space: nowrap;">Run (fake) Node script.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">cls</span> / <span class="code-snippet">clear</span>   <br/><span style="margin-left:25%; white-space: nowrap;">Clear terminal.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">help</span>          <br/><span style="margin-left:25%; white-space: nowrap;">This.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">history</span>       <br/><span style="margin-left:25%; white-space: nowrap;">Show command history.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">why</span>       <br/><span style="margin-left:25%; white-space: nowrap;">Why I built this terminal.</span></h5>'))
-          $('.stack').append($('<h5 class="my-info"><span class="code-snippet">beep boop</span>       <br/><span style="margin-left:25%; white-space: nowrap;">🤔</span></h5>'))
+          $('.stack').append($('<h5 class="code-snippet" style="display: inline-flex; margin-left: 20px;"><span class="fa-solid fa-caret-up" style="color: whitesmoke;"></span></h5> / <h5 class="code-snippet" style="display: inline-flex;"><span class="fa-solid fa-caret-down" style="color: whitesmoke;"></span></h5><br/><h5 class="my-info"><span style="margin-left:25%;">Navigate up and down through the command history.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet ls-btn">ls</span>            <br/><span style="margin-left:25%;">Search nearby paths (pages).</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet cd-btn">cd</span>            <br/><span style="margin-left:25%;">Move towards next path (page).</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet cd-btn">node</span>          <br/><span style="margin-left:25%;">Run (fake) Node script.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet clear-btn">cls</span> / <span class="code-snippet">clear</span>   <br/><span style="margin-left:25%;">Clear terminal.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet help-btn">help</span>          <br/><span style="margin-left:25%; ">This.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet history-btn">history</span>       <br/><span style="margin-left:25%;">Show command history.</span></h5>'))
+          $('.stack').append($('<h5 class="my-info"><span class="code-snippet why-btn">why</span>       <br/><span style="margin-left:25%;">Why I built this terminal. 🤔</span></h5>'))
         }
         else if ($('.input').html().includes('why')){
           $('.stack').append($('<h5 class="my-info"><span class="text-highlight" style="color: orange">Why</span> have I built this terminal?</h5>'))
           $('.stack').append($('<h5 class="my-info">I honest to God have <span class="text-highlight loud-text" style="color: whitesmoke">no idea</span> why. It has been fun to build, but the code is ancient, and the longer I iterate, the messier it becomes lol.</h5>'))
           $('.stack').append($('<h5 class="my-info">The complexity of it\'s functionality is impressive though!</h5>'))
-          $('.stack').append($('<span class="my-info" style="whitespace: nowrap;"><span style="color: #bedbf3">└</span>[∵<span style="color: #bedbf3">┌</span>]<span style="color: #b0e6b8;">└</span>[ ∵ ]<span style="color: #b0e6b8;">┘</span>[<span style="color: orange">┐</span>∵]<span style="color: orange">┘</span></span>'))
-        }
-        else if ($('.input').html().includes('beep&nbsp;boop')){
           $('.stack').append($('<span class="my-info" style="whitespace: nowrap;"><span style="color: #bedbf3">└</span>[∵<span style="color: #bedbf3">┌</span>]<span style="color: #b0e6b8;">└</span>[ ∵ ]<span style="color: #b0e6b8;">┘</span>[<span style="color: orange">┐</span>∵]<span style="color: orange">┘</span></span>'))
         }
         else {
@@ -265,6 +363,7 @@ $(document).ready(function(){
         break;
       default:
         break;
-    }
+      }
+      setCmdButtons()
   })
 });

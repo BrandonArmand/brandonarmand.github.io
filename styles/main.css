@@ -160,6 +160,10 @@ html, body, .ng-scope, .container-fluid, .row {
   background-color: white;
 }
 
+#mobile-hint {
+  display: none;
+}
+
 @media (max-width: 700px) {
   .large-desc {
     display: none;
@@ -172,6 +176,10 @@ html, body, .ng-scope, .container-fluid, .row {
 
   .current-project .info .stats {
     border-right: none;
+  }
+
+  #mobile-hint {
+    display: inline-flex;
   }
 }
 
@@ -198,6 +206,10 @@ html, body, .ng-scope, .container-fluid, .row {
   background-repeat: no-repeat;
   background-image: url("../images/space-cropped.gif");
   background-position: center center;
+}
+
+.stack {
+  width: 100%;
 }
 
 #body{

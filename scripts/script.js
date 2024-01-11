@@ -169,7 +169,7 @@ $(document).ready(function(){
     })
 
   $(document).on('keypress', function(e){
-    console.log(e)
+    $('.console').animate({ scrollTop: $('.console').prop("scrollHeight")}, 200);
     switch (e.which) {
       case 113:
         $('.input').append('<span>q</span>')

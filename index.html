@@ -290,10 +290,33 @@
       if (e.which === 8 && !$(e.target).is("input, textarea")) {
         e.preventDefault();
         $('.input').html($('.input').text().slice(0, -1))
+        cmdHistoryIndex = 0
       }
       if (e.which === 191) {
         e.preventDefault();
         $('.input').append('/')
+      }
+
+      if (e.which === 38) {
+        e.preventDefault();
+        if(cmdHistory.length > 0){
+          if (cmdHistoryIndex === cmdHistory.length) {
+            cmdHistoryIndex = 0
+          }
+          $('.input').html(cmdHistory[cmdHistory.length - cmdHistoryIndex - 1])
+          cmdHistoryIndex++
+        }
+      }
+
+      if (e.which === 40) {
+        e.preventDefault();
+        if(cmdHistory.length > 0){
+          if (cmdHistoryIndex === 0) {
+            cmdHistoryIndex = cmdHistory.length 
+          }
+          $('.input').html(cmdHistory[cmdHistory.length - cmdHistoryIndex ])
+          cmdHistoryIndex--
+        }
       }
     });
   </script>

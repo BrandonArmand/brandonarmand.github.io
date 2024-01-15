@@ -323,6 +323,15 @@ html, body, .ng-scope, .container-fluid, .row {
   font-size: 16px;
   white-space: nowrap;
   display: inline-flex;
+  cursor: pointer;
+}
+
+.code-snippet:hover {
+  background-color: #333;
+}
+
+.code-snippet:active {
+  background-color: #444;
 }
 
 #pic{
@@ -365,6 +374,36 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .row{
   margin: 0;
+}
+
+.email {
+  position: relative;
+  background: black;
+  color: black;
+}
+
+.email:hover {
+  background: none;
+  color: orange;
+  text-decoration: none;
+  transition: color 0.05s ease-in-out, background 0.05s ease-in-out;
+}
+
+.email::after {
+  font-family: "Courier New", Courier, monospace;
+  content: "confidential";
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  margin-left: -65%;
+  margin-top: 6px;
+  opacity: 1;
+  text-decoration: line-through;
+}
+
+.email:hover::after {
+  opacity: 0;
+  transition: opacity 0.05s ease-in-out;
 }
 
 .box{

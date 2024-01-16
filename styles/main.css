@@ -164,31 +164,6 @@ html, body, .ng-scope, .container-fluid, .row {
   display: none;
 }
 
-@media (max-width: 700px) {
-  .large-desc {
-    display: none;
-  }
-
-  .current-project .info {
-    border: 2px solid black;
-    border-top: none;
-  }
-
-  .current-project .info .stats {
-    border-right: none;
-  }
-
-  #mobile-hint {
-    display: inline-flex;
-  }
-}
-
-@media (min-width: 700px) {
-  .small-desc {
-    display: none;
-  }
-}
-
 .google{
   font-weight: 500;
   margin-right: 10px;
@@ -906,4 +881,34 @@ label:hover{
   border-radius: 5px;
   /* background-color: #f2f2f2; */
   padding: 20px;
+}
+
+
+@media (max-width: 700px) {
+  .large-desc {
+    display: none;
+  }
+
+  .current-project .info {
+    border: 2px solid black;
+    border-top: none;
+  }
+
+  .current-project .info .stats {
+    border-right: none;
+  }
+
+  #mobile-hint {
+    display: inline-flex;
+  }
+
+  .font{
+    text-align: left;
+  }
+}
+
+@media (min-width: 700px) {
+  .small-desc {
+    display: none;
+  }
 }

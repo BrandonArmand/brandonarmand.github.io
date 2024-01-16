@@ -24,6 +24,7 @@ function setCmdButtons() {
     $('.cd-welcome-btn').off('click')
     $('.cd-beep-btn').off('click')
     $('.node-btn').off('click')
+    $('.cd-hire-btn').off('click')
 
     $('.help-btn').click(function () {
       $('.console').animate({ scrollTop: $('.console').prop("scrollHeight") }, 200);

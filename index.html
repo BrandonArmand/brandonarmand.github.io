@@ -166,13 +166,15 @@
                     target="_blank">Github</a>. You can also <a class="text-highlight" style="color: #f2918d;"
                     href="/contact.html">email me here!</a>"<br /><br />
 
-                  "I am a semi-functional terminal, try out all my features!" <br/><span class="code-snippet help-btn">> help</span><span id="mobile-hint" style="font-size: 14px; margin-left: 5px;">(On mobile? This is a button)</span><br /><br />
+                  "I am a semi-functional terminal with autocomplete, try out all my features!" <br/><span class="code-snippet help-btn">> help</span><span id="mobile-hint" style="font-size: 14px; margin-left: 5px;">(On mobile? This is a button)</span><br /><br />
 
                   <span style="color: #bedbf3">└</span>[∵<span style="color: #bedbf3">┌</span>]<span style="color: #b0e6b8;">└</span>[ ∵ ]<span style="color: #b0e6b8;">┘</span>[<span style="color: orange">┐</span>∵]<span style="color: orange">┘</span>
                 </h3>
               </div>
               <span class="stack" id="goto"></span>
-              <p class="blink display-4">$<span class="input"></span></p>
+              <div style="width: fit-content;">
+                <p class="blink display-4">$<span class="input"></span></p><span id="autofill-suggestion" class="display-4"></span>
+              </div>
             </div>
           </div>
           <div class="projects" id="projects">
@@ -290,6 +292,7 @@
       if (e.which === 8 && !$(e.target).is("input, textarea")) {
         e.preventDefault();
         $('.input').html($('.input').text().slice(0, -1))
+        $('#autofill-suggestion').html('')
         cmdHistoryIndex = 0
       }
       if (e.which === 191) {
@@ -303,19 +306,30 @@
           if (cmdHistoryIndex === cmdHistory.length) {
             cmdHistoryIndex = 0
           }
-          $('.input').html(cmdHistory[cmdHistory.length - cmdHistoryIndex - 1])
           cmdHistoryIndex++
+          $('.input').html(cmdHistory[cmdHistory.length - cmdHistoryIndex])
         }
       }
 
       if (e.which === 40) {
         e.preventDefault();
         if(cmdHistory.length > 0){
-          if (cmdHistoryIndex === 0) {
-            cmdHistoryIndex = cmdHistory.length 
+          if (cmdHistoryIndex <= 1) {
+            cmdHistoryIndex = 0
+            $('.input').html('')
+          } else {
+            cmdHistoryIndex--
+            $('.input').html(cmdHistory[cmdHistory.length - cmdHistoryIndex ])
           }
-          $('.input').html(cmdHistory[cmdHistory.length - cmdHistoryIndex ])
-          cmdHistoryIndex--
+        }
+      }
+
+      if (e.which === 9) {
+        // take text from #autofill-suggestion and append it to .input
+        e.preventDefault();
+        if ($('#autofill-suggestion').text() !== '') {
+          $('.input').html($('.input').text() + $('#autofill-suggestion').text())
+          $('#autofill-suggestion').html('')
         }
       }
     });

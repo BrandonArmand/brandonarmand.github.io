@@ -10,6 +10,40 @@ const nodeList = [
   , '<span class="code-snippet cd-beep-btn" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: white; margin: 0;">beep.boop.js</h5></span><br/>'
   , '<span class="code-snippet cd-hire-btn" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: white; margin: 0;">hire-me.js</h5></span><br/>']
 
+const autofillList = [
+    'node welcome.js',
+    'node beep.boop.js',
+    'node hire-me.js',
+    'cd projects',
+    'cd about',
+    'cd contact',
+]
+
+var intitialSuggestions = ['node', 'ls', 'cd', 'help', 'history', 'why', 'clear', 'cls']
+
+function setAutofill(input) {
+  var command = ((input.html()).replace('&nbsp;', ' '));
+  var suggestions = [];
+  intitialSuggestions.forEach(el => {
+    if (el.startsWith(command)) {
+      suggestions.push(el)
+    }
+  });
+  if (suggestions.length !== 1) {
+    autofillList.forEach(el => {
+      if (el.startsWith(command)) {
+        suggestions.push(el)
+      }
+    });
+  }
+  if (suggestions.length === 1) {
+    $('#autofill-suggestion').html(suggestions[0].replace(command, ''))
+  }
+  else {
+    $('#autofill-suggestion').html('')
+  }
+}
+
 function setCmdButtons() {
     $('.help-btn').off('click')
     $('.ls-btn').off('click')
@@ -316,9 +350,6 @@ $(document).ready(function () {
           $('.input').append('-')
           break;
         // case backspace, handled in the index.html 
-        case 8:
-          $('.input').html($('.input').html().slice(0, -1))
-          break;
         // up arrow
         case 13:
           cmdHistoryIndex = 0;
@@ -405,9 +436,9 @@ $(document).ready(function () {
           $('.console').animate({ scrollTop: $('.console').prop("scrollHeight") }, 200);
           break;
         default:
-          console.log(e.which) 
           break;
-      }
-      setCmdButtons()
+        }
+        setAutofill($('.input'))
+        setCmdButtons()
     })
   });

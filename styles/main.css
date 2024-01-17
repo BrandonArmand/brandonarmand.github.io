@@ -769,6 +769,7 @@ html, body, .ng-scope, .container-fluid, .row {
   /* margin: 0 auto; */
   /* margin-left: 0; */
   /* margin-bottom: auto; */
+  display: inline-flex;
   font-size: 22px;
   letter-spacing: .40em;
   border-right: .15em solid #263a41;
@@ -883,6 +884,12 @@ label:hover{
   padding: 20px;
 }
 
+#autofill-suggestion {
+  display: inline-flex;
+  font-size: 22px;
+  letter-spacing: .15em;
+  color: grey;
+}
 
 @media (max-width: 700px) {
   .large-desc {

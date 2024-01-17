@@ -414,7 +414,7 @@ $(document).ready(function () {
           }
           else if ($('.input').html().includes('help')) {
             // explanation of tab completion
-            $('.stack').append($('<h5 class="my-info"><span class="text-highlight" style="color: orange">Tab completion</span> is available for commands and directories.</h5>'))
+            $('.stack').append($('<h5 class="my-info" style="color: grey; font-size: 16px;"><span class="text-highlight">Tab completion</span> is available for commands, files, and directories.</h5>'))
             $('.stack').append($('<h5 class="code-snippet" style="display: inline-flex; margin-left: 20px;"><span class="fa-solid fa-caret-up" style="color: whitesmoke;"></span></h5> / <h5 class="code-snippet" style="display: inline-flex;"><span class="fa-solid fa-caret-down" style="color: whitesmoke;"></span></h5><br/><h5 class="my-info"><span style="margin-left:25%;">Navigate up and down through the command history.</span></h5>'))
             $('.stack').append($('<h5 class="my-info"><span class="code-snippet ls-btn">ls</span>            <br/><span style="margin-left:25%;">Search nearby paths (pages).</span></h5>'))
             $('.stack').append($('<h5 class="my-info"><span class="code-snippet cd-btn">cd [directory]</span>            <br/><span style="margin-left:25%;">Navigate to directory (webpage).</span></h5>'))

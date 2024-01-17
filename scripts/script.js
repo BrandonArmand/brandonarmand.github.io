@@ -10,7 +10,7 @@ const nodeList = [
   , '<span class="code-snippet cd-beep-btn" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: white; margin: 0;">beep.boop.js</h5></span><br/>'
   , '<span class="code-snippet cd-hire-btn" style="margin-left: 20px; margin-bottom: 10px""><h5 class="text-highlight" style="color: white; margin: 0;">hire-me.js</h5></span><br/>']
 
-const autofillList = [
+const fileDirSuggestions = [
     'node welcome.js',
     'node beep.boop.js',
     'node hire-me.js',
@@ -19,18 +19,18 @@ const autofillList = [
     'cd contact',
 ]
 
-var intitialSuggestions = ['node', 'ls', 'cd', 'help', 'history', 'why', 'clear', 'cls']
+var commandSuggestions = ['node', 'ls', 'cd', 'help', 'history', 'why', 'clear', 'cls']
 
 function setAutofill(input) {
   var command = ((input.html()).replace('&nbsp;', ' '));
   var suggestions = [];
-  intitialSuggestions.forEach(el => {
+  commandSuggestions.forEach(el => {
     if (el.startsWith(command)) {
       suggestions.push(el)
     }
   });
   if (suggestions.length !== 1) {
-    autofillList.forEach(el => {
+    fileDirSuggestions.forEach(el => {
       if (el.startsWith(command)) {
         suggestions.push(el)
       }
@@ -413,6 +413,8 @@ $(document).ready(function () {
             $('.stack').append($(`<h5 class="my-info">${loc} not found</h5>`))
           }
           else if ($('.input').html().includes('help')) {
+            // explanation of tab completion
+            $('.stack').append($('<h5 class="my-info"><span class="text-highlight" style="color: orange">Tab completion</span> is available for commands and directories.</h5>'))
             $('.stack').append($('<h5 class="code-snippet" style="display: inline-flex; margin-left: 20px;"><span class="fa-solid fa-caret-up" style="color: whitesmoke;"></span></h5> / <h5 class="code-snippet" style="display: inline-flex;"><span class="fa-solid fa-caret-down" style="color: whitesmoke;"></span></h5><br/><h5 class="my-info"><span style="margin-left:25%;">Navigate up and down through the command history.</span></h5>'))
             $('.stack').append($('<h5 class="my-info"><span class="code-snippet ls-btn">ls</span>            <br/><span style="margin-left:25%;">Search nearby paths (pages).</span></h5>'))
             $('.stack').append($('<h5 class="my-info"><span class="code-snippet cd-btn">cd [directory]</span>            <br/><span style="margin-left:25%;">Navigate to directory (webpage).</span></h5>'))

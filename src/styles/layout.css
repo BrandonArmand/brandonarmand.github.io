@@ -30,7 +30,7 @@
   height: 100%;
   padding: 0;
   background-color: var(--page-bg);
-  background-image: url('/images/blob.svg');
+  background-image: url('../assets/backgrounds/blob.svg');
   background-size: 150%;
   background-repeat: no-repeat;
   background-position: center;
@@ -43,7 +43,7 @@
 .header-body-divider {
   height: 100%;
   width: 40px;
-  background-image: url('/images/wave-divider.svg');
+  background-image: url('../assets/backgrounds/wave-divider.svg');
   background-size: 111%;
   background-repeat: no-repeat;
   background-position: center;
@@ -62,4 +62,10 @@
   overflow-y: scroll;
   scroll-behavior: smooth;
   text-align: center;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

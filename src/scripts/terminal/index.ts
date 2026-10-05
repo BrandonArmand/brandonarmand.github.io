@@ -7,7 +7,7 @@ import { bindKeyboard } from './keyboard';
 import { createOutput } from './output';
 import { createPrompt } from './prompt';
 
-export function initTerminal(): void {
+export function initTerminal(signal: AbortSignal): void {
   const terminal = requireElement('console');
   const welcome = requireElement('welcome');
   const introPrompt = requireElement('init-input');
@@ -54,14 +54,18 @@ export function initTerminal(): void {
     }, TYPE_DELAY_MS);
   }
 
-  document.addEventListener('click', (event) => {
-    if (!(event.target instanceof Element)) return;
-    const command = event.target.closest<HTMLElement>('[data-cmd]')?.dataset.cmd;
-    if (!command) return;
+  document.addEventListener(
+    'click',
+    (event) => {
+      if (!(event.target instanceof Element)) return;
+      const command = event.target.closest<HTMLElement>('[data-cmd]')?.dataset.cmd;
+      if (!command) return;
 
-    output.scrollToBottom();
-    typeCommand(command);
-  });
+      output.scrollToBottom();
+      typeCommand(command);
+    },
+    { signal }
+  );
 
   bindKeyboard({
     terminal,
@@ -70,9 +74,15 @@ export function initTerminal(): void {
     run,
     onInput: cancelTyping,
     onTyped: output.scrollToBottom,
+    signal,
   });
 
-  window.setTimeout(() => {
+  const introTimer = window.setTimeout(() => {
     introPrompt.innerHTML = PROMPT_ARROW;
   }, INTRO_DELAY_MS);
+
+  signal.addEventListener('abort', () => {
+    cancelTyping();
+    window.clearTimeout(introTimer);
+  });
 }

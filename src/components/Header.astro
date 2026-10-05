@@ -3,7 +3,7 @@ import space from '../assets/space.webp';
 import SkillList from './SkillList.astro';
 ---
 
-<div class="col-header" id="header">
+<div class="col-header" id="header" transition:persist>
   <div class="space-2" style={`background-image: url(${space.src})`}></div>
   <h2 class="display-4" id="name">
     <span class="text-green">B</span><span class="name-rest">randon</span>

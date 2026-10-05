@@ -1,3 +1,4 @@
+import { navigate } from 'astro:transitions/client';
 import { EMAIL, MAILTO, ROUTES } from '../../config';
 import { HELP_ENTRIES } from './content';
 import {
@@ -64,7 +65,7 @@ export function createCommands({ output, historyEntries }: CommandContext): Reco
           printCdUsage();
           break;
         case 'projects':
-          window.location.href = ROUTES.projects;
+          void navigate(ROUTES.projects);
           break;
         case 'about':
           print(line("You're already here!"));

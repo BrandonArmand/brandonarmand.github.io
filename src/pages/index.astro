@@ -13,7 +13,6 @@ const binariBanner = await getImage({ src: binari, format: 'webp', width: 1400 }
 <Layout
   title="Welcome | Brandon Armand"
   description="Software Engineer (formerly Meta) with 5+ years of professional experience writing code."
-  home
 >
   <main id="home">
     <div id="about">
@@ -47,11 +46,11 @@ const binariBanner = await getImage({ src: binari, format: 'webp', width: 1400 }
             <br /><br />
 
             "<a class="text-highlight" style="color: orange" href="https://github.com/BrandonArmand/Binari" target="_blank" rel="noopener">Binari</a>
-            is my current passive open-source project. If you would like to learn more, I urge you to check out my past
+            is my archived open-source project. If you would like to learn more, I urge you to check out my past
             <a class="text-highlight" style="color: #f2918d" href="#projects" data-goto="projects">Projects</a>,
             <a class="text-highlight" style="color: #f2918d" href="https://www.linkedin.com/in/brandonarmand/" target="_blank" rel="noopener">LinkedIn</a>,
             or <a class="text-highlight" style="color: #f2918d" href="https://github.com/BrandonArmand" target="_blank" rel="noopener">Github</a>.
-            You can also <a class="text-highlight" style="color: #f2918d" href="/contact">email me here!</a>"
+            You can also <a class="text-highlight" style="color: #f2918d" href="mailto:contact@brandonarmand.com">email me here!</a>"
             <br /><br />
 
             "I am a semi-functional terminal with autocomplete, try out all my features!"
@@ -70,8 +69,8 @@ const binariBanner = await getImage({ src: binari, format: 'webp', width: 1400 }
     </div>
 
     <div class="projects" id="projects" hidden>
-      <h2>Current Project</h2>
-      <div class="current-project">
+      <h2>- - Archived Projects - -</h2>
+      <div class="featured-project">
         <div class="project-corner">
           <a class="project-github" href="https://github.com/BrandonArmand/Binari" target="_blank" rel="noopener" aria-label="Binari on GitHub">
             <i class="fa-brands fa-github"></i>
@@ -82,15 +81,15 @@ const binariBanner = await getImage({ src: binari, format: 'webp', width: 1400 }
         <div class="info">
           <div class="stats">
             <div class="stat">
-              <div class="stat-value"><i class="fa-solid fa-code-fork"></i><span>99 +</span></div>
+              <div class="stat-value"><i class="fa-solid fa-code-fork"></i><span>106</span></div>
               <p class="stat-label">FORKS</p>
             </div>
             <div class="stat">
-              <div class="stat-value"><i class="fa-solid fa-users"></i><span>25 +</span></div>
+              <div class="stat-value"><i class="fa-solid fa-users"></i><span>26</span></div>
               <p class="stat-label">CONTRIBUTORS</p>
             </div>
             <div class="stat">
-              <div class="stat-value"><i class="fa-solid fa-star"></i><span>160 +</span></div>
+              <div class="stat-value"><i class="fa-solid fa-star"></i><span>179</span></div>
               <p class="stat-label">STARS</p>
             </div>
           </div>
@@ -101,7 +100,6 @@ const binariBanner = await getImage({ src: binari, format: 'webp', width: 1400 }
         </div>
       </div>
 
-      <h2 class="deprecated-heading">- - Deprecated Projects - -</h2>
       <ProjectCard
         title="Mark it Off"
         tech="Ruby on Rails"

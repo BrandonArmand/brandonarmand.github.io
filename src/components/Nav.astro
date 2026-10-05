@@ -1,23 +1,11 @@
 ---
-interface Props {
-  home?: boolean;
-}
-
-const { home = false } = Astro.props;
+const EMAIL = 'contact@brandonarmand.com';
 ---
 
 <nav class="navbar">
   <ul class="navbar-nav">
-    {
-      home ? (
-        <>
-          <li><a class="nav-link" id="nav-about" href="/#about">About</a></li>
-          <li><a class="nav-link" id="nav-projects" href="/#projects">Projects</a></li>
-        </>
-      ) : (
-        <li><a class="nav-link" href="/">&laquo; Back</a></li>
-      )
-    }
+    <li><a class="nav-link" id="nav-about" href="/#about">About</a></li>
+    <li><a class="nav-link" id="nav-projects" href="/#projects">Projects</a></li>
   </ul>
   <div class="navbar-links">
     <a class="navbar-brand" href="https://www.linkedin.com/in/brandonarmand/" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -26,6 +14,6 @@ const { home = false } = Astro.props;
     <a class="navbar-brand" href="https://github.com/BrandonArmand" target="_blank" rel="noopener" aria-label="GitHub">
       <i class="fa-brands fa-github"></i>
     </a>
-    <a class="navbar-brand" href="/contact">Contact</a>
+    <a class="navbar-brand" href={`mailto:${EMAIL}`}>Contact</a>
   </div>
 </nav>

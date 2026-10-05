@@ -142,7 +142,7 @@ export function initTerminal({ showProjects }: TerminalOptions): void {
           print(line("You're already here!"));
           break;
         case 'contact':
-          window.location.href = '/contact';
+          window.location.href = `mailto:${EMAIL}`;
           break;
         default:
           print(line(`${escapeHtml(dir)} not found`));

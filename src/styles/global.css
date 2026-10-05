@@ -1,4 +1,4 @@
-﻿*,
+*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -541,14 +541,15 @@ a.skill-item:active .box {
   font-size: 2rem;
 }
 
-.current-project {
+.featured-project {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom: 50px;
 }
 
-.current-project .project-corner {
+.featured-project .project-corner {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -557,7 +558,7 @@ a.skill-item:active .box {
   margin-bottom: -20px;
 }
 
-.current-project .project-title {
+.featured-project .project-title {
   z-index: 2;
   margin-bottom: 0;
   padding: 5px 10px;
@@ -565,7 +566,7 @@ a.skill-item:active .box {
   border: 2px solid black;
 }
 
-.current-project .project-github {
+.featured-project .project-github {
   z-index: 3;
   height: min-content;
   margin-right: -2px;
@@ -576,7 +577,7 @@ a.skill-item:active .box {
   border-right: none;
 }
 
-.current-project .banner {
+.featured-project .banner {
   width: calc(100% - 10px);
   height: 250px;
   background-size: 100%;
@@ -587,11 +588,11 @@ a.skill-item:active .box {
   transition: all 0.3s ease-in-out;
 }
 
-.current-project .banner:hover {
+.featured-project .banner:hover {
   background-size: 110%;
 }
 
-.current-project .info {
+.featured-project .info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -649,7 +650,7 @@ a.skill-item:active .box {
 }
 
 @media (max-width: 699px) {
-  .current-project .info {
+  .featured-project .info {
     flex-direction: column-reverse;
   }
 
@@ -670,10 +671,6 @@ a.skill-item:active .box {
   #mobile-hint {
     display: inline-flex;
   }
-}
-
-.deprecated-heading {
-  margin-top: 50px;
 }
 
 .project-card {

@@ -7,13 +7,11 @@ import Nav from '../components/Nav.astro';
 interface Props {
   title: string;
   description?: string;
-  home?: boolean;
 }
 
 const {
   title,
   description = 'Software Engineer with 5+ years of professional experience, formerly at Meta.',
-  home = false,
 } = Astro.props;
 
 const siteUrl = Astro.site ?? new URL('https://brandonarmand.com');
@@ -53,7 +51,7 @@ const GA_ID = 'G-E4Q92QVGVL';
       <div class="col-body" id="body">
         <div class="header-body-divider"></div>
         <div class="body-container">
-          <Nav home={home} />
+          <Nav />
           <slot />
         </div>
       </div>

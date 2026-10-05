@@ -9,6 +9,7 @@ interface Props {
 const { title, description = DEFAULT_DESCRIPTION } = Astro.props;
 
 const siteUrl = Astro.site ?? new URL('https://brandonarmand.com');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = new URL('/og-image.jpeg', siteUrl).href;
 ---
 
@@ -16,7 +17,7 @@ const ogImage = new URL('/og-image.jpeg', siteUrl).href;
 <meta name="description" content={description} />
 <meta name="author" content={AUTHOR} />
 <meta property="og:site_name" content={SITE_NAME} />
-<meta property="og:url" content={siteUrl.href} />
+<meta property="og:url" content={pageUrl} />
 <meta property="og:type" content="website" />
 <meta property="og:image" content={ogImage} />
 <meta property="og:title" content={SOCIAL_TITLE} />

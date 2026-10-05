@@ -1,5 +1,5 @@
 ---
-import { GITHUB_URL, LINKEDIN_URL, MAILTO } from '../config';
+import { GITHUB_URL, LINKEDIN_URL, MAILTO, ROUTES } from '../config';
 import { FACE_HTML } from '../data/face';
 ---
 
@@ -25,7 +25,7 @@ import { FACE_HTML } from '../data/face';
 
     "<a class="text-highlight text-orange" href={`${GITHUB_URL}/Binari`} target="_blank" rel="noopener">Binari</a>
     is my archived open-source project. If you would like to learn more, I urge you to check out my past
-    <a class="text-highlight text-pink" href="#projects" data-goto="projects">Projects</a>,
+    <a class="text-highlight text-pink" href={ROUTES.projects}>Projects</a>,
     <a class="text-highlight text-pink" href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>,
     or <a class="text-highlight text-pink" href={GITHUB_URL} target="_blank" rel="noopener">Github</a>.
     You can also <a class="text-highlight text-pink" href={MAILTO}>email me here!</a>"

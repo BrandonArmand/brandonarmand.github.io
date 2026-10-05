@@ -92,12 +92,3 @@ a.text-pink:hover { color: var(--pink); }
 
 .text-white,
 a.text-white:hover { color: var(--white); }
-
-.fade-in {
-  animation: fade-in 0.4s ease-in;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}

@@ -1,4 +1,4 @@
-import { EMAIL, MAILTO } from '../../config';
+import { EMAIL, MAILTO, ROUTES } from '../../config';
 import { HELP_ENTRIES } from './content';
 import {
   button,
@@ -18,10 +18,9 @@ export type Command = (args: string[]) => void;
 export interface CommandContext {
   output: Output;
   historyEntries: () => readonly string[];
-  showProjects: () => void;
 }
 
-export function createCommands({ output, historyEntries, showProjects }: CommandContext): Record<string, Command> {
+export function createCommands({ output, historyEntries }: CommandContext): Record<string, Command> {
   const { print, clear, appendWelcome } = output;
 
   function printNodeUsage(): void {
@@ -65,8 +64,7 @@ export function createCommands({ output, historyEntries, showProjects }: Command
           printCdUsage();
           break;
         case 'projects':
-          clear();
-          showProjects();
+          window.location.href = ROUTES.projects;
           break;
         case 'about':
           print(line("You're already here!"));

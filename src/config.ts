@@ -3,7 +3,12 @@ export const AUTHOR = 'Brandon Armand Welsh';
 export const DEFAULT_DESCRIPTION = 'Software Engineer with 5+ years of professional experience, formerly at Meta.';
 export const SOCIAL_TITLE = 'My Work as a Software Engineer';
 
-export const EMAIL = 'contact@brandonarmand.com';
+export const ROUTES = {
+  home: '/',
+  projects: '/projects',
+};
+
+export const EMAIL ='contact@brandonarmand.com';
 export const MAILTO = `mailto:${EMAIL}`;
 
 export const GITHUB_URL = 'https://github.com/BrandonArmand';

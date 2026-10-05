@@ -1,11 +1,23 @@
 ---
-import { GITHUB_URL, LINKEDIN_URL, MAILTO } from '../config';
+import { GITHUB_URL, LINKEDIN_URL, MAILTO, ROUTES } from '../config';
+
+const current = Astro.url.pathname.replace(/\/$/, '') || ROUTES.home;
+
+const links = [
+  { label: 'About', href: ROUTES.home },
+  { label: 'Projects', href: ROUTES.projects },
+];
 ---
 
 <nav class="navbar">
   <ul class="navbar-nav">
-    <li><a class="nav-link" id="nav-about" href="/#about">About</a></li>
-    <li><a class="nav-link" id="nav-projects" href="/#projects">Projects</a></li>
+    {
+      links.map(({ label, href }) => (
+        <li>
+          <a class="nav-link" href={href} aria-current={href === current ? 'page' : undefined}>{label}</a>
+        </li>
+      ))
+    }
   </ul>
   <div class="navbar-links">
     <a class="navbar-brand" href={LINKEDIN_URL} target="_blank" rel="noopener" aria-label="LinkedIn">

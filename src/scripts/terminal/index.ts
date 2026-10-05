@@ -7,11 +7,7 @@ import { bindKeyboard } from './keyboard';
 import { createOutput } from './output';
 import { createPrompt } from './prompt';
 
-interface TerminalOptions {
-  showProjects: () => void;
-}
-
-export function initTerminal({ showProjects }: TerminalOptions): void {
+export function initTerminal(): void {
   const terminal = requireElement('console');
   const welcome = requireElement('welcome');
   const introPrompt = requireElement('init-input');
@@ -19,7 +15,7 @@ export function initTerminal({ showProjects }: TerminalOptions): void {
   const output = createOutput(terminal, requireElement('stack'), welcome);
   const prompt = createPrompt(requireElement('input'), requireElement('autofill-suggestion'));
   const history = createHistory();
-  const commands = createCommands({ output, historyEntries: history.entries, showProjects });
+  const commands = createCommands({ output, historyEntries: history.entries });
 
   let typingTimer: number | undefined;
   const cancelTyping = () => window.clearInterval(typingTimer);

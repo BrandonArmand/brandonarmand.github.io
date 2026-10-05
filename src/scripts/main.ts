@@ -1,7 +1,10 @@
-import { initPanels } from './panels';
+import { ROUTES } from '../config';
 import { initTerminal } from './terminal';
+import { initWindowControls } from './window-controls';
 
-const { showProjects } = initPanels();
-initTerminal({ showProjects });
+if (window.location.hash === '#projects') {
+  window.location.replace(ROUTES.projects);
+}
 
-if (window.location.hash === '#projects') showProjects();
+initWindowControls();
+initTerminal();

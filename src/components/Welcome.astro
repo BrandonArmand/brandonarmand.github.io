@@ -1,0 +1,41 @@
+---
+import { GITHUB_URL, LINKEDIN_URL, MAILTO } from '../config';
+import { FACE_HTML } from '../data/face';
+---
+
+<div class="my-info initial" id="welcome">
+  <h3 class="display-4 font delay-init">
+    "<span class="text-highlight loud-text text-white"><strong>Hello world!</strong></span> I am a highly
+    experienced and passionate Software and Systems Engineer residing in
+    <span class="text-highlight text-blue">New York City</span>."
+    <br /><br />
+
+    "Currently at
+    <span class="brand-railbird"><strong class="brand-yc"><i class="fa-brands fa-y-combinator"></i><span class="brand-yc-year">22</span></strong><strong>Railbird</strong></span>,
+    and formerly
+    <span class="brand-meta"><strong><i class="fa-brands fa-meta"></i>Meta</strong></span>,
+    I primarily develop with <span class="text-highlight text-green">Python</span> or
+    <span class="text-highlight text-green">Typescript</span>, but have current interest in
+    <span class="google">
+      <span class="google-blue">G</span><span class="google-red">o</span><span class="google-yellow">o</span><span class="google-blue">g</span><span class="google-green">l</span><span class="google-red">e</span>'s
+    </span>
+    <span class="text-highlight text-green">Go-lang</span>
+    and <span class="text-highlight text-green">Rust</span>."
+    <br /><br />
+
+    "<a class="text-highlight text-orange" href={`${GITHUB_URL}/Binari`} target="_blank" rel="noopener">Binari</a>
+    is my archived open-source project. If you would like to learn more, I urge you to check out my past
+    <a class="text-highlight text-pink" href="#projects" data-goto="projects">Projects</a>,
+    <a class="text-highlight text-pink" href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>,
+    or <a class="text-highlight text-pink" href={GITHUB_URL} target="_blank" rel="noopener">Github</a>.
+    You can also <a class="text-highlight text-pink" href={MAILTO}>email me here!</a>"
+    <br /><br />
+
+    "I am a semi-functional terminal with autocomplete, try out all my features!"
+    <br />
+    <span class="code-snippet" data-cmd="help">&gt; help</span><span id="mobile-hint">(On mobile? This is a button)</span>
+    <br /><br />
+
+    <Fragment set:html={FACE_HTML} />
+  </h3>
+</div>

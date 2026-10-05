@@ -1,0 +1,19 @@
+---
+import { skills } from '../data/skills';
+---
+
+<div id="skills">
+  {
+    skills.map((skill) =>
+      skill.href ? (
+        <a class="skill-item" href={skill.href} target="_blank" rel="noopener">
+          <h5 class={`box skill ${skill.tier}`}>{skill.name}</h5>
+        </a>
+      ) : (
+        <div class="skill-item">
+          <h5 class={`box skill ${skill.tier}`}>{skill.name}</h5>
+        </div>
+      )
+    )
+  }
+</div>

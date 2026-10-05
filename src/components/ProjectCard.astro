@@ -1,18 +1,14 @@
 ---
 import { getImage } from 'astro:assets';
+import type { ArchivedProject } from '../data/projects';
 
-interface Props {
-  title: string;
-  tech: string;
-  href: string;
-  image: ImageMetadata;
-}
+type Props = ArchivedProject;
 
 const { title, tech, href, image } = Astro.props;
-const bg = await getImage({ src: image, format: 'webp', width: 1200 });
+const background = await getImage({ src: image, format: 'webp', width: 1200 });
 ---
 
-<a class="project-card" href={href} target="_blank" rel="noopener" style={`background-image: url(${bg.src})`}>
+<a class="project-card" href={href} target="_blank" rel="noopener" style={`background-image: url(${background.src})`}>
   <h2 class="description display-4">{tech}</h2>
   <h1 class="description display-4">{title}</h1>
 </a>

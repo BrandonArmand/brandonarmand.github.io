@@ -1,22 +1,22 @@
-﻿---
+---
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import '../styles/global.css';
+import '../styles/base.css';
+import '../styles/layout.css';
+import '../styles/sidebar.css';
+import '../styles/nav.css';
+import '../styles/terminal.css';
+import '../styles/projects.css';
+import Analytics from '../components/Analytics.astro';
 import Header from '../components/Header.astro';
 import Nav from '../components/Nav.astro';
+import Seo from '../components/Seo.astro';
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const {
-  title,
-  description = 'Software Engineer with 5+ years of professional experience, formerly at Meta.',
-} = Astro.props;
-
-const siteUrl = Astro.site ?? new URL('https://brandonarmand.com');
-const ogImage = new URL('/og-image.jpeg', siteUrl).href;
-const GA_ID = 'G-E4Q92QVGVL';
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,26 +24,8 @@ const GA_ID = 'G-E4Q92QVGVL';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="author" content="Brandon Armand Welsh" />
-    <meta property="og:site_name" content="Brandon Armand" />
-    <meta property="og:url" content={siteUrl.href} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:title" content="My Work as a Software Engineer" />
-    <meta property="og:description" content={description} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-    <script is:inline define:vars={{ GA_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', GA_ID);
-    </script>
+    <Seo title={title} description={description} />
+    <Analytics />
   </head>
   <body>
     <div class="row">

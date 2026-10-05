@@ -1,60 +1,18 @@
-﻿---
+---
 import space from '../assets/space.webp';
-
-type Tier = 'strong' | 'great' | 'weakest';
-interface Skill {
-  name: string;
-  tier: Tier;
-  href?: string;
-}
-
-const gh = (language: string) =>
-  `https://github.com/BrandonArmand?tab=repositories&language=${language}`;
-
-const skills: Skill[] = [
-  { name: 'Full-Stack Development', tier: 'strong' },
-  { name: 'System Design', tier: 'strong' },
-  { name: 'API Design', tier: 'strong' },
-  { name: 'Database Design', tier: 'strong' },
-  { name: 'Node.js', tier: 'great', href: gh('javascript') },
-  { name: 'Nest.js', tier: 'great', href: gh('typescript') },
-  { name: 'Svelte', tier: 'great', href: gh('svelte') },
-  { name: 'React Native', tier: 'great', href: gh('javascript') },
-  { name: 'AWS / GCP', tier: 'great' },
-  { name: 'JavaScript / Typescript', tier: 'weakest', href: gh('typescript') },
-  { name: 'PHP / Hack', tier: 'weakest', href: 'https://hacklang.org/' },
-  { name: 'GraphQL', tier: 'weakest', href: 'https://graphql.org/' },
-  { name: 'Python', tier: 'weakest', href: gh('python') },
-  { name: 'Rust', tier: 'weakest', href: gh('rust') },
-  { name: 'React', tier: 'weakest', href: gh('javascript') },
-  { name: 'SQL', tier: 'weakest' },
-];
+import SkillList from './SkillList.astro';
 ---
 
 <div class="col-header" id="header">
   <div class="space-2" style={`background-image: url(${space.src})`}></div>
   <h2 class="display-4" id="name">
-    <span style="color: #b0e6b8">B</span><span class="name-rest">randon</span>
-    <span style="color: orange">A</span><span class="name-rest">rmand</span>
-    <span style="color: #bedbf3">W</span><span class="name-rest">elsh</span>
+    <span class="text-green">B</span><span class="name-rest">randon</span>
+    <span class="text-orange">A</span><span class="name-rest">rmand</span>
+    <span class="text-blue">W</span><span class="name-rest">elsh</span>
   </h2>
   <div id="pic">
     <h4 class="display-4 pic-tag">experienced</h4>
     <h4 class="display-4 pic-title">Software Engineer</h4>
   </div>
-  <div id="skills">
-    {
-      skills.map((skill) =>
-        skill.href ? (
-          <a class="skill-item" href={skill.href} target="_blank" rel="noopener">
-            <h5 class={`box skill ${skill.tier}`}>{skill.name}</h5>
-          </a>
-        ) : (
-          <div class="skill-item">
-            <h5 class={`box skill ${skill.tier}`}>{skill.name}</h5>
-          </div>
-        )
-      )
-    }
-  </div>
+  <SkillList />
 </div>

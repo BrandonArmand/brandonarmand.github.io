@@ -1,0 +1,11 @@
+---
+import { archivedProjects } from '../data/projects';
+import FeaturedProject from './FeaturedProject.astro';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<div class="projects" id="projects" hidden>
+  <h2>- - Archived Projects - -</h2>
+  <FeaturedProject />
+  {archivedProjects.map((project) => <ProjectCard {...project} />)}
+</div>

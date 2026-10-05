@@ -1,0 +1,30 @@
+---
+import { getImage } from 'astro:assets';
+import { featuredProject } from '../data/projects';
+
+const { title, repoUrl, siteUrl, banner, description, stats } = featuredProject;
+const bannerImage = await getImage({ src: banner, format: 'webp', width: 1400 });
+---
+
+<div class="featured-project">
+  <div class="project-corner">
+    <a class="project-github" href={repoUrl} target="_blank" rel="noopener" aria-label="Binari on GitHub">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <h2 class="project-title">{title}</h2>
+  </div>
+  <a href={siteUrl} target="_blank" rel="noopener" class="banner" aria-label="Binari" style={`background-image: url(${bannerImage.src})`}></a>
+  <div class="info">
+    <div class="stats">
+      {
+        stats.map((stat) => (
+          <div class="stat">
+            <div class="stat-value"><i class={`fa-solid ${stat.icon}`}></i><span>{stat.value}</span></div>
+            <p class="stat-label">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="project-desc">{description}</p>
+  </div>
+</div>

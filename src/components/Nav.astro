@@ -1,5 +1,5 @@
 ---
-const EMAIL = 'contact@brandonarmand.com';
+import { GITHUB_URL, LINKEDIN_URL, MAILTO } from '../config';
 ---
 
 <nav class="navbar">
@@ -8,12 +8,12 @@ const EMAIL = 'contact@brandonarmand.com';
     <li><a class="nav-link" id="nav-projects" href="/#projects">Projects</a></li>
   </ul>
   <div class="navbar-links">
-    <a class="navbar-brand" href="https://www.linkedin.com/in/brandonarmand/" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <a class="navbar-brand" href={LINKEDIN_URL} target="_blank" rel="noopener" aria-label="LinkedIn">
       <i class="fa-brands fa-linkedin"></i>
     </a>
-    <a class="navbar-brand" href="https://github.com/BrandonArmand" target="_blank" rel="noopener" aria-label="GitHub">
+    <a class="navbar-brand" href={GITHUB_URL} target="_blank" rel="noopener" aria-label="GitHub">
       <i class="fa-brands fa-github"></i>
     </a>
-    <a class="navbar-brand" href={`mailto:${EMAIL}`}>Contact</a>
+    <a class="navbar-brand" href={MAILTO}>Contact</a>
   </div>
 </nav>

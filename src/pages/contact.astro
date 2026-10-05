@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const EMAIL = 'contact@brandonarmand.com';
+---
+
+<Layout title="Contact | Brandon Armand" description="Get in touch with Brandon Armand.">
+  <div class="contact" id="form">
+    <p class="contact-intro">
+      Say hello! This opens your email app with the message filled in, or write to me directly at
+      <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+    </p>
+    <form id="contact-form" data-email={EMAIL}>
+      <input type="text" id="contact-name" name="name" placeholder="Name.." class="great" autocomplete="name" required />
+      <input type="email" id="email" name="email" placeholder="Email.." class="strong" autocomplete="email" required />
+      <textarea id="message" name="message" placeholder="Message.." class="weakest" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</Layout>
+
+<style>
+  .contact {
+    padding: 20px;
+    text-align: left;
+  }
+
+  .contact-intro {
+    margin-bottom: 1.5rem;
+  }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    margin: 6px 0 16px;
+    padding: 12px 12px 5px;
+    font: inherit;
+    border: 1px solid #ccc;
+    border-bottom-width: 4px;
+  }
+
+  textarea {
+    min-height: 40vh;
+    resize: vertical;
+  }
+
+  button {
+    float: right;
+    padding: 6px 20px;
+    font: inherit;
+    color: #8d8d8d;
+    cursor: pointer;
+    background-color: white;
+    border: 0;
+    border-bottom: solid 2px lime;
+  }
+
+  button:hover {
+    border-bottom-width: 3px;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '').trim();
+    const email = String(data.get('email') ?? '').trim();
+    const message = String(data.get('message') ?? '').trim();
+
+    const subject = `Message from ${name}`;
+    const body = `${message}\n\n--\n${name}\n${email}`;
+    window.location.href =
+      `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>

@@ -23,9 +23,15 @@ function start(): void {
   initClock(signal);
 
   if (document.getElementById('console')) {
-    initWindowControls();
-    initTerminal(signal);
+    const controls = initWindowControls(signal);
+    initTerminal(signal, controls.ensureOpen);
   }
 }
+
+document.addEventListener('astro:after-swap', () => {
+  try {
+    if (sessionStorage.getItem('intro')) document.getElementById('console')?.classList.add('seen');
+  } catch {}
+});
 
 document.addEventListener('astro:page-load', start);

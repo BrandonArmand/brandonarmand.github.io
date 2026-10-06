@@ -1,4 +1,3 @@
-export const INTRO_DELAY_MS = 2700;
 export const TYPE_DELAY_MS = 70;
 export const MAX_TYPE_WAIT_MS = 700;
 export const MAX_INPUT_LENGTH = 200;

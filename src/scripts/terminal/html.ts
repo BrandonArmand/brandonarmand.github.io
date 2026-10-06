@@ -22,7 +22,7 @@ export const line = (html: string, className = '') =>
 export const face = () => `<span class="my-info face">${FACE_HTML}</span>`;
 
 export const echoedCommand = (raw: string) =>
-  `<h3 class="commands display-4">${PROMPT_ARROW} ${escapeHtml(raw)}</h3>`;
+  `<h3 class="commands">${PROMPT_ARROW} ${escapeHtml(raw)}</h3>`;
 
 export const dirList = () =>
   DIRS.map(

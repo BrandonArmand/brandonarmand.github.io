@@ -9,6 +9,7 @@
   --sidebar-bg: #342e3d;
   --terminal-bg: #263a41;
   --terminal-chrome: #172327;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
 }
 
 *,

@@ -13,6 +13,8 @@ const RESTORE_MS = 460;
 const CLOSE_MS = 180;
 const REDUCED_MS = 120;
 const TILE_SQUASH_MS = 260;
+const PAGE_FOLD_MS = 300;
+const PAGE_UNFOLD_MS = 320;
 
 const FULL = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
 const PINCH = 'polygon(0 0, 100% 0, 74% 100%, 26% 100%)';
@@ -59,6 +61,7 @@ const fadeFrames = (from: number, to: number): Keyframe[] => [{ opacity: from },
 
 async function play(element: HTMLElement, keyframes: Keyframe[], duration: number, reduced: Keyframe[]): Promise<void> {
   const reducedMotion = prefersReducedMotion();
+  element.style.willChange = 'transform, opacity, clip-path';
   const animation = element.animate(reducedMotion ? reduced : keyframes, {
     duration: reducedMotion ? REDUCED_MS : duration,
     easing: 'ease-in-out',
@@ -66,6 +69,7 @@ async function play(element: HTMLElement, keyframes: Keyframe[], duration: numbe
   });
   await animation.finished;
   animation.cancel();
+  element.style.willChange = '';
 }
 
 function squashTile(tile: HTMLElement | null, delay: number): void {
@@ -88,11 +92,11 @@ export function initWindowControls(signal: AbortSignal): WindowControls | undefi
   let state: WindowState = 'open';
   let busy = false;
 
-  async function minimize(): Promise<void> {
+  async function minimize(duration = MINIMIZE_MS): Promise<void> {
     const tile = findTile(tileHref);
     const { dx, dy } = tile ? offsetToTile(windowElement, tile) : { dx: 0, dy: 160 };
-    squashTile(tile, MINIMIZE_MS - 120);
-    await play(windowElement, minimizeFrames(dx, dy), MINIMIZE_MS, fadeFrames(1, 0));
+    squashTile(tile, duration - 120);
+    await play(windowElement, minimizeFrames(dx, dy), duration, fadeFrames(1, 0));
     windowElement.hidden = true;
     state = 'minimized';
   }
@@ -112,13 +116,13 @@ export function initWindowControls(signal: AbortSignal): WindowControls | undefi
     state = 'closed';
   }
 
-  async function restore(): Promise<void> {
+  async function restore(duration = RESTORE_MS): Promise<void> {
     const tile = findTile(tileHref);
     windowElement.hidden = false;
     windowElement.classList.remove('zoomed');
     const { dx, dy } = tile ? offsetToTile(windowElement, tile) : { dx: 0, dy: 160 };
     squashTile(tile, 0);
-    await play(windowElement, restoreFrames(dx, dy), RESTORE_MS, fadeFrames(0, 1));
+    await play(windowElement, restoreFrames(dx, dy), duration, fadeFrames(0, 1));
     state = 'open';
   }
 
@@ -165,10 +169,12 @@ export function initWindowControls(signal: AbortSignal): WindowControls | undefi
 
   return {
     isOpen: () => state === 'open',
-    fold: onMinimize,
+    fold: exclusive(async () => {
+      if (state === 'open') await minimize(PAGE_FOLD_MS);
+    }),
     unfold: async () => {
       windowElement.style.opacity = '';
-      await restore();
+      await restore(PAGE_UNFOLD_MS);
     },
     async ensureOpen() {
       while (busy) await new Promise((resolve) => window.setTimeout(resolve, 40));

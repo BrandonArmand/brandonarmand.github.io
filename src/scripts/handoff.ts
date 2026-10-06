@@ -1,3 +1,4 @@
+import { prefetch } from 'astro:prefetch';
 import { navigate } from 'astro:transitions/client';
 import type { WindowControls } from './window-controls';
 
@@ -27,6 +28,7 @@ export function initHandoff(signal: AbortSignal, controls: WindowControls | unde
         event.preventDefault();
         leaving = true;
         pending = true;
+        prefetch(link.href, { ignoreSlowConnection: true });
         if (controls?.isOpen()) await controls.fold();
         void navigate(link.href);
       },

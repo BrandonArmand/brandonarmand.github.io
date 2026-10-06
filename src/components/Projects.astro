@@ -1,13 +1,18 @@
 ---
 import { getImage } from 'astro:assets';
+import { fetchRepoStats } from '../data/github';
 import { projects } from '../data/projects';
 
 const entries = await Promise.all(
-  projects.map(async (project) => ({
-    project,
-    thumb: await getImage({ src: project.image, format: 'webp', width: 140 }),
-    banner: await getImage({ src: project.image, format: 'webp', width: 1400 }),
-  }))
+  projects.map(async (project) => {
+    const live = project.repo ? await fetchRepoStats(project.repo) : {};
+    return {
+      project,
+      stats: project.stats?.map((stat) => ({ ...stat, value: live[stat.key] ?? stat.value })),
+      thumb: await getImage({ src: project.image, format: 'webp', width: 140 }),
+      banner: await getImage({ src: project.image, format: 'webp', width: 1400 }),
+    };
+  })
 );
 const [first] = projects;
 ---
@@ -41,7 +46,7 @@ const [first] = projects;
       </ul>
       <div class="project-previews">
         {
-          entries.map(({ project, banner }, index) => (
+          entries.map(({ project, banner, stats }, index) => (
             <article class="project-preview" data-preview={project.id} data-title={project.title} hidden={index !== 0}>
               <a class="preview-shot" href={project.liveUrl ?? project.repoUrl} target="_blank" rel="noopener">
                 <img src={banner.src} width={banner.attributes.width} height={banner.attributes.height} alt={project.imageAlt} />
@@ -52,9 +57,9 @@ const [first] = projects;
               </div>
               {project.description && <p class="preview-desc">{project.description}</p>}
               {
-                project.stats && (
+                stats && (
                   <ul class="preview-stats">
-                    {project.stats.map((stat) => (
+                    {stats.map((stat) => (
                       <li>
                         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={stat.icon} />
                         {stat.value} {stat.label}

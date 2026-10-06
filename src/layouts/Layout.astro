@@ -35,13 +35,14 @@ const { title, description } = Astro.props;
     <ClientRouter />
   </head>
   <body>
+    <a class="skip-link" href="#home">Skip to content</a>
     <div class="row">
       <Header />
       <div class="col-body" id="body">
         <div class="header-body-divider"></div>
         <div class="body-container">
           <StatusBar />
-          <main id="home">
+          <main id="home" tabindex="-1">
             <slot />
           </main>
           <Dock />

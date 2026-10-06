@@ -4,7 +4,10 @@ import taskApi from '../assets/task-api.jpeg';
 import textToSpeech from '../assets/text-to-speech.jpeg';
 import { GITHUB_URL } from '../config';
 
+export type StatKey = 'forks' | 'contributors' | 'stars';
+
 export interface ProjectStat {
+  key: StatKey;
   icon: string;
   value: number;
   label: string;
@@ -12,6 +15,7 @@ export interface ProjectStat {
 
 export interface Project {
   id: string;
+  repo?: string;
   title: string;
   stack: string[];
   repoUrl: string;
@@ -34,6 +38,7 @@ export const STAT_ICONS = {
 export const projects: Project[] = [
   {
     id: 'binari',
+    repo: 'Binari',
     title: 'Binari',
     stack: ['JavaScript', 'SCSS'],
     repoUrl: `${GITHUB_URL}/Binari`,
@@ -43,9 +48,9 @@ export const projects: Project[] = [
     description:
       'Interactive code editor with a live binary tree visual designed to teach new developers the fundamentals of data structures.',
     stats: [
-      { icon: STAT_ICONS.forks, value: 106, label: 'forks' },
-      { icon: STAT_ICONS.contributors, value: 26, label: 'contributors' },
-      { icon: STAT_ICONS.stars, value: 179, label: 'stars' },
+      { key: 'forks', icon: STAT_ICONS.forks, value: 106, label: 'forks' },
+      { key: 'contributors', icon: STAT_ICONS.contributors, value: 26, label: 'contributors' },
+      { key: 'stars', icon: STAT_ICONS.stars, value: 179, label: 'stars' },
     ],
     featured: true,
   },

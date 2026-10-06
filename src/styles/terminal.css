@@ -270,7 +270,7 @@
 }
 
 .hint {
-  color: grey;
+  color: #93a8b0;
 }
 
 .face {
@@ -312,7 +312,7 @@
 }
 
 #autofill-suggestion {
-  color: grey;
+  color: #93a8b0;
   white-space: pre;
 }
 

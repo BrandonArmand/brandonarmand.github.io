@@ -77,9 +77,11 @@ function squashTile(tile: HTMLElement | null, delay: number): void {
 }
 
 export function initWindowControls(signal: AbortSignal): WindowControls | undefined {
-  const windowElement = document.querySelector<HTMLElement>('[data-window]');
-  const toolbar = windowElement?.querySelector<HTMLElement>('.toolbar');
-  if (!windowElement || !toolbar) return undefined;
+  const found = document.querySelector<HTMLElement>('[data-window]');
+  const toolbar = found?.querySelector<HTMLElement>('.toolbar');
+  if (!found || !toolbar) return undefined;
+
+  const windowElement: HTMLElement = found;
 
   const tileHref = windowElement.dataset.tile ?? '/';
 

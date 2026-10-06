@@ -121,6 +121,8 @@
   border-radius: calc(var(--tile) / 4);
   transform-origin: bottom center;
   transition:
+    width 0.18s ease,
+    height 0.18s ease,
     transform 0.18s ease,
     box-shadow 0.18s ease;
 }
@@ -130,9 +132,11 @@
   height: 50%;
 }
 
-.dock-item:hover .dock-tile,
-.dock-item:focus-visible .dock-tile {
-  transform: translateY(calc(var(--tile) * -0.12)) scale(1.12);
+.dock-item:not([aria-current='page']):hover .dock-tile,
+.dock-item:not([aria-current='page']):focus-visible .dock-tile {
+  width: calc(var(--tile) * 1.12);
+  height: calc(var(--tile) * 1.12);
+  transform: translateY(calc(var(--tile) * -0.12));
 }
 
 .dock-item[aria-current='page'] .dock-tile {

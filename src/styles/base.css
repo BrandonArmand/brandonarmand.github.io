@@ -139,8 +139,10 @@ a.text-white:hover { color: var(--white); }
     transition-duration: 0.01ms !important;
   }
 
-  .dock-item:hover .dock-tile,
-  .dock-item:focus-visible .dock-tile {
+  .dock-item:not([aria-current='page']):hover .dock-tile,
+  .dock-item:not([aria-current='page']):focus-visible .dock-tile {
+    width: var(--tile);
+    height: var(--tile);
     transform: none;
   }
 }

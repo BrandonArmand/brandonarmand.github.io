@@ -12,18 +12,6 @@
   max-width: 100%;
 }
 
-@media (min-width: 1200px) {
-  .col-header {
-    flex-basis: 33.333333%;
-    max-width: 33.333333%;
-  }
-
-  .col-body {
-    flex-basis: 66.666667%;
-    max-width: 66.666667%;
-  }
-}
-
 #body {
   display: flex;
   flex-direction: row;
@@ -41,18 +29,7 @@
 }
 
 .header-body-divider {
-  height: 100%;
-  width: 40px;
-  background-image: url('../assets/backgrounds/wave-divider.svg');
-  background-size: 111%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-@media (max-width: 1199px) {
-  .header-body-divider {
-    display: none;
-  }
+  display: none;
 }
 
 #home {
@@ -62,6 +39,57 @@
   overflow-y: scroll;
   scroll-behavior: smooth;
   text-align: center;
+}
+
+@media (min-width: 1200px) {
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  .row {
+    flex-wrap: nowrap;
+    height: 100dvh;
+  }
+
+  .col-header {
+    flex: 0 0 clamp(360px, 30vw, 780px);
+    max-width: none;
+  }
+
+  .col-body {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+  }
+
+  #body {
+    background-size: auto 130%;
+  }
+
+  .header-body-divider {
+    display: block;
+    flex: 0 0 clamp(28px, 2.6vw, 56px);
+    height: 100%;
+    background-image: url('../assets/backgrounds/wave-divider.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .body-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100%;
+  }
+
+  #home {
+    flex: 1 1 0;
+    min-height: 0;
+    height: auto;
+    overflow-y: auto;
+  }
 }
 
 ::view-transition-old(root),

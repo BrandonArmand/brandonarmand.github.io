@@ -1,3 +1,15 @@
+:root {
+  --term-width: 750px;
+  --term-font: 22px;
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --term-width: clamp(750px, 50vw, 1400px);
+    --term-font: clamp(18px, calc(10px + 0.55vw + 0.45vh), 36px);
+  }
+}
+
 #about {
   min-height: 100%;
   display: flex;
@@ -8,7 +20,7 @@
 
 .toolbar {
   height: 26px;
-  max-width: 750px;
+  max-width: var(--term-width);
   width: 95%;
   margin-top: 10px;
   background-color: var(--terminal-chrome);
@@ -63,7 +75,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 95%;
-  max-width: 750px;
+  max-width: var(--term-width);
   max-height: 80vh;
   overflow-y: scroll;
   padding: 1rem;
@@ -80,7 +92,7 @@
 }
 
 .helloWorld {
-  font-size: 22px;
+  font-size: var(--term-font);
   overflow: hidden;
   white-space: nowrap;
   letter-spacing: 0.15em;
@@ -109,7 +121,7 @@
 
 .font {
   margin-bottom: auto;
-  font-size: 22px;
+  font-size: var(--term-font);
   letter-spacing: 0.15em;
   text-align: justify;
 }
@@ -213,7 +225,7 @@
 
 .commands {
   margin: 19px 0;
-  font-size: 22px;
+  font-size: var(--term-font);
   letter-spacing: 0.15em;
   color: white;
 }
@@ -229,7 +241,7 @@
 .blink {
   display: inline-flex;
   margin-bottom: 0;
-  font-size: 22px;
+  font-size: var(--term-font);
   letter-spacing: 0.4em;
   color: var(--terminal-bg);
   border-right: 0.15em solid var(--terminal-bg);
@@ -246,7 +258,7 @@
 
 #autofill-suggestion {
   display: inline-flex;
-  font-size: 22px;
+  font-size: var(--term-font);
   letter-spacing: 0.15em;
   color: grey;
   white-space: pre;

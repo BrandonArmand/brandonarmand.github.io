@@ -1,21 +1,33 @@
 import { navigate, type TransitionBeforePreparationEvent } from 'astro:transitions/client';
+import { serveOnce, takePreloaded } from './preload';
 import type { WindowControls } from './window-controls';
 
 let pending = false;
 let folding: Promise<void> | undefined;
 
 document.addEventListener('astro:before-preparation', (event) => {
+  const transition = event as TransitionBeforePreparationEvent;
   const hold = folding;
-  if (!hold) return;
   folding = undefined;
 
-  const transition = event as TransitionBeforePreparationEvent;
+  const target = transition.to;
   const load = transition.loader;
+
   transition.loader = async () => {
-    await Promise.all([load(), hold]);
+    const page = await takePreloaded(target);
+    const release = page ? serveOnce(target.href, page) : undefined;
+
+    try {
+      await Promise.all([load(), hold]);
+    } finally {
+      release?.();
+    }
+
+    if (page && transition.to.href === target.href && page.finalUrl !== target.href) {
+      transition.to = new URL(page.finalUrl);
+    }
   };
 });
-
 export function consumeHandoff(): boolean {
   const value = pending;
   pending = false;

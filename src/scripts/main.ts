@@ -2,6 +2,7 @@ import { navigate } from 'astro:transitions/client';
 import { ROUTES } from '../config';
 import { initClock } from './clock';
 import { consumeHandoff, hideIncomingWindow, initHandoff } from './handoff';
+import { preloadDockPages } from './preload';
 import { initProjects } from './projects';
 import { initScreens } from './screens';
 import { initTerminal } from './terminal';
@@ -27,6 +28,7 @@ function start(): void {
   const controls = initWindowControls(signal);
   initHandoff(signal, controls);
   initProjects(signal);
+  preloadDockPages();
 
   if (document.getElementById('console') && controls) initTerminal(signal, controls.ensureOpen);
 

@@ -1,5 +1,5 @@
 ---
-import { companies, duration } from '../data/history';
+import { duration, stints } from '../data/history';
 ---
 
 <div class="desk desk-history">
@@ -20,35 +20,41 @@ import { companies, duration } from '../data/history';
       </div>
       <ol class="timeline">
         {
-          companies.map((company) => (
-            <li class="company" style={`--bar: ${company.color}`}>
-              <div class="company-time">
-                <span class="time-num">{company.years}</span>
-                <span class="time-unit">{company.years === 1 ? 'year' : 'years'}</span>
+          stints.map((stint) => (
+            <li class="stint" style={`--bar: ${stint.colors.length > 1 ? `linear-gradient(to bottom, ${stint.colors.join(', ')})` : stint.colors[0]}`}>
+              <div class="stint-time">
+                <span class="time-num">{stint.years}</span>
+                <span class="time-unit">{stint.years === 1 ? 'year' : 'years'}</span>
               </div>
-              <div class="company-bar" aria-hidden="true"></div>
-              <div class="company-card">
-                <div class="company-head">
-                  <h3>{company.name}</h3>
-                  {
-                    company.badges.map((badge) => (
-                      <span class="badge" style={`background: ${badge.background}; border-color: ${badge.border}; color: ${badge.color}`}>
-                        {badge.label}
-                      </span>
-                    ))
-                  }
-                  <span class="company-total">{duration(company.years)} in total</span>
-                </div>
-                <ul class="role-list">
-                  {
-                    company.roles.map((role) => (
-                      <li class="role">
-                        <span class="role-title">{role.title}</span>
-                        <span class="role-length">{role.current ? 'current' : duration(role.years)}</span>
-                      </li>
-                    ))
-                  }
-                </ul>
+              <div class="stint-bar" aria-hidden="true"></div>
+              <div class="stint-cards">
+                {
+                  stint.companies.map((company) => (
+                    <div class="company-card">
+                      <div class="company-head">
+                        <h3>{company.name}</h3>
+                        {
+                          company.badges.map((badge) => (
+                            <span class="badge" style={`background: ${badge.background}; border-color: ${badge.border}; color: ${badge.color}`}>
+                              {badge.label}
+                            </span>
+                          ))
+                        }
+                        <span class="company-total">{duration(company.years)} in total</span>
+                      </div>
+                      <ul class="role-list">
+                        {
+                          company.roles.map((role) => (
+                            <li class="role">
+                              <span class="role-title">{role.title}</span>
+                              <span class="role-length">{role.current ? 'current' : duration(role.years)}</span>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  ))
+                }
               </div>
             </li>
           ))

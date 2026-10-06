@@ -34,7 +34,10 @@ const { title, description } = Astro.props;
     <Seo title={title} description={description} />
     <Preload />
     <Analytics />
-    <ClientRouter />
+    <script is:inline>
+      document.startViewTransition = undefined;
+    </script>
+    <ClientRouter fallback="swap" />
   </head>
   <body>
     <a class="skip-link" href="#home">Skip to content</a>

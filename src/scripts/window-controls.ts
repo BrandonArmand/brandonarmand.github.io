@@ -43,15 +43,15 @@ function minimizeFrames(dx: number, dy: number): Keyframe[] {
     { offset: 0, opacity: 1, transform: pose(0, 0, 0, 1, 1) },
     { offset: 0.16, opacity: 1, transform: pose(0, -5, 0, 0.97, 1.07) },
     { offset: 0.42, opacity: 1, transform: pose(dx * 0.3, dy * 0.3, -26, 0.74, 0.7) },
-    { offset: 0.78, opacity: 1, transform: pose(dx * 0.88, dy * 0.88, -52, 0.3, 0.52) },
-    { offset: 1, opacity: 0, transform: pose(dx, dy, -60, 0.08, 0.08) },
+    { offset: 0.78, opacity: 1, transform: pose(dx * 0.88, dy * 0.88, -52, 0.26, 0.2) },
+    { offset: 1, opacity: 0, transform: pose(dx, dy, -60, 0.08, 0.06) },
   ];
 }
 
 function restoreFrames(dx: number, dy: number): Keyframe[] {
   return [
-    { offset: 0, opacity: 0, transform: pose(dx, dy, -60, 0.08, 0.08) },
-    { offset: 0.22, opacity: 1, transform: pose(dx * 0.88, dy * 0.88, -52, 0.3, 0.52) },
+    { offset: 0, opacity: 0, transform: pose(dx, dy, -60, 0.08, 0.06) },
+    { offset: 0.22, opacity: 1, transform: pose(dx * 0.88, dy * 0.88, -52, 0.26, 0.2) },
     { offset: 0.58, opacity: 1, transform: pose(dx * 0.3, dy * 0.3, -26, 0.74, 0.7) },
     { offset: 0.84, opacity: 1, transform: pose(0, -4, 0, 1.02, 1.03) },
     { offset: 1, opacity: 1, transform: pose(0, 0, 0, 1, 1) },
@@ -74,12 +74,12 @@ async function play(element: HTMLElement, keyframes: Keyframe[], duration: numbe
 
 function squashTile(tile: HTMLElement | null, delay: number): void {
   if (!tile || prefersReducedMotion()) return;
+  const rest = { width: 'var(--tile)', height: 'var(--tile)' };
   tile.animate(
-    [{ transform: 'none' }, { transform: 'scale(1.22, 0.76)', offset: 0.4 }, { transform: 'none' }],
-    { duration: TILE_SQUASH_MS, delay, easing: 'ease-out', composite: 'add' }
+    [rest, { width: 'calc(var(--tile) * 1.22)', height: 'calc(var(--tile) * 0.76)', offset: 0.4 }, rest],
+    { duration: TILE_SQUASH_MS, delay, easing: 'ease-out' }
   );
 }
-
 export function initWindowControls(signal: AbortSignal): WindowControls | undefined {
   const found = document.querySelector<HTMLElement>('[data-window]');
   const toolbar = found?.querySelector<HTMLElement>('.toolbar');

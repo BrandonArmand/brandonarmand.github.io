@@ -10,10 +10,12 @@ const current = Astro.url.pathname.replace(/\/$/, '') || ROUTES.home;
     {
       pages.map((item) => (
         <a class="dock-item" href={item.href} data-page={item.href.startsWith('/') ? '' : undefined} style={`--tile-bg: ${item.color}`} aria-current={item.href === current ? 'page' : undefined}>
-          <span class="dock-tile">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d={item.icon} />
-            </svg>
+          <span class="dock-slot">
+            <span class="dock-tile">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d={item.icon} />
+              </svg>
+            </span>
           </span>
           <span class="dock-label">{item.name}</span>
         </a>
@@ -23,10 +25,12 @@ const current = Astro.url.pathname.replace(/\/$/, '') || ROUTES.home;
     {
       links.map((item) => (
         <a class="dock-item" href={item.href} style={`--tile-bg: ${item.color}`} target="_blank" rel="noopener">
-          <span class="dock-tile">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d={item.icon} />
-            </svg>
+          <span class="dock-slot">
+            <span class="dock-tile">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d={item.icon} />
+              </svg>
+            </span>
           </span>
           <span class="dock-label">{item.name}</span>
         </a>

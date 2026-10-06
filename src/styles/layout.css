@@ -62,7 +62,7 @@
   }
 
   .col-header {
-    flex: 0 0 clamp(360px, 30vw, 780px);
+    flex: 0 0 clamp(320px, 29vw, 740px);
     width: auto;
   }
 
@@ -78,7 +78,8 @@
 
   .header-body-divider {
     display: block;
-    flex: 0 0 clamp(28px, 2.6vw, 56px);
+    flex: 0 0 clamp(36px, 2.56vw, 61px);
+    margin-left: -1px;
     height: 100%;
     background-image: url('../assets/backgrounds/wave-divider.svg');
     background-size: 100% 100%;

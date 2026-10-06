@@ -1,18 +1,30 @@
 ---
 import space from '../assets/space.webp';
+import { LOCATION } from '../config';
 import SkillList from './SkillList.astro';
 ---
 
 <div class="col-header" id="header" transition:persist>
-  <div class="space-2" style={`background-image: url(${space.src})`}></div>
-  <h2 class="display-4" id="name">
-    <span class="text-green">B</span><span class="name-rest">randon</span>
-    <span class="text-orange">A</span><span class="name-rest">rmand</span>
-    <span class="text-blue">W</span><span class="name-rest">elsh</span>
-  </h2>
-  <div id="pic">
-    <h4 class="display-4 pic-tag">experienced</h4>
-    <h4 class="display-4 pic-title">Software Engineer</h4>
+  <div class="side-top">
+    <img class="side-space" src={space.src} width={space.width} height={space.height} alt="" />
+    <h1 id="name">
+      <span class="name-initial text-green">B</span>randon
+      <span class="name-initial text-orange">A</span>rmand
+      <span class="name-initial text-blue">W</span>elsh
+    </h1>
+    <p class="side-role">
+      <span class="role-text">Software Engineer<span class="role-badge">7yrs</span></span>
+    </p>
+    <p class="side-meta">{LOCATION} &middot; DraftKings &middot; ex-Meta</p>
   </div>
-  <SkillList />
+  <div class="tray">
+    <span class="tray-label">~/skills</span>
+    <SkillList />
+  </div>
+  <div class="side-foot">
+    <button class="next-screen" type="button" data-next-screen>
+      <span>Terminal</span>
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+    </button>
+  </div>
 </div>

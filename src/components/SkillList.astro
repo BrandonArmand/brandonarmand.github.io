@@ -2,18 +2,18 @@
 import { skills } from '../data/skills';
 ---
 
-<div id="skills">
+<ul id="skills" aria-label="Skills">
   {
-    skills.map((skill) =>
-      skill.href ? (
-        <a class="skill-item" href={skill.href} target="_blank" rel="noopener">
-          <h5 class={`box skill ${skill.tier}`}>{skill.name}</h5>
-        </a>
-      ) : (
-        <div class="skill-item">
-          <h5 class={`box skill ${skill.tier}`}>{skill.name}</h5>
-        </div>
-      )
-    )
+    skills.map((skill) => (
+      <li class={`skill ${skill.tier}`}>
+        {skill.href ? (
+          <a class="skill-text" href={skill.href} target="_blank" rel="noopener">
+            {skill.name}
+          </a>
+        ) : (
+          <span class="skill-text">{skill.name}</span>
+        )}
+      </li>
+    ))
   }
-</div>
+</ul>

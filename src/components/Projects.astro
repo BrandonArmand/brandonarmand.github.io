@@ -56,7 +56,7 @@ const [first] = projects;
               </a>
               <div class="preview-head">
                 <h2>{project.title}</h2>
-                <span class="preview-tag">{project.label}</span>
+                {project.labels.map((label) => <span class="preview-tag">{label}</span>)}
                 <span class="preview-year">{project.year}</span>
               </div>
               {project.description && <p class="preview-desc">{project.description}</p>}

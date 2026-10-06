@@ -21,7 +21,7 @@ export interface Project {
   repo?: string;
   title: string;
   year: number;
-  label: ProjectLabel;
+  labels: ProjectLabel[];
   stack: string[];
   repoUrl: string;
   liveUrl?: string;
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     repo: 'Binari',
     title: 'Binari',
     year: 2019,
-    label: 'Featured',
+    labels: ['Featured', 'Archived'],
     stack: ['JavaScript', 'SCSS'],
     repoUrl: `${GITHUB_URL}/Binari`,
     liveUrl: 'https://binari.dev',
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     id: 'portfolio',
     title: 'Portfolio',
     year: 2017,
-    label: 'Active',
+    labels: ['Active'],
     stack: ['TypeScript', 'Astro'],
     repoUrl: `${GITHUB_URL}/brandonarmand.github.io`,
     liveUrl: 'https://brandonarmand.com',
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     id: 'mark-it-off',
     title: 'Mark it Off',
     year: 2017,
-    label: 'Archived',
+    labels: ['Archived'],
     stack: ['Ruby on Rails'],
     repoUrl: `${GITHUB_URL}/to-do-list`,
     image: markItOff,
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     id: 'text-to-speech',
     title: 'Text-to-Speech-to-Text CLI',
     year: 2018,
-    label: 'Archived',
+    labels: ['Archived'],
     stack: ['Python'],
     repoUrl: `${GITHUB_URL}/Text-to-Speech-to-Text#text-to-speech-with-python`,
     image: textToSpeech,
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     id: 'task-api',
     title: 'Task-Management API',
     year: 2017,
-    label: 'Archived',
+    labels: ['Archived'],
     stack: ['Ruby on Rails'],
     repoUrl: `${GITHUB_URL}/To-do-API#task-managmenet-api`,
     image: taskApi,

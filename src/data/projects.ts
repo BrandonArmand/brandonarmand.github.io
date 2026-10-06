@@ -69,6 +69,8 @@ export const projects: Project[] = [
     liveUrl: 'https://brandonarmand.com',
     image: portfolio,
     imageAlt: 'This portfolio: a desktop-style site with a terminal window and a dock',
+    description:
+      'A desktop-style portfolio built with Astro and TypeScript, with a working terminal, a dock for navigation, and windows that fold into it.',
   },
   {
     id: 'mark-it-off',
@@ -79,6 +81,8 @@ export const projects: Project[] = [
     repoUrl: `${GITHUB_URL}/to-do-list`,
     image: markItOff,
     imageAlt: 'Mark it Off to-do list app',
+    description:
+      'Do you procrastinate? Do you occasionally forget the most basic responsibilities? Mark-it-Off is for you (if I maintained it)! This application is meant to organize your to-do lists by forcing you to complete each task within seven days of creation.',
   },
   {
     id: 'text-to-speech',
@@ -89,6 +93,8 @@ export const projects: Project[] = [
     repoUrl: `${GITHUB_URL}/Text-to-Speech-to-Text#text-to-speech-with-python`,
     image: textToSpeech,
     imageAlt: 'Text-to-Speech-to-Text command line tool',
+    description:
+      'An occasionally maintained side project that includes many different folders containing speech-recognition, text-to-speech, and speech-to-text packages.',
   },
   {
     id: 'task-api',
@@ -99,5 +105,7 @@ export const projects: Project[] = [
     repoUrl: `${GITHUB_URL}/To-do-API#task-managmenet-api`,
     image: taskApi,
     imageAlt: 'Task-Management API',
+    description:
+      'An API for task creation, and organization.',
   },
 ];

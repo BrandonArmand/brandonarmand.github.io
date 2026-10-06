@@ -16,9 +16,7 @@ const TILE_SQUASH_MS = 260;
 const PAGE_FOLD_MS = 300;
 const PAGE_UNFOLD_MS = 320;
 
-const FULL = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-const PINCH = 'polygon(0 0, 100% 0, 74% 100%, 26% 100%)';
-const FUNNEL = 'polygon(8% 0, 92% 0, 58% 100%, 42% 100%)';
+const PERSPECTIVE = 'perspective(900px)';
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -37,33 +35,33 @@ function offsetToTile(windowElement: HTMLElement, tile: HTMLElement): { dx: numb
   };
 }
 
+const pose = (x: number, y: number, tilt: number, scaleX: number, scaleY: number): string =>
+  `translate(${x}px, ${y}px) ${PERSPECTIVE} rotateX(${tilt}deg) scale(${scaleX}, ${scaleY})`;
+
 function minimizeFrames(dx: number, dy: number): Keyframe[] {
   return [
-    { offset: 0, opacity: 1, transform: 'translate(0, 0) scale(1, 1)', clipPath: FULL },
-    { offset: 0.16, opacity: 1, transform: 'translate(0, -5px) scale(0.97, 1.07)', clipPath: FULL },
-    { offset: 0.42, opacity: 1, transform: `translate(${dx * 0.3}px, ${dy * 0.3}px) scale(0.74, 0.7)`, clipPath: PINCH },
-    { offset: 0.78, opacity: 1, transform: `translate(${dx * 0.88}px, ${dy * 0.88}px) scale(0.3, 0.52)`, clipPath: FUNNEL },
-    { offset: 1, opacity: 0, transform: `translate(${dx}px, ${dy}px) scale(0.08)`, clipPath: FUNNEL },
+    { offset: 0, opacity: 1, transform: pose(0, 0, 0, 1, 1) },
+    { offset: 0.16, opacity: 1, transform: pose(0, -5, 0, 0.97, 1.07) },
+    { offset: 0.42, opacity: 1, transform: pose(dx * 0.3, dy * 0.3, -26, 0.74, 0.7) },
+    { offset: 0.78, opacity: 1, transform: pose(dx * 0.88, dy * 0.88, -52, 0.3, 0.52) },
+    { offset: 1, opacity: 0, transform: pose(dx, dy, -60, 0.08, 0.08) },
   ];
 }
 
 function restoreFrames(dx: number, dy: number): Keyframe[] {
   return [
-    { offset: 0, opacity: 0, transform: `translate(${dx}px, ${dy}px) scale(0.08)`, clipPath: FUNNEL },
-    { offset: 0.22, opacity: 1, transform: `translate(${dx * 0.88}px, ${dy * 0.88}px) scale(0.3, 0.52)`, clipPath: FUNNEL },
-    { offset: 0.58, opacity: 1, transform: `translate(${dx * 0.3}px, ${dy * 0.3}px) scale(0.74, 0.7)`, clipPath: PINCH },
-    { offset: 0.84, opacity: 1, transform: 'translate(0, -4px) scale(1.02, 1.03)', clipPath: FULL },
-    { offset: 1, opacity: 1, transform: 'translate(0, 0) scale(1, 1)', clipPath: FULL },
+    { offset: 0, opacity: 0, transform: pose(dx, dy, -60, 0.08, 0.08) },
+    { offset: 0.22, opacity: 1, transform: pose(dx * 0.88, dy * 0.88, -52, 0.3, 0.52) },
+    { offset: 0.58, opacity: 1, transform: pose(dx * 0.3, dy * 0.3, -26, 0.74, 0.7) },
+    { offset: 0.84, opacity: 1, transform: pose(0, -4, 0, 1.02, 1.03) },
+    { offset: 1, opacity: 1, transform: pose(0, 0, 0, 1, 1) },
   ];
 }
-
 const fadeFrames = (from: number, to: number): Keyframe[] => [{ opacity: from }, { opacity: to }];
 
 async function play(element: HTMLElement, keyframes: Keyframe[], duration: number, reduced: Keyframe[]): Promise<void> {
   const reducedMotion = prefersReducedMotion();
-  element.style.willChange = 'transform, opacity, clip-path';
-  element.classList.add('is-animating');
-  element.parentElement?.classList.add('is-animating');
+  element.style.willChange = 'transform, opacity';
   const animation = element.animate(reducedMotion ? reduced : keyframes, {
     duration: reducedMotion ? REDUCED_MS : duration,
     easing: 'ease-in-out',
@@ -72,8 +70,6 @@ async function play(element: HTMLElement, keyframes: Keyframe[], duration: numbe
   await animation.finished;
   animation.cancel();
   element.style.willChange = '';
-  element.classList.remove('is-animating');
-  element.parentElement?.classList.remove('is-animating');
 }
 
 function squashTile(tile: HTMLElement | null, delay: number): void {

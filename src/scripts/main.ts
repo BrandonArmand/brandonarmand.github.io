@@ -1,6 +1,8 @@
 import { navigate } from 'astro:transitions/client';
 import { ROUTES } from '../config';
 import { initClock } from './clock';
+import { consumeHandoff, hideIncomingWindow, initHandoff } from './handoff';
+import { initProjects } from './projects';
 import { initScreens } from './screens';
 import { initTerminal } from './terminal';
 import { initWindowControls } from './window-controls';
@@ -22,13 +24,17 @@ function start(): void {
   initScreens(signal);
   initClock(signal);
 
-  if (document.getElementById('console')) {
-    const controls = initWindowControls(signal);
-    initTerminal(signal, controls.ensureOpen);
-  }
+  const controls = initWindowControls(signal);
+  initHandoff(signal, controls);
+  initProjects(signal);
+
+  if (document.getElementById('console') && controls) initTerminal(signal, controls.ensureOpen);
+
+  if (consumeHandoff()) void controls?.unfold();
 }
 
 document.addEventListener('astro:after-swap', () => {
+  hideIncomingWindow();
   try {
     if (sessionStorage.getItem('intro')) document.getElementById('console')?.classList.add('seen');
   } catch {}

@@ -77,6 +77,8 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
     signal,
   });
 
+  terminal.closest('[data-window]')?.addEventListener('window-closed', output.clear, { signal });
+
   try {
     if (sessionStorage.getItem('intro')) terminal.classList.add('seen');
     else sessionStorage.setItem('intro', '1');

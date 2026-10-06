@@ -1,10 +1,11 @@
-import { ROUTES } from '../config';
-import { requireElement } from './dom';
 
 type WindowState = 'open' | 'minimized' | 'closed';
 
 export interface WindowControls {
   ensureOpen: () => Promise<void>;
+  fold: () => Promise<void>;
+  unfold: () => Promise<void>;
+  isOpen: () => boolean;
 }
 
 const MINIMIZE_MS = 520;
@@ -21,8 +22,8 @@ function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-function findTile(): HTMLElement | null {
-  return document.querySelector<HTMLElement>(`.dock-item[href="${ROUTES.home}"] .dock-tile`);
+function findTile(href: string): HTMLElement | null {
+  return document.querySelector<HTMLElement>(`.dock-item[href="${href}"] .dock-tile`);
 }
 
 function offsetToTile(windowElement: HTMLElement, tile: HTMLElement): { dx: number; dy: number } {
@@ -75,16 +76,18 @@ function squashTile(tile: HTMLElement | null, delay: number): void {
   );
 }
 
-export function initWindowControls(signal: AbortSignal): WindowControls {
-  const windowElement = requireElement('term-window');
-  const toolbar = requireElement('toolbar');
-  const stack = requireElement('stack');
+export function initWindowControls(signal: AbortSignal): WindowControls | undefined {
+  const windowElement = document.querySelector<HTMLElement>('[data-window]');
+  const toolbar = windowElement?.querySelector<HTMLElement>('.toolbar');
+  if (!windowElement || !toolbar) return undefined;
+
+  const tileHref = windowElement.dataset.tile ?? '/';
 
   let state: WindowState = 'open';
   let busy = false;
 
   async function minimize(): Promise<void> {
-    const tile = findTile();
+    const tile = findTile(tileHref);
     const { dx, dy } = tile ? offsetToTile(windowElement, tile) : { dx: 0, dy: 160 };
     squashTile(tile, MINIMIZE_MS - 120);
     await play(windowElement, minimizeFrames(dx, dy), MINIMIZE_MS, fadeFrames(1, 0));
@@ -103,12 +106,12 @@ export function initWindowControls(signal: AbortSignal): WindowControls {
       fadeFrames(1, 0)
     );
     windowElement.hidden = true;
-    stack.innerHTML = '';
+    windowElement.dispatchEvent(new CustomEvent('window-closed'));
     state = 'closed';
   }
 
   async function restore(): Promise<void> {
-    const tile = findTile();
+    const tile = findTile(tileHref);
     windowElement.hidden = false;
     windowElement.classList.remove('zoomed');
     const { dx, dy } = tile ? offsetToTile(windowElement, tile) : { dx: 0, dy: 160 };
@@ -145,7 +148,7 @@ export function initWindowControls(signal: AbortSignal): WindowControls {
   toolbar.querySelector('.red')?.addEventListener('click', onClose, { signal });
   toolbar.querySelector('.green')?.addEventListener('click', () => windowElement.classList.toggle('zoomed'), { signal });
 
-  findTile()
+  findTile(tileHref)
     ?.closest('a')
     ?.addEventListener(
       'click',
@@ -159,6 +162,12 @@ export function initWindowControls(signal: AbortSignal): WindowControls {
     );
 
   return {
+    isOpen: () => state === 'open',
+    fold: onMinimize,
+    unfold: async () => {
+      windowElement.style.opacity = '';
+      await restore();
+    },
     async ensureOpen() {
       while (busy) await new Promise((resolve) => window.setTimeout(resolve, 40));
       await onRestore();

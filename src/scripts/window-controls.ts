@@ -75,7 +75,7 @@ async function play(element: HTMLElement, keyframes: Keyframe[], duration: numbe
 function squashTile(tile: HTMLElement | null, delay: number): void {
   if (!tile || prefersReducedMotion()) return;
   tile.animate(
-    [{ transform: 'none' }, { transform: 'scale(1.22, 0.76)', transformOrigin: 'bottom center', offset: 0.4 }, { transform: 'none' }],
+    [{ transform: 'none' }, { transform: 'scale(1.22, 0.76)', offset: 0.4 }, { transform: 'none' }],
     { duration: TILE_SQUASH_MS, delay, easing: 'ease-out', composite: 'add' }
   );
 }

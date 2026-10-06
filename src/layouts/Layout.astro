@@ -4,14 +4,15 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../styles/base.css';
 import '../styles/layout.css';
 import '../styles/sidebar.css';
-import '../styles/nav.css';
+import '../styles/chrome.css';
 import '../styles/terminal.css';
 import '../styles/projects.css';
 import Analytics from '../components/Analytics.astro';
+import Dock from '../components/Dock.astro';
 import Header from '../components/Header.astro';
-import Nav from '../components/Nav.astro';
 import Preload from '../components/Preload.astro';
 import Seo from '../components/Seo.astro';
+import StatusBar from '../components/StatusBar.astro';
 
 interface Props {
   title: string;
@@ -37,13 +38,15 @@ const { title, description } = Astro.props;
       <div class="col-body" id="body">
         <div class="header-body-divider"></div>
         <div class="body-container">
-          <Nav />
+          <StatusBar />
           <main id="home">
             <slot />
           </main>
+          <Dock />
         </div>
       </div>
     </div>
+    <div class="screen-dots" aria-hidden="true"><span></span><span></span></div>
   </body>
 </html>
 

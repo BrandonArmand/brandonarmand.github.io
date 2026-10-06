@@ -3,6 +3,10 @@ export const AUTHOR = 'Brandon Armand Welsh';
 export const DEFAULT_DESCRIPTION = 'Software Engineer with 5+ years of professional experience, formerly at Meta.';
 export const SOCIAL_TITLE = 'My Work as a Software Engineer';
 
+export const LOCATION = 'New York City';
+export const LOCATION_SHORT = 'NYC';
+export const TIMEZONE = 'America/New_York';
+
 export const ROUTES = {
   home: '/',
   projects: '/projects',

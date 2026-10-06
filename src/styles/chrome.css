@@ -1,0 +1,238 @@
+.status-bar {
+  --pill-h: 38px;
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 14px 0;
+  font-size: 14.5px;
+  color: #1c1c1c;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--pill-h);
+  padding: 0 14px;
+  background: #f4f4f1;
+  border: 2px solid #111;
+  border-radius: calc(var(--pill-h) / 2);
+  box-shadow: -3px 3px 0 #111;
+}
+
+.pill strong {
+  font-weight: 700;
+}
+
+.pill-slash {
+  opacity: 0.45;
+}
+
+.pill-mono,
+.pill-place {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.93em;
+}
+
+.pill-place {
+  gap: 8px;
+  padding-right: 5px;
+}
+
+.pill-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-clock {
+  padding: 3px 11px;
+  color: #f5f5f5;
+  background: var(--sidebar-bg);
+  border-radius: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.location-long {
+  display: none;
+}
+
+.dock-wrap {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 16px;
+}
+
+.dock {
+  --tile: 44px;
+  --dock-gap: 6px;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--dock-gap);
+  padding: calc(var(--tile) * 0.32) calc(var(--tile) * 0.27) calc(var(--tile) * 0.18);
+  background: var(--sidebar-bg);
+  border: 3px solid #111;
+  border-radius: calc(var(--tile) * 0.45);
+  box-shadow: -4px 4px 0 #111;
+}
+
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--tile) * 0.16);
+  color: #e6e1ee;
+  font-size: calc(var(--tile) * 0.25);
+  text-decoration: none;
+}
+
+.dock-item:hover {
+  color: #e6e1ee;
+  text-decoration: none;
+}
+
+.dock-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tile);
+  height: var(--tile);
+  color: #111;
+  background: var(--tile-bg);
+  border: 2px solid #111;
+  border-radius: calc(var(--tile) / 4);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.dock-tile svg {
+  width: 50%;
+  height: 50%;
+}
+
+.dock-item:hover .dock-tile,
+.dock-item:focus-visible .dock-tile {
+  transform: translateY(calc(var(--tile) * -0.12)) scale(1.12);
+}
+
+.dock-item[aria-current='page'] .dock-tile {
+  transform: translateY(calc(var(--tile) * -0.2));
+  box-shadow: -3px 3px 0 #000;
+}
+
+.dock-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.2;
+}
+
+.dock-item[aria-current='page'] .dock-label {
+  color: #fff;
+  font-weight: 600;
+}
+
+.dock-item[aria-current='page'] .dock-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+
+.dock-sep {
+  align-self: stretch;
+  width: 2px;
+  margin: 0 4px calc(var(--tile) * 0.45);
+  background: #5b5469;
+}
+
+.screen-dots {
+  position: fixed;
+  right: 5px;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.screen-dots span {
+  width: 7px;
+  height: 7px;
+  background: rgba(51, 51, 51, 0.35);
+  border-radius: 50%;
+}
+
+.screen-dots span.active {
+  background: var(--orange);
+}
+
+@media (min-width: 1200px) {
+  .status-bar {
+    --pill-h: clamp(36px, calc(2px + 4.2vh), 60px);
+    gap: 12px;
+    padding: clamp(14px, 2.2vh, 26px) clamp(20px, 2.2vw, 48px) 0 clamp(20px, 2vw, 40px);
+    font-size: calc(var(--pill-h) * 0.375);
+  }
+
+  .pill {
+    gap: 10px;
+    padding: 0 16px;
+    box-shadow: -3px 3px 0 #111;
+  }
+
+  .pill-place {
+    gap: 10px;
+    padding-right: 6px;
+  }
+
+  .pill-clock {
+    padding: 3px 12px;
+    border-radius: 14px;
+  }
+
+  .location-long {
+    display: inline;
+  }
+
+  .location-short {
+    display: none;
+  }
+
+  .dock-wrap {
+    padding: 14px 0 clamp(14px, 2vh, 24px);
+  }
+
+  .dock {
+    --tile: clamp(52px, calc(4px + 6.7vh), 96px);
+    --dock-gap: calc(var(--tile) * 0.25);
+    padding: calc(var(--tile) * 0.31) calc(var(--tile) * 0.375) calc(var(--tile) * 0.19);
+    border-radius: calc(var(--tile) * 0.4);
+    box-shadow: -6px 6px 0 #111;
+  }
+
+  .dock-sep {
+    margin-bottom: calc(var(--tile) * 0.375);
+  }
+
+  .screen-dots {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock-tile {
+    transition: none;
+  }
+}

@@ -11,7 +11,7 @@
 }
 
 #about {
-  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +19,7 @@
 }
 
 .toolbar {
+  flex: 0 0 auto;
   height: 26px;
   max-width: var(--term-width);
   width: 95%;
@@ -35,7 +36,7 @@
 .toolbar.minimized {
   width: 75px;
   margin-left: 80%;
-  margin-top: 80vh;
+  margin-top: 55vh;
   border-radius: 50px;
   transition-duration: 0.4s;
 }
@@ -76,7 +77,8 @@
   align-items: flex-start;
   width: 95%;
   max-width: var(--term-width);
-  max-height: 80vh;
+  min-height: 0;
+  flex: 0 1 auto;
   overflow-y: scroll;
   padding: 1rem;
   color: white;

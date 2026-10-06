@@ -1,21 +1,24 @@
 .row {
-  display: flex;
-  flex-wrap: wrap;
-  height: 100%;
+  display: block;
+  height: 100dvh;
   width: 100%;
   margin: 0;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 }
 
 .col-header,
 .col-body {
-  flex: 0 0 100%;
-  max-width: 100%;
+  display: block;
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 #body {
   display: flex;
   flex-direction: row;
-  height: 100%;
   padding: 0;
   background-color: var(--page-bg);
   background-image: url('../assets/backgrounds/blob.svg');
@@ -24,19 +27,24 @@
   background-position: center;
 }
 
-.body-container {
-  width: 100%;
-}
-
 .header-body-divider {
   display: none;
 }
 
+.body-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+}
+
 #home {
-  height: 93%;
+  flex: 1 1 0;
+  min-height: 0;
   width: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
   text-align: center;
 }
@@ -48,19 +56,20 @@
   }
 
   .row {
-    flex-wrap: nowrap;
-    height: 100dvh;
+    display: flex;
+    overflow: hidden;
+    scroll-snap-type: none;
   }
 
   .col-header {
     flex: 0 0 clamp(360px, 30vw, 780px);
-    max-width: none;
+    width: auto;
   }
 
   .col-body {
     flex: 1 1 0;
     min-width: 0;
-    max-width: none;
+    width: auto;
   }
 
   #body {
@@ -75,23 +84,7 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
-
-  .body-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 0;
-    min-width: 0;
-    height: 100%;
-  }
-
-  #home {
-    flex: 1 1 0;
-    min-height: 0;
-    height: auto;
-    overflow-y: auto;
-  }
 }
-
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

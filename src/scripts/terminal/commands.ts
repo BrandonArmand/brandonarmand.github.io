@@ -67,6 +67,9 @@ export function createCommands({ output, historyEntries }: CommandContext): Reco
         case 'projects':
           void navigate(ROUTES.projects);
           break;
+        case 'history':
+          void navigate(ROUTES.history);
+          break;
         case 'about':
           print(line("You're already here!"));
           break;

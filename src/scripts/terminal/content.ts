@@ -6,6 +6,7 @@ export const PROMPT_ARROW = '<span class="prompt-arrow">&gt;</span>';
 
 export const DIRS = [
   { name: 'projects', colorClass: 'text-orange' },
+  { name: 'history', colorClass: 'text-pink' },
   { name: 'about', colorClass: 'text-blue' },
   { name: 'contact', colorClass: 'text-green' },
 ];

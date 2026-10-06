@@ -71,8 +71,8 @@
 }
 
 .dock {
-  --tile: 44px;
-  --dock-gap: 6px;
+  --tile: clamp(34px, 11.4vw, 44px);
+  --dock-gap: clamp(3px, 1.5vw, 6px);
   display: flex;
   align-items: flex-end;
   gap: var(--dock-gap);

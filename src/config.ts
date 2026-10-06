@@ -11,6 +11,7 @@ export const TIMEZONE = 'America/New_York';
 export const ROUTES = {
   home: '/',
   projects: '/projects',
+  history: '/history',
 };
 
 export const EMAIL ='contact@brandonarmand.com';

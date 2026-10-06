@@ -10,6 +10,7 @@ export interface DockItem {
 
 const ICONS = {
   terminal: 'M4 17l6-6-6-6M12 19h8',
+  history: 'M12 8v4l2 2M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5',
   folder: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
   mail: 'M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 7l9 6 9-6',
   linkedin: 'M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0M3 7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z',
@@ -20,6 +21,7 @@ const ICONS = {
 export const pages: DockItem[] = [
   { name: 'About', href: ROUTES.home, color: '#b0e6b8', icon: ICONS.terminal },
   { name: 'Projects', href: ROUTES.projects, color: '#bedbf3', icon: ICONS.folder },
+  { name: 'History', href: ROUTES.history, color: '#cfc9ff', icon: ICONS.history },
   { name: 'Email', href: MAILTO, color: '#f2918d', icon: ICONS.mail },
 ];
 

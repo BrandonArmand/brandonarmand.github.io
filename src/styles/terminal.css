@@ -349,6 +349,11 @@
 }
 
 @media (min-width: 1200px) {
+  .desk-projects,
+  .desk-history {
+    align-items: stretch;
+  }
+
   .desk {
     padding: clamp(12px, 1.8vh, 22px) clamp(20px, 2.2vw, 48px) 0 clamp(20px, 2vw, 40px);
   }

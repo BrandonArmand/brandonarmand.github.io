@@ -68,7 +68,6 @@
 }
 
 .project-row {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -107,27 +106,30 @@
 .project-row-text {
   flex: 1;
   min-width: 0;
-  padding-right: 56px;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
+.project-row-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 .project-year {
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  padding: 1px 8px;
+  flex: 0 0 auto;
+  padding: 0 5px;
   color: #111;
   font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.5;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.55;
   background: var(--blue);
-  border: 2px solid #111;
+  border: 1.5px solid #111;
   border-radius: 999px;
-  box-shadow: -2px 2px 0 #111;
-  transform: translateY(-50%);
+  box-shadow: -1.5px 1.5px 0 #111;
 }
 
 .project-row-title {
@@ -139,6 +141,10 @@
 .project-row-stack {
   color: #555;
   font-size: 13px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-row[aria-pressed='true'] .project-row-stack {
@@ -314,7 +320,7 @@
   }
 
   .project-list {
-    flex: 0 0 clamp(320px, 36%, 420px);
+    flex: 0 0 clamp(270px, 30%, 380px);
     flex-direction: column;
     padding: 12px;
     overflow-x: hidden;

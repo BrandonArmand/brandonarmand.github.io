@@ -1,3 +1,11 @@
+.window-slot {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .files-window {
   display: flex;
   flex-direction: column;
@@ -13,7 +21,6 @@
   background: #f4f4f1;
   border: 3px solid #111;
   border-radius: 6px;
-  box-shadow: -4px 4px 0 #111;
 }
 
 .files-window .toolbar {
@@ -274,7 +281,6 @@
     max-width: clamp(900px, 80vw, 1500px);
     border-width: 4px;
     border-radius: 8px;
-    box-shadow: -6px 6px 0 #111;
   }
 
   .files-window.zoomed {

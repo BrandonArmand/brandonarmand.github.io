@@ -6,6 +6,11 @@
   padding: 14px 14px 0;
 }
 
+.term-slot,
+.window-slot {
+  filter: drop-shadow(-4px 4px 0 #111);
+}
+
 .term-slot {
   flex: 1;
   min-width: 0;
@@ -30,7 +35,6 @@
   background: var(--terminal-bg);
   border: 3px solid var(--terminal-chrome);
   border-radius: 6px;
-  box-shadow: -4px 4px 0 #111;
 }
 
 .toolbar {
@@ -349,6 +353,11 @@
 }
 
 @media (min-width: 1200px) {
+  .term-slot,
+  .window-slot {
+    filter: drop-shadow(-6px 6px 0 #111);
+  }
+
   .desk-projects,
   .desk-history {
     align-items: stretch;
@@ -365,7 +374,6 @@
     font-size: clamp(15.5px, min(1.7vh, 1.05vw), 22px);
     border-width: 4px;
     border-radius: 8px;
-    box-shadow: -6px 6px 0 #111;
   }
 
   .term-window.zoomed {

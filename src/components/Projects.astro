@@ -18,7 +18,7 @@ const [first] = projects;
 ---
 
 <div class="desk desk-projects">
-  <section class="files-window" id="project-window" data-window data-tile="/projects" aria-label="Projects">
+  <div class="window-slot"><section class="files-window" id="project-window" data-window data-tile="/projects" aria-label="Projects">
     <div class="toolbar" id="toolbar">
       <button class="red" type="button" aria-label="Close window"></button>
       <button class="yellow" type="button" aria-label="Minimize window to the dock"></button>
@@ -84,4 +84,5 @@ const [first] = projects;
       <span id="selected-project">{first.title} selected</span>
     </div>
   </section>
+  </div>
 </div>

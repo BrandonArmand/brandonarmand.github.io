@@ -1,5 +1,6 @@
 import binariBanner from '../assets/binari.png';
 import markItOff from '../assets/mark-it-off.png';
+import portfolio from '../assets/portfolio.png';
 import taskApi from '../assets/task-api.jpeg';
 import textToSpeech from '../assets/text-to-speech.jpeg';
 import { GITHUB_URL } from '../config';
@@ -13,10 +14,14 @@ export interface ProjectStat {
   label: string;
 }
 
+export type ProjectLabel = 'Featured' | 'Active' | 'Archived';
+
 export interface Project {
   id: string;
   repo?: string;
   title: string;
+  year: number;
+  label: ProjectLabel;
   stack: string[];
   repoUrl: string;
   liveUrl?: string;
@@ -24,7 +29,6 @@ export interface Project {
   imageAlt: string;
   description?: string;
   stats?: ProjectStat[];
-  featured?: boolean;
 }
 
 export const STAT_ICONS = {
@@ -40,6 +44,8 @@ export const projects: Project[] = [
     id: 'binari',
     repo: 'Binari',
     title: 'Binari',
+    year: 2019,
+    label: 'Featured',
     stack: ['JavaScript', 'SCSS'],
     repoUrl: `${GITHUB_URL}/Binari`,
     liveUrl: 'https://binari.dev',
@@ -52,11 +58,23 @@ export const projects: Project[] = [
       { key: 'contributors', icon: STAT_ICONS.contributors, value: 26, label: 'contributors' },
       { key: 'stars', icon: STAT_ICONS.stars, value: 179, label: 'stars' },
     ],
-    featured: true,
+  },
+  {
+    id: 'portfolio',
+    title: 'Portfolio',
+    year: 2017,
+    label: 'Active',
+    stack: ['TypeScript', 'Astro'],
+    repoUrl: `${GITHUB_URL}/brandonarmand.github.io`,
+    liveUrl: 'https://brandonarmand.com',
+    image: portfolio,
+    imageAlt: 'This portfolio: a desktop-style site with a terminal window and a dock',
   },
   {
     id: 'mark-it-off',
     title: 'Mark it Off',
+    year: 2017,
+    label: 'Archived',
     stack: ['Ruby on Rails'],
     repoUrl: `${GITHUB_URL}/to-do-list`,
     image: markItOff,
@@ -65,6 +83,8 @@ export const projects: Project[] = [
   {
     id: 'text-to-speech',
     title: 'Text-to-Speech-to-Text CLI',
+    year: 2018,
+    label: 'Archived',
     stack: ['Python'],
     repoUrl: `${GITHUB_URL}/Text-to-Speech-to-Text#text-to-speech-with-python`,
     image: textToSpeech,
@@ -73,6 +93,8 @@ export const projects: Project[] = [
   {
     id: 'task-api',
     title: 'Task-Management API',
+    year: 2017,
+    label: 'Archived',
     stack: ['Ruby on Rails'],
     repoUrl: `${GITHUB_URL}/To-do-API#task-managmenet-api`,
     image: taskApi,

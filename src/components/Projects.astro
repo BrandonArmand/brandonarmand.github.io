@@ -34,7 +34,10 @@ const [first] = projects;
                 <img src={thumb.src} width="66" height="46" alt="" loading="lazy" />
                 <span class="project-row-text">
                   <span class="project-row-title">{project.title}</span>
-                  <span class="project-row-stack">{project.stack.join(', ')}</span>
+                  <span class="project-row-meta">
+                    <span class="project-row-stack">{project.stack.join(', ')}</span>
+                    <span class="project-year">{project.year}</span>
+                  </span>
                 </span>
               </button>
             </li>
@@ -53,7 +56,7 @@ const [first] = projects;
               </a>
               <div class="preview-head">
                 <h2>{project.title}</h2>
-                <span class="preview-tag">{project.featured ? 'Featured' : 'Archived'}</span>
+                <span class="preview-tag">{project.label}</span>
               </div>
               {project.description && <p class="preview-desc">{project.description}</p>}
               {

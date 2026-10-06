@@ -1,0 +1,22 @@
+---
+import { ROUTES } from '../config';
+import { wallFiles } from '../data/profile';
+
+const inactive = (Astro.url.pathname.replace(/\/$/, '') || ROUTES.home) !== ROUTES.home;
+---
+
+<ul class="wall-files" id="wall-files" transition:persist="wall-files">
+  {
+    wallFiles.map((file) => (
+      <li>
+        <button class="wall-file" type="button" data-cmd={`node ${file.name}`} disabled={inactive}>
+          <span class="file-icon" aria-hidden="true">
+            <span class="file-fold"></span>
+            <span class="file-ext" style={`background: ${file.color}`}>.js</span>
+          </span>
+          <span class="file-name">{file.name}</span>
+        </button>
+      </li>
+    ))
+  }
+</ul>

@@ -1,5 +1,4 @@
 ---
-import { wallFiles } from '../data/profile';
 import Welcome from './Welcome.astro';
 ---
 
@@ -22,21 +21,6 @@ import Welcome from './Welcome.astro';
       </div>
     </section>
   </div>
-  <ul class="wall-files">
-    {
-      wallFiles.map((file) => (
-        <li>
-          <button class="wall-file" type="button" data-cmd={`node ${file.name}`}>
-            <span class="file-icon" aria-hidden="true">
-              <span class="file-fold"></span>
-              <span class="file-ext" style={`background: ${file.color}`}>.js</span>
-            </span>
-            <span class="file-name">{file.name}</span>
-          </button>
-        </li>
-      ))
-    }
-  </ul>
 </div>
 
 <script is:inline>

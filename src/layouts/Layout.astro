@@ -16,6 +16,7 @@ import Header from '../components/Header.astro';
 import Preload from '../components/Preload.astro';
 import Seo from '../components/Seo.astro';
 import StatusBar from '../components/StatusBar.astro';
+import WallFiles from '../components/WallFiles.astro';
 
 interface Props {
   title: string;
@@ -43,9 +44,12 @@ const { title, description } = Astro.props;
         <div class="header-body-divider"></div>
         <div class="body-container">
           <StatusBar />
-          <main id="home" tabindex="-1">
-            <slot />
-          </main>
+          <div class="stage">
+            <main id="home" tabindex="-1">
+              <slot />
+            </main>
+            <WallFiles />
+          </div>
           <Dock />
         </div>
       </div>

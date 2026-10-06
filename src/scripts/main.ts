@@ -6,6 +6,7 @@ import { preloadDockPages } from './preload';
 import { initProjects } from './projects';
 import { initScreens } from './screens';
 import { initTerminal } from './terminal';
+import { initWallFiles } from './wall-files';
 import { initWindowControls } from './window-controls';
 
 let session: AbortController | undefined;
@@ -24,6 +25,7 @@ function start(): void {
 
   initScreens(signal);
   initClock(signal);
+  initWallFiles();
 
   const controls = initWindowControls(signal);
   initHandoff(signal, controls);

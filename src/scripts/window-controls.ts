@@ -62,6 +62,8 @@ const fadeFrames = (from: number, to: number): Keyframe[] => [{ opacity: from },
 async function play(element: HTMLElement, keyframes: Keyframe[], duration: number, reduced: Keyframe[]): Promise<void> {
   const reducedMotion = prefersReducedMotion();
   element.style.willChange = 'transform, opacity, clip-path';
+  element.classList.add('is-animating');
+  element.parentElement?.classList.add('is-animating');
   const animation = element.animate(reducedMotion ? reduced : keyframes, {
     duration: reducedMotion ? REDUCED_MS : duration,
     easing: 'ease-in-out',
@@ -70,6 +72,8 @@ async function play(element: HTMLElement, keyframes: Keyframe[], duration: numbe
   await animation.finished;
   animation.cancel();
   element.style.willChange = '';
+  element.classList.remove('is-animating');
+  element.parentElement?.classList.remove('is-animating');
 }
 
 function squashTile(tile: HTMLElement | null, delay: number): void {

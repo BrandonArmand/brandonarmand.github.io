@@ -4,7 +4,7 @@ import { initClock } from './clock';
 import { consumeHandoff, hideIncomingWindow, initHandoff } from './handoff';
 import { preloadDockPages } from './preload';
 import { initProjects } from './projects';
-import { initScreens } from './screens';
+import { initScreens, snapToContent } from './screens';
 import { initTerminal } from './terminal';
 import { initWallFiles } from './wall-files';
 import { initWindowControls } from './window-controls';
@@ -38,6 +38,7 @@ function start(): void {
 }
 
 document.addEventListener('astro:after-swap', () => {
+  snapToContent();
   hideIncomingWindow();
   try {
     if (sessionStorage.getItem('intro')) document.getElementById('console')?.classList.add('seen');

@@ -4,6 +4,11 @@ const MOBILE_QUERY = '(max-width: 1199px)';
 
 let hasLoaded = false;
 
+export function snapToContent(): void {
+  const row = document.querySelector<HTMLElement>('.row');
+  if (row && window.matchMedia(MOBILE_QUERY).matches) row.scrollTop = row.clientHeight;
+}
+
 export function initScreens(signal: AbortSignal): void {
   const row = document.querySelector<HTMLElement>('.row');
   const dotsBox = document.querySelector<HTMLElement>('.screen-dots');

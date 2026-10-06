@@ -149,21 +149,41 @@
   align-items: center;
   gap: 5px;
   line-height: 1.2;
+  -webkit-text-stroke: 0 currentColor;
+  transition:
+    color 0.12s ease,
+    font-size 0.12s ease,
+    -webkit-text-stroke-width 0.12s ease;
+}
+
+.dock-label::before {
+  content: '';
+  width: 0;
+  height: 6px;
+  margin-right: -5px;
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.2);
+  transition:
+    width 0.12s ease,
+    margin-right 0.12s ease,
+    opacity 0.12s ease,
+    transform 0.12s ease;
 }
 
 .dock-item[aria-current='page'] .dock-label {
   color: #fff;
-  font-weight: 600;
+  font-size: 1.08em;
+  -webkit-text-stroke-width: 0.045em;
 }
 
 .dock-item[aria-current='page'] .dock-label::before {
-  content: '';
   width: 6px;
-  height: 6px;
-  background: var(--orange);
-  border-radius: 50%;
+  margin-right: 0;
+  opacity: 1;
+  transform: scale(1);
 }
-
 .dock-sep {
   align-self: stretch;
   width: 2px;

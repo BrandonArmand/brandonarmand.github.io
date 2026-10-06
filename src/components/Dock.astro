@@ -5,7 +5,7 @@ import { links, pages } from '../data/dock';
 const current = Astro.url.pathname.replace(/\/$/, '') || ROUTES.home;
 ---
 
-<div class="dock-wrap">
+<div class="dock-wrap" transition:persist="dock">
   <nav class="dock" aria-label="Primary">
     {
       pages.map((item) => (

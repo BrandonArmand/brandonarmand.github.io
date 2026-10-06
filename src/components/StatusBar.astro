@@ -5,7 +5,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || ROUTES.home;
 const page = path === ROUTES.home ? 'about' : path.replace(/^\//, '');
 ---
 
-<header class="status-bar">
+<header class="status-bar" transition:persist="status-bar">
   <div class="pill">
     <strong>brandon</strong>
     <span class="pill-slash">/</span>

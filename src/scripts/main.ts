@@ -1,5 +1,6 @@
 import { navigate } from 'astro:transitions/client';
 import { ROUTES } from '../config';
+import { syncChrome } from './chrome-state';
 import { initClock } from './clock';
 import { consumeHandoff, hideIncomingWindow, initHandoff } from './handoff';
 import { preloadDockPages } from './preload';
@@ -23,6 +24,7 @@ function start(): void {
   session = new AbortController();
   const { signal } = session;
 
+  syncChrome();
   initScreens(signal);
   initClock(signal);
   initWallFiles();
@@ -38,6 +40,9 @@ function start(): void {
 }
 
 document.addEventListener('astro:after-swap', () => {
+  void document.body.offsetHeight;
+  syncChrome();
+  initWallFiles();
   snapToContent();
   hideIncomingWindow();
   try {

@@ -70,7 +70,7 @@ export const projects: Project[] = [
     image: portfolio,
     imageAlt: 'This portfolio: a desktop-style site with a terminal window and a dock',
     description:
-      'A desktop-style portfolio built with Astro and TypeScript, with a working terminal, a dock for navigation, and windows that fold into it.',
+      'My portfolio site built with just pure HTML/CSS/JavaScript. I keep it constantly maintained and up to date as often as I can.',
   },
   {
     id: 'mark-it-off',

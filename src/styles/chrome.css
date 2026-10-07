@@ -265,7 +265,7 @@
   }
 
   .dock {
-    --tile: clamp(52px, calc(4px + 6.7vh), 96px);
+    --tile: clamp(52px, calc(4px + 6.7vh), 72px);
     --dock-gap: calc(var(--tile) * 0.25);
     padding: calc(var(--tile) * 0.31) calc(var(--tile) * 0.375) calc(var(--tile) * 0.19);
     border-radius: calc(var(--tile) * 0.4);

@@ -33,14 +33,14 @@ const draftKings: Company = {
 
 const railbird: Company = {
   name: 'Railbird Exchange',
-  years: 2,
+  years: 2.5,
   badges: [
     { label: 'YC 22', background: '#fff1e8', border: '#f26522', color: '#a83d0a' },
     { label: 'now DraftKings', background: '#e3f6f0', border: '#38b890', color: '#14614b' },
   ],
   roles: [
     { title: 'Head of Engineering', years: 1 },
-    { title: 'Founding Software Engineer', years: 1 },
+    { title: 'Founding Software Engineer', years: 1.5 },
   ],
 };
 

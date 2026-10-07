@@ -11,6 +11,8 @@ import { initTerminal } from './terminal';
 import { initWallFiles } from './wall-files';
 import { initWindowControls } from './window-controls';
 
+const NAME_SWIPE_AFTER_INTRO_MS = 150;
+
 let session: AbortController | undefined;
 
 function start(): void {
@@ -29,14 +31,14 @@ function start(): void {
   initScreens(signal);
   initClock(signal);
   initWallFiles();
-  playNameSwipe();
 
   const controls = initWindowControls(signal);
   initHandoff(signal, controls);
   initProjects(signal);
   preloadDockPages();
 
-  if (document.getElementById('console') && controls) initTerminal(signal, controls.ensureOpen);
+  if (document.getElementById('console') && controls) initTerminal(signal, controls.ensureOpen, () => playNameSwipe(NAME_SWIPE_AFTER_INTRO_MS));
+  else playNameSwipe();
 
   if (consumeHandoff()) void controls?.unfold();
 }

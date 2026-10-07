@@ -1,8 +1,8 @@
-const STEP_MS = 36;
-const HOP_MS = 340;
+const STEP_MS = 28;
+const HOP_MS = 280;
 const APEX = 0.45;
 const RISE = '-0.6em';
-const FLASH_MS = 340;
+const FLASH_MS = 290;
 const FLASH_COLORS = ['#b0e6b8', '#ffa500', '#bedbf3'];
 const OUTLINE_ON = '-0.7px 0 #111, 0.7px 0 #111, 0 -0.7px #111, 0 0.7px #111';
 const OUTLINE_OFF = '-0.7px 0 #1110, 0.7px 0 #1110, 0 -0.7px #1110, 0 0.7px #1110';

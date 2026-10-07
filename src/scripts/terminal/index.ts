@@ -13,7 +13,7 @@ const INTRO_COMMAND = 'node welcome.js';
 const INTRO_START_MS = 750;
 const INTRO_RUN_PAUSE_MS = 280;
 
-export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void>): void {
+export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void>, onIntroDone: () => void): void {
   const terminal = requireElement('console');
   const welcome = requireElement('welcome');
 
@@ -49,7 +49,11 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
     execute(raw);
   }
 
-  function typeCommand(command: string, pause = Math.min(command.length * TYPE_DELAY_MS, MAX_TYPE_WAIT_MS)): void {
+  function typeCommand(
+    command: string,
+    pause = Math.min(command.length * TYPE_DELAY_MS, MAX_TYPE_WAIT_MS),
+    after?: () => void
+  ): void {
     cancelTyping();
     prompt.clear();
 
@@ -59,7 +63,10 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
       if (index < command.length) return;
 
       cancelTyping();
-      window.setTimeout(run, pause);
+      window.setTimeout(() => {
+        run();
+        after?.();
+      }, pause);
     }, TYPE_DELAY_MS);
   }
 
@@ -96,8 +103,9 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
   if (seen) {
     terminal.classList.add('seen');
     execute(INTRO_COMMAND);
+    onIntroDone();
   } else {
-    introTimer = window.setTimeout(() => typeCommand(INTRO_COMMAND, INTRO_RUN_PAUSE_MS), INTRO_START_MS);
+    introTimer = window.setTimeout(() => typeCommand(INTRO_COMMAND, INTRO_RUN_PAUSE_MS, onIntroDone), INTRO_START_MS);
   }
 
   signal.addEventListener('abort', () => {

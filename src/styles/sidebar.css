@@ -70,7 +70,8 @@
   color: var(--c);
 }
 
-.ch:hover .ch-i {
+.ch:hover .ch-i,
+.ch.lit .ch-i {
   color: var(--c);
   transform: translateY(-0.28em) scale(1.28) rotate(var(--tilt));
   transition-duration: 0.1s, 0.15s;
@@ -78,7 +79,9 @@
 }
 
 .ch:hover + .ch .ch-i,
-.ch:has(+ .ch:hover) .ch-i {
+.ch:has(+ .ch:hover) .ch-i,
+.ch.lit + .ch .ch-i,
+.ch:has(+ .ch.lit) .ch-i {
   transform: translateY(-0.12em) scale(1.1) rotate(calc(var(--tilt) * -0.4));
   transition-duration: 0.14s, 0.2s;
   transition-timing-function: ease-out;
@@ -88,7 +91,10 @@
   .ch-i,
   .ch:hover .ch-i,
   .ch:hover + .ch .ch-i,
-  .ch:has(+ .ch:hover) .ch-i {
+  .ch:has(+ .ch:hover) .ch-i,
+  .ch.lit .ch-i,
+  .ch.lit + .ch .ch-i,
+  .ch:has(+ .ch.lit) .ch-i {
     transform: none;
     transition: color 0.15s ease;
   }

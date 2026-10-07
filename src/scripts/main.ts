@@ -2,6 +2,7 @@ import { navigate } from 'astro:transitions/client';
 import { ROUTES } from '../config';
 import { syncChrome } from './chrome-state';
 import { initClock } from './clock';
+import { playNameSwipe } from './name-swipe';
 import { consumeHandoff, hideIncomingWindow, initHandoff } from './handoff';
 import { preloadDockPages } from './preload';
 import { initProjects } from './projects';
@@ -28,6 +29,7 @@ function start(): void {
   initScreens(signal);
   initClock(signal);
   initWallFiles();
+  playNameSwipe();
 
   const controls = initWindowControls(signal);
   initHandoff(signal, controls);

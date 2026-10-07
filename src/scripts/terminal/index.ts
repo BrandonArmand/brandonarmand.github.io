@@ -7,6 +7,8 @@ import { bindKeyboard } from './keyboard';
 import { createOutput } from './output';
 import { createPrompt } from './prompt';
 
+let introPlayed = false;
+
 const INTRO_COMMAND = 'node welcome.js';
 const INTRO_START_MS = 750;
 const INTRO_RUN_PAUSE_MS = 280;
@@ -87,11 +89,8 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
 
   terminal.closest('[data-window]')?.addEventListener('window-closed', output.clear, { signal });
 
-  let seen = terminal.classList.contains('seen');
-  try {
-    if (sessionStorage.getItem('intro')) seen = true;
-    else sessionStorage.setItem('intro', '1');
-  } catch {}
+  const seen = introPlayed;
+  introPlayed = true;
 
   let introTimer: number | undefined;
   if (seen) {

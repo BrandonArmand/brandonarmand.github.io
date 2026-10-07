@@ -21,9 +21,3 @@ import Welcome from './Welcome.astro';
     </section>
   </div>
 </div>
-
-<script is:inline>
-  try {
-    if (sessionStorage.getItem('intro')) document.getElementById('console').classList.add('seen');
-  } catch (error) {}
-</script>

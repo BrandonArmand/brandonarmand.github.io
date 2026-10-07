@@ -47,9 +47,6 @@ document.addEventListener('astro:after-swap', () => {
   initWallFiles();
   snapToContent();
   hideIncomingWindow();
-  try {
-    if (sessionStorage.getItem('intro')) document.getElementById('console')?.classList.add('seen');
-  } catch {}
 });
 
 document.addEventListener('astro:page-load', start);

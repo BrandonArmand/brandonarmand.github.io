@@ -36,8 +36,62 @@
   text-align: center;
 }
 
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ch {
+  display: inline-block;
+  cursor: default;
+}
+
+.ch:nth-child(odd) {
+  --tilt: -5deg;
+}
+
+.ch:nth-child(even) {
+  --tilt: 5deg;
+}
+
+.ch-i {
+  display: inline-block;
+  transform-origin: 50% 80%;
+  transition:
+    transform 0.6s cubic-bezier(0.3, 1.7, 0.5, 1),
+    color 0.5s ease;
+}
+
 .name-initial {
   font-size: 1.3em;
+}
+
+.name-initial .ch-i {
+  color: var(--c);
+}
+
+.ch:hover .ch-i {
+  color: var(--c);
+  transform: translateY(-0.28em) scale(1.28) rotate(var(--tilt));
+  transition-duration: 0.1s, 0.15s;
+  transition-timing-function: ease-out;
+}
+
+.ch:hover + .ch .ch-i,
+.ch:has(+ .ch:hover) .ch-i {
+  transform: translateY(-0.12em) scale(1.1) rotate(calc(var(--tilt) * -0.4));
+  transition-duration: 0.14s, 0.2s;
+  transition-timing-function: ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch-i,
+  .ch:hover .ch-i,
+  .ch:hover + .ch .ch-i,
+  .ch:has(+ .ch:hover) .ch-i {
+    transform: none;
+    transition: color 0.15s ease;
+  }
 }
 
 .side-role {

@@ -2,15 +2,33 @@
 import space from '../assets/space.webp';
 import { LOCATION } from '../config';
 import SkillList from './SkillList.astro';
+
+const NAME_WORDS = [
+  { text: 'Brandon', color: 'green' },
+  { text: 'Armand', color: 'orange' },
+  { text: 'Welsh', color: 'blue' },
+];
 ---
 
 <div class="col-header" id="header" transition:persist>
   <div class="side-top">
     <img class="side-space" src={space.src} width={space.width} height={space.height} alt="" />
     <h1 id="name">
-      <span class="name-initial text-green">B</span>randon
-      <span class="name-initial text-orange">A</span>rmand
-      <span class="name-initial text-blue">W</span>elsh
+      <span class="sr-only">{NAME_WORDS.map((word) => word.text).join(' ')}</span>
+      <span class="name-visual" aria-hidden="true">
+        {
+          NAME_WORDS.map((word, index) => (
+            <>
+              {index > 0 && ' '}
+              <span class="word" style={`--c: var(--${word.color})`}>
+                {[...word.text].map((letter, position) => (
+                  <span class={`ch${position === 0 ? ' name-initial' : ''}`}><span class="ch-i">{letter}</span></span>
+                ))}
+              </span>
+            </>
+          ))
+        }
+      </span>
     </h1>
     <p class="side-role">
       <span class="role-text">Software Engineer<span class="role-badge">7yrs</span></span>

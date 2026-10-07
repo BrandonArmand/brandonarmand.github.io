@@ -73,12 +73,6 @@ img {
   display: none !important;
 }
 
-.display-4 {
-  font-size: 3.5rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
-
 .text-green,
 a.text-green:hover { color: var(--green); }
 

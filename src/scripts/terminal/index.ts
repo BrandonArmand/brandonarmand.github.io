@@ -23,7 +23,11 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
   const commands = createCommands({ output, historyEntries: history.entries });
 
   let typingTimer: number | undefined;
-  const cancelTyping = () => window.clearInterval(typingTimer);
+  let runTimer: number | undefined;
+  const cancelTyping = () => {
+    window.clearInterval(typingTimer);
+    window.clearTimeout(runTimer);
+  };
 
   function execute(raw: string): void {
     const trimmed = raw.trim();
@@ -63,11 +67,29 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
       if (index < command.length) return;
 
       cancelTyping();
-      window.setTimeout(() => {
+      runTimer = window.setTimeout(() => {
         run();
         after?.();
       }, pause);
     }, TYPE_DELAY_MS);
+  }
+
+  let introTimer: number | undefined;
+  let introPending = false;
+
+  function finishIntro(): void {
+    if (!introPending) return;
+    introPending = false;
+    onIntroDone();
+  }
+
+  function skipIntro(): void {
+    if (!introPending) return;
+    window.clearTimeout(introTimer);
+    cancelTyping();
+    prompt.clear();
+    execute(INTRO_COMMAND);
+    finishIntro();
   }
 
   document.addEventListener(
@@ -78,6 +100,7 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
       if (!command) return;
 
       await ensureOpen();
+      skipIntro();
       output.scrollToBottom();
       typeCommand(command);
     },
@@ -89,7 +112,10 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
     prompt,
     history,
     run,
-    onInput: cancelTyping,
+    onInput: () => {
+      cancelTyping();
+      skipIntro();
+    },
     onTyped: output.scrollToBottom,
     signal,
   });
@@ -99,13 +125,13 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
   const seen = introPlayed;
   introPlayed = true;
 
-  let introTimer: number | undefined;
   if (seen) {
     terminal.classList.add('seen');
     execute(INTRO_COMMAND);
     onIntroDone();
   } else {
-    introTimer = window.setTimeout(() => typeCommand(INTRO_COMMAND, INTRO_RUN_PAUSE_MS, onIntroDone), INTRO_START_MS);
+    introPending = true;
+    introTimer = window.setTimeout(() => typeCommand(INTRO_COMMAND, INTRO_RUN_PAUSE_MS, finishIntro), INTRO_START_MS);
   }
 
   signal.addEventListener('abort', () => {

@@ -7,6 +7,10 @@ import { bindKeyboard } from './keyboard';
 import { createOutput } from './output';
 import { createPrompt } from './prompt';
 
+const INTRO_COMMAND = 'node welcome.js';
+const INTRO_START_MS = 750;
+const INTRO_RUN_PAUSE_MS = 280;
+
 export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void>): void {
   const terminal = requireElement('console');
   const welcome = requireElement('welcome');
@@ -19,11 +23,9 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
   let typingTimer: number | undefined;
   const cancelTyping = () => window.clearInterval(typingTimer);
 
-  function run(): void {
-    const raw = prompt.value;
+  function execute(raw: string): void {
     const trimmed = raw.trim();
 
-    prompt.clear();
     history.reset();
     if (trimmed) history.push(trimmed);
 
@@ -39,7 +41,13 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
     output.scrollToBottom();
   }
 
-  function typeCommand(command: string): void {
+  function run(): void {
+    const raw = prompt.value;
+    prompt.clear();
+    execute(raw);
+  }
+
+  function typeCommand(command: string, pause = Math.min(command.length * TYPE_DELAY_MS, MAX_TYPE_WAIT_MS)): void {
     cancelTyping();
     prompt.clear();
 
@@ -49,7 +57,7 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
       if (index < command.length) return;
 
       cancelTyping();
-      window.setTimeout(run, Math.min(command.length * TYPE_DELAY_MS, MAX_TYPE_WAIT_MS));
+      window.setTimeout(run, pause);
     }, TYPE_DELAY_MS);
   }
 
@@ -79,12 +87,22 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
 
   terminal.closest('[data-window]')?.addEventListener('window-closed', output.clear, { signal });
 
+  let seen = terminal.classList.contains('seen');
   try {
-    if (sessionStorage.getItem('intro')) terminal.classList.add('seen');
+    if (sessionStorage.getItem('intro')) seen = true;
     else sessionStorage.setItem('intro', '1');
   } catch {}
 
+  let introTimer: number | undefined;
+  if (seen) {
+    terminal.classList.add('seen');
+    execute(INTRO_COMMAND);
+  } else {
+    introTimer = window.setTimeout(() => typeCommand(INTRO_COMMAND, INTRO_RUN_PAUSE_MS), INTRO_START_MS);
+  }
+
   signal.addEventListener('abort', () => {
     cancelTyping();
+    window.clearTimeout(introTimer);
   });
 }

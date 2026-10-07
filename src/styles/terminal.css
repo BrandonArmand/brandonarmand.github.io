@@ -73,25 +73,16 @@
   line-height: 1.7;
 }
 
-.intro-line {
-  margin: 0;
-  color: var(--prompt);
-}
-
 .prompt-arrow {
   color: var(--prompt);
 }
 
-.console:not(.seen) .intro-line {
-  width: 17ch;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: type-in 0.5s steps(17, end) both;
+.stack .welcome {
+  animation: reveal 0.25s ease both;
 }
 
-.console:not(.seen) .welcome,
-.console:not(.seen) .prompt-line {
-  animation: reveal 0.25s ease 0.5s both;
+.console.seen .stack .welcome {
+  animation: none;
 }
 
 .summary {
@@ -378,6 +369,7 @@
     width: 100%;
     max-width: clamp(780px, 58vw, 1120px);
     height: auto;
+    min-height: min(100%, 32.6em);
     font-size: clamp(15.5px, min(1.7vh, 1.05vw), 22px);
     border-width: 4px;
     border-radius: 8px;
@@ -523,9 +515,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .console:not(.seen) .intro-line,
-  .console:not(.seen) .welcome,
-  .console:not(.seen) .prompt-line {
+  .stack .welcome {
     animation: none;
   }
 

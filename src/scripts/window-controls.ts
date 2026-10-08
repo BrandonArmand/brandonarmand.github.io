@@ -16,8 +16,6 @@ const TILE_SQUASH_MS = 260;
 const PAGE_FOLD_MS = 300;
 const PAGE_UNFOLD_MS = 320;
 
-const PERSPECTIVE = 'perspective(900px)';
-
 function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
@@ -35,42 +33,26 @@ function offsetToTile(windowElement: HTMLElement, tile: HTMLElement): { dx: numb
   };
 }
 
-type FoldMode = 'default' | '2d' | 'blank';
-let foldMode: FoldMode = 'default';
-
-function readFoldMode(): FoldMode {
-  try {
-    const requested = new URLSearchParams(window.location.search).get('fold');
-    if (requested) window.localStorage.setItem('fold', requested);
-    const stored = window.localStorage.getItem('fold');
-    return stored === '2d' || stored === 'blank' ? stored : 'default';
-  } catch {
-    return 'default';
-  }
-}
-
-const pose = (x: number, y: number, tilt: number, scaleX: number, scaleY: number): string =>
-  foldMode === '2d'
-    ? `translate(${x}px, ${y}px) scale(${scaleX}, ${scaleY})`
-    : `translate(${x}px, ${y}px) ${PERSPECTIVE} rotateX(${tilt}deg) scale(${scaleX}, ${scaleY})`;
+const pose = (x: number, y: number, scaleX: number, scaleY: number): string =>
+  `translate(${x}px, ${y}px) scale(${scaleX}, ${scaleY})`;
 
 function minimizeFrames(dx: number, dy: number): Keyframe[] {
   return [
-    { offset: 0, transform: pose(0, 0, 0, 1, 1) },
-    { offset: 0.12, transform: pose(0, -5, 0, 0.97, 1.07) },
-    { offset: 0.36, transform: pose(dx * 0.3, dy * 0.3, -26, 0.7, 0.66) },
-    { offset: 0.74, transform: pose(dx * 0.88, dy * 0.88, -52, 0.26, 0.2) },
-    { offset: 1, transform: pose(dx, dy, -60, 0.08, 0.06) },
+    { offset: 0, transform: pose(0, 0, 1, 1) },
+    { offset: 0.12, transform: pose(0, -5, 0.97, 1.07) },
+    { offset: 0.36, transform: pose(dx * 0.3, dy * 0.3, 0.7, 0.66) },
+    { offset: 0.74, transform: pose(dx * 0.88, dy * 0.88, 0.26, 0.2) },
+    { offset: 1, transform: pose(dx, dy, 0.08, 0.06) },
   ];
 }
 
 function restoreFrames(dx: number, dy: number): Keyframe[] {
   return [
-    { offset: 0, transform: pose(dx, dy, -60, 0.08, 0.06) },
-    { offset: 0.22, transform: pose(dx * 0.88, dy * 0.88, -52, 0.26, 0.2) },
-    { offset: 0.58, transform: pose(dx * 0.3, dy * 0.3, -26, 0.74, 0.7) },
-    { offset: 0.84, transform: pose(0, -4, 0, 1.02, 1.03) },
-    { offset: 1, transform: pose(0, 0, 0, 1, 1) },
+    { offset: 0, transform: pose(dx, dy, 0.08, 0.06) },
+    { offset: 0.22, transform: pose(dx * 0.88, dy * 0.88, 0.26, 0.2) },
+    { offset: 0.58, transform: pose(dx * 0.3, dy * 0.3, 0.74, 0.7) },
+    { offset: 0.84, transform: pose(0, -4, 1.02, 1.03) },
+    { offset: 1, transform: pose(0, 0, 1, 1) },
   ];
 }
 const fadeFrames = (from: number, to: number): Keyframe[] => [{ opacity: from }, { opacity: to }];
@@ -84,7 +66,6 @@ async function play(
 ): Promise<void> {
   const reducedMotion = prefersReducedMotion();
   element.style.willChange = 'transform';
-  if (foldMode === 'blank') element.classList.add('fold-blank');
   const animation = element.animate(reducedMotion ? reduced : keyframes, {
     duration: reducedMotion ? REDUCED_MS : duration,
     easing,
@@ -92,7 +73,6 @@ async function play(
   });
   await animation.finished;
   animation.cancel();
-  element.classList.remove('fold-blank');
   element.style.willChange = '';
 }
 
@@ -110,7 +90,6 @@ export function initWindowControls(signal: AbortSignal): WindowControls | undefi
   if (!found || !toolbar) return undefined;
 
   const windowElement: HTMLElement = found;
-  foldMode = readFoldMode();
 
   const tileHref = windowElement.dataset.tile ?? '/';
 

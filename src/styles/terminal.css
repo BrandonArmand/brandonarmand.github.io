@@ -538,7 +538,3 @@
     animation: none;
   }
 }
-
-.fold-blank > :not(.toolbar) {
-  visibility: hidden;
-}

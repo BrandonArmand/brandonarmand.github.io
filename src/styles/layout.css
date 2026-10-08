@@ -15,6 +15,7 @@ html::-webkit-scrollbar,
   height: 100dvh;
   width: 100%;
   margin: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
 }
@@ -65,9 +66,7 @@ html::-webkit-scrollbar,
   flex: 1 1 0;
   min-height: 0;
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-behavior: smooth;
+  overflow: visible;
   text-align: center;
 }
 
@@ -92,10 +91,6 @@ html::-webkit-scrollbar,
     flex: 1 1 0;
     min-width: 0;
     width: auto;
-  }
-
-  #home {
-    overflow: visible;
   }
 
   .header-body-divider {

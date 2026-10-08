@@ -123,6 +123,7 @@
   color: #111;
   background: var(--tile-bg);
   border: 2px solid #111;
+  z-index: 1;
   border-radius: calc(var(--tile) / 4);
   transform-origin: bottom center;
   transition:
@@ -145,49 +146,39 @@
 }
 
 .dock-item[aria-current='page'] .dock-tile {
-  transform: translateY(calc(var(--tile) * -0.2));
+  transform: translateY(calc(var(--tile) * -0.26));
   box-shadow: -3px 3px 0 #000;
 }
 
 .dock-label {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
   line-height: 1.2;
-  -webkit-text-stroke: 0 currentColor;
-  transition:
-    color 0.12s ease,
-    font-size 0.12s ease,
-    -webkit-text-stroke-width 0.12s ease;
+  transition: color 0.12s ease;
 }
 
-.dock-label::before {
+.dock-slot::after {
+  --dot: clamp(5px, calc(var(--tile) * 0.14), 9px);
   content: '';
-  width: 0;
-  height: 6px;
-  margin-right: -5px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: var(--dot);
+  height: var(--dot);
+  margin-left: calc(var(--dot) / -2);
   background: var(--orange);
   border-radius: 50%;
   opacity: 0;
-  transform: scale(0.2);
-  transition:
-    width 0.12s ease,
-    margin-right 0.12s ease,
-    opacity 0.12s ease,
-    transform 0.12s ease;
+  transition: opacity 0.18s ease;
+}
+
+.dock-item[aria-current='page'] .dock-slot::after {
+  opacity: 1;
+  transition: none;
 }
 
 .dock-item[aria-current='page'] .dock-label {
   color: #fff;
-  font-size: 1.08em;
-  -webkit-text-stroke-width: 0.045em;
-}
-
-.dock-item[aria-current='page'] .dock-label::before {
-  width: 6px;
-  margin-right: 0;
-  opacity: 1;
-  transform: scale(1);
 }
 .dock-sep {
   align-self: stretch;

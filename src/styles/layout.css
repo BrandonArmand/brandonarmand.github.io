@@ -1,3 +1,15 @@
+html,
+.row,
+#home {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+.row::-webkit-scrollbar,
+#home::-webkit-scrollbar {
+  display: none;
+}
+
 .row {
   display: block;
   height: 100dvh;

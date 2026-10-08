@@ -2,6 +2,7 @@ import { navigate } from 'astro:transitions/client';
 import { ROUTES } from '../config';
 import { syncChrome } from './chrome-state';
 import { initClock } from './clock';
+import { isMobile, whenInView } from './in-view';
 import { playNameSwipe } from './name-swipe';
 import { consumeHandoff, hideIncomingWindow, initHandoff } from './handoff';
 import { preloadDockPages } from './preload';
@@ -37,8 +38,16 @@ function start(): void {
   initProjects(signal);
   preloadDockPages();
 
-  if (document.getElementById('console') && controls) initTerminal(signal, controls.ensureOpen, () => playNameSwipe(NAME_SWIPE_AFTER_INTRO_MS));
-  else playNameSwipe();
+  const mobile = isMobile();
+  const name = document.getElementById('name');
+
+  if (document.getElementById('console') && controls) {
+    initTerminal(signal, controls.ensureOpen, () => {
+      if (!mobile) playNameSwipe(NAME_SWIPE_AFTER_INTRO_MS);
+    });
+  } else if (!mobile) playNameSwipe();
+
+  if (mobile && name) whenInView(name, signal, () => playNameSwipe(NAME_SWIPE_AFTER_INTRO_MS));
 
   if (consumeHandoff()) void controls?.unfold();
 }

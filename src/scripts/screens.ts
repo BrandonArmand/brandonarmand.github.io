@@ -1,6 +1,5 @@
 import { ROUTES } from '../config';
-
-const MOBILE_QUERY = '(max-width: 1199px)';
+import { MOBILE_QUERY } from './in-view';
 
 let hasLoaded = false;
 

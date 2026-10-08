@@ -161,7 +161,7 @@
   --dot: clamp(5px, calc(var(--tile) * 0.14), 9px);
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: 1px;
   left: 50%;
   width: var(--dot);
   height: var(--dot);

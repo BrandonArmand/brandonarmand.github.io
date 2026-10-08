@@ -1,4 +1,5 @@
 import { requireElement } from '../dom';
+import { isMobile, whenInView } from '../in-view';
 import { createCommands } from './commands';
 import { MAX_TYPE_WAIT_MS, TYPE_DELAY_MS } from './content';
 import { createHistory } from './history';
@@ -11,6 +12,8 @@ let introPlayed = false;
 
 const INTRO_COMMAND = 'node welcome.js';
 const INTRO_START_MS = 750;
+const INTRO_VIEW_START_MS = 120;
+const INTRO_VIEW_RATIO = 0.3;
 const INTRO_RUN_PAUSE_MS = 280;
 
 export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void>, onIntroDone: () => void): void {
@@ -131,7 +134,12 @@ export function initTerminal(signal: AbortSignal, ensureOpen: () => Promise<void
     onIntroDone();
   } else {
     introPending = true;
-    introTimer = window.setTimeout(() => typeCommand(INTRO_COMMAND, INTRO_RUN_PAUSE_MS, finishIntro), INTRO_START_MS);
+    const startIntro = (delay: number): void => {
+      if (!introPending) return;
+      introTimer = window.setTimeout(() => typeCommand(INTRO_COMMAND, INTRO_RUN_PAUSE_MS, finishIntro), delay);
+    };
+    if (isMobile()) whenInView(terminal, signal, () => startIntro(INTRO_VIEW_START_MS), INTRO_VIEW_RATIO);
+    else startIntro(INTRO_START_MS);
   }
 
   signal.addEventListener('abort', () => {

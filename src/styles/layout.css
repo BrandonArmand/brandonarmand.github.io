@@ -82,7 +82,8 @@
     width: auto;
   }
 
-  #body {
+  #home {
+    overflow: hidden;
   }
 
   .header-body-divider {

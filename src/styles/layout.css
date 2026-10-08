@@ -95,7 +95,7 @@ html::-webkit-scrollbar,
   }
 
   #home {
-    overflow: hidden;
+    overflow: visible;
   }
 
   .header-body-divider {

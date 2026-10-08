@@ -13,6 +13,7 @@ const RESTORE_MS = 460;
 const CLOSE_MS = 180;
 const REDUCED_MS = 120;
 const TILE_SQUASH_MS = 260;
+const TILE_TARGET_Y = 0.25;
 const PAGE_FOLD_MS = 300;
 const PAGE_UNFOLD_MS = 320;
 
@@ -29,7 +30,7 @@ function offsetToTile(windowElement: HTMLElement, tile: HTMLElement): { dx: numb
   const to = tile.getBoundingClientRect();
   return {
     dx: to.left + to.width / 2 - (from.left + from.width / 2),
-    dy: to.top + to.height / 2 - (from.top + from.height / 2),
+    dy: to.top + to.height * TILE_TARGET_Y - (from.top + from.height / 2),
   };
 }
 

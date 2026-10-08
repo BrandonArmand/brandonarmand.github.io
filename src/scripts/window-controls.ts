@@ -37,24 +37,42 @@ function offsetToTile(windowElement: HTMLElement, tile: HTMLElement): { dx: numb
 const pose = (x: number, y: number, scaleX: number, scaleY: number): string =>
   `translate(${x}px, ${y}px) scale(${scaleX}, ${scaleY})`;
 
+type Stop = [offset: number, value: number];
+
+const MIN_OPACITY = 0.3;
+
+const MINIMIZE_FADE: Stop[] = [[0, 1], [0.1, 0.98], [0.28, 0.85], [0.46, 0.55], [0.64, 0.2], [0.82, 0.03], [1, 0]];
+const RESTORE_FADE: Stop[] = [[0, 0], [0.16, 0.3], [0.32, 0.7], [0.46, 0.93], [0.7, 1], [1, 1]];
+
+function withFade(frames: Keyframe[], fade: Stop[]): Keyframe[] {
+  const fades = fade.map(([offset, opacity]): Keyframe => ({ offset, opacity: MIN_OPACITY + (1 - MIN_OPACITY) * opacity }));
+  return [...frames, ...fades].sort((a, b) => (a.offset as number) - (b.offset as number));
+}
+
 function minimizeFrames(dx: number, dy: number): Keyframe[] {
-  return [
-    { offset: 0, transform: pose(0, 0, 1, 1) },
-    { offset: 0.12, transform: pose(0, -5, 0.97, 1.07) },
-    { offset: 0.36, transform: pose(dx * 0.3, dy * 0.3, 0.7, 0.66) },
-    { offset: 0.74, transform: pose(dx * 0.88, dy * 0.88, 0.26, 0.2) },
-    { offset: 1, transform: pose(dx, dy, 0.08, 0.06) },
-  ];
+  return withFade(
+    [
+      { offset: 0, transform: pose(0, 0, 1, 1) },
+      { offset: 0.12, transform: pose(0, -5, 0.97, 1.07) },
+      { offset: 0.36, transform: pose(dx * 0.3, dy * 0.3, 0.7, 0.66) },
+      { offset: 0.74, transform: pose(dx * 0.88, dy * 0.88, 0.26, 0.2) },
+      { offset: 1, transform: pose(dx, dy, 0.08, 0.06) },
+    ],
+    MINIMIZE_FADE
+  );
 }
 
 function restoreFrames(dx: number, dy: number): Keyframe[] {
-  return [
-    { offset: 0, transform: pose(dx, dy, 0.08, 0.06) },
-    { offset: 0.22, transform: pose(dx * 0.88, dy * 0.88, 0.26, 0.2) },
-    { offset: 0.58, transform: pose(dx * 0.3, dy * 0.3, 0.74, 0.7) },
-    { offset: 0.84, transform: pose(0, -4, 1.02, 1.03) },
-    { offset: 1, transform: pose(0, 0, 1, 1) },
-  ];
+  return withFade(
+    [
+      { offset: 0, transform: pose(dx, dy, 0.08, 0.06) },
+      { offset: 0.22, transform: pose(dx * 0.88, dy * 0.88, 0.26, 0.2) },
+      { offset: 0.58, transform: pose(dx * 0.3, dy * 0.3, 0.74, 0.7) },
+      { offset: 0.84, transform: pose(0, -4, 1.02, 1.03) },
+      { offset: 1, transform: pose(0, 0, 1, 1) },
+    ],
+    RESTORE_FADE
+  );
 }
 const fadeFrames = (from: number, to: number): Keyframe[] => [{ opacity: from }, { opacity: to }];
 
@@ -66,7 +84,7 @@ async function play(
   easing = 'ease-in-out'
 ): Promise<void> {
   const reducedMotion = prefersReducedMotion();
-  element.style.willChange = 'transform';
+  element.style.willChange = 'transform, opacity';
   const animation = element.animate(reducedMotion ? reduced : keyframes, {
     duration: reducedMotion ? REDUCED_MS : duration,
     easing,

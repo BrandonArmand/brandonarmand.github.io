@@ -184,6 +184,15 @@
   box-shadow: -4px 4px 0 #000;
 }
 
+.skill {
+  --corner: 9px;
+}
+
+.corner-tl { border-top-left-radius: var(--corner); }
+.corner-tr { border-top-right-radius: var(--corner); }
+.corner-bl { border-bottom-left-radius: var(--corner); }
+.corner-br { border-bottom-right-radius: var(--corner); }
+
 .skill-text {
   display: block;
   padding: 9px 13px;

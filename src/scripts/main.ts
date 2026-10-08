@@ -7,6 +7,7 @@ import { playNameSwipe } from './name-swipe';
 import { consumeHandoff, hideIncomingWindow, initHandoff } from './handoff';
 import { preloadDockPages } from './preload';
 import { initProjects } from './projects';
+import { initSkillCorners } from './skill-corners';
 import { initScreens, snapToContent } from './screens';
 import { initTerminal } from './terminal';
 import { initWallFiles } from './wall-files';
@@ -31,6 +32,7 @@ function start(): void {
   syncChrome();
   initScreens(signal);
   initClock(signal);
+  initSkillCorners();
   initWallFiles();
 
   const controls = initWindowControls(signal);

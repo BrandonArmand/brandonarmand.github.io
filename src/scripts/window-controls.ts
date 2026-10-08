@@ -40,31 +40,37 @@ const pose = (x: number, y: number, tilt: number, scaleX: number, scaleY: number
 
 function minimizeFrames(dx: number, dy: number): Keyframe[] {
   return [
-    { offset: 0, opacity: 1, transform: pose(0, 0, 0, 1, 1) },
-    { offset: 0.16, opacity: 1, transform: pose(0, -5, 0, 0.97, 1.07) },
-    { offset: 0.42, opacity: 1, transform: pose(dx * 0.3, dy * 0.3, -26, 0.74, 0.7) },
-    { offset: 0.78, opacity: 1, transform: pose(dx * 0.88, dy * 0.88, -52, 0.26, 0.2) },
-    { offset: 1, opacity: 0, transform: pose(dx, dy, -60, 0.08, 0.06) },
+    { offset: 0, transform: pose(0, 0, 0, 1, 1) },
+    { offset: 0.12, transform: pose(0, -5, 0, 0.97, 1.07) },
+    { offset: 0.36, transform: pose(dx * 0.3, dy * 0.3, -26, 0.7, 0.66) },
+    { offset: 0.74, transform: pose(dx * 0.88, dy * 0.88, -52, 0.26, 0.2) },
+    { offset: 1, transform: pose(dx, dy, -60, 0.08, 0.06) },
   ];
 }
 
 function restoreFrames(dx: number, dy: number): Keyframe[] {
   return [
-    { offset: 0, opacity: 0, transform: pose(dx, dy, -60, 0.08, 0.06) },
-    { offset: 0.22, opacity: 1, transform: pose(dx * 0.88, dy * 0.88, -52, 0.26, 0.2) },
-    { offset: 0.58, opacity: 1, transform: pose(dx * 0.3, dy * 0.3, -26, 0.74, 0.7) },
-    { offset: 0.84, opacity: 1, transform: pose(0, -4, 0, 1.02, 1.03) },
-    { offset: 1, opacity: 1, transform: pose(0, 0, 0, 1, 1) },
+    { offset: 0, transform: pose(dx, dy, -60, 0.08, 0.06) },
+    { offset: 0.22, transform: pose(dx * 0.88, dy * 0.88, -52, 0.26, 0.2) },
+    { offset: 0.58, transform: pose(dx * 0.3, dy * 0.3, -26, 0.74, 0.7) },
+    { offset: 0.84, transform: pose(0, -4, 0, 1.02, 1.03) },
+    { offset: 1, transform: pose(0, 0, 0, 1, 1) },
   ];
 }
 const fadeFrames = (from: number, to: number): Keyframe[] => [{ opacity: from }, { opacity: to }];
 
-async function play(element: HTMLElement, keyframes: Keyframe[], duration: number, reduced: Keyframe[]): Promise<void> {
+async function play(
+  element: HTMLElement,
+  keyframes: Keyframe[],
+  duration: number,
+  reduced: Keyframe[],
+  easing = 'ease-in-out'
+): Promise<void> {
   const reducedMotion = prefersReducedMotion();
-  element.style.willChange = 'transform, opacity';
+  element.style.willChange = 'transform';
   const animation = element.animate(reducedMotion ? reduced : keyframes, {
     duration: reducedMotion ? REDUCED_MS : duration,
-    easing: 'ease-in-out',
+    easing,
     fill: 'both',
   });
   await animation.finished;

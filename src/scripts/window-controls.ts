@@ -35,8 +35,24 @@ function offsetToTile(windowElement: HTMLElement, tile: HTMLElement): { dx: numb
   };
 }
 
+type FoldMode = 'default' | '2d' | 'blank';
+let foldMode: FoldMode = 'default';
+
+function readFoldMode(): FoldMode {
+  try {
+    const requested = new URLSearchParams(window.location.search).get('fold');
+    if (requested) window.localStorage.setItem('fold', requested);
+    const stored = window.localStorage.getItem('fold');
+    return stored === '2d' || stored === 'blank' ? stored : 'default';
+  } catch {
+    return 'default';
+  }
+}
+
 const pose = (x: number, y: number, tilt: number, scaleX: number, scaleY: number): string =>
-  `translate(${x}px, ${y}px) ${PERSPECTIVE} rotateX(${tilt}deg) scale(${scaleX}, ${scaleY})`;
+  foldMode === '2d'
+    ? `translate(${x}px, ${y}px) scale(${scaleX}, ${scaleY})`
+    : `translate(${x}px, ${y}px) ${PERSPECTIVE} rotateX(${tilt}deg) scale(${scaleX}, ${scaleY})`;
 
 function minimizeFrames(dx: number, dy: number): Keyframe[] {
   return [
@@ -68,6 +84,7 @@ async function play(
 ): Promise<void> {
   const reducedMotion = prefersReducedMotion();
   element.style.willChange = 'transform';
+  if (foldMode === 'blank') element.classList.add('fold-blank');
   const animation = element.animate(reducedMotion ? reduced : keyframes, {
     duration: reducedMotion ? REDUCED_MS : duration,
     easing,
@@ -75,6 +92,7 @@ async function play(
   });
   await animation.finished;
   animation.cancel();
+  element.classList.remove('fold-blank');
   element.style.willChange = '';
 }
 
@@ -92,6 +110,7 @@ export function initWindowControls(signal: AbortSignal): WindowControls | undefi
   if (!found || !toolbar) return undefined;
 
   const windowElement: HTMLElement = found;
+  foldMode = readFoldMode();
 
   const tileHref = windowElement.dataset.tile ?? '/';
 
